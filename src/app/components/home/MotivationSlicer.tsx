@@ -98,14 +98,6 @@ export default function MotivationSlider() {
 
       {/* Indicadores */}
       <Box
-        sx={{
-          position: "absolute",
-          bottom: 10,
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-          gap: 1,
-        }}
       >
         {phrases.map((_, i) => (
           <Box

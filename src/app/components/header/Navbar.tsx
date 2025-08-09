@@ -45,7 +45,7 @@ const Navbar = () => {
               Nosotros
             </Link>
             <Link
-              href="/proyectos"
+              href="/pages/public/projects"
               className="text-blue-700 hover:text-red-600 transition"
             >
               Proyectos
@@ -84,14 +84,14 @@ const Navbar = () => {
               Nosotros
             </Link>
             <Link
-              href="/proyectos"
+              href="/pages/public/projects"
               className="text-blue-700 hover:text-red-600 transition"
             >
               Proyectos
             </Link>
 
             <Link
-              href="/login"
+              href="/pages/public/login"
               className="text-white bg-blue-700 text-center px-4 py-2 rounded-md hover:bg-red-600 transition font-semibold"
             >
               Iniciar Sesión
