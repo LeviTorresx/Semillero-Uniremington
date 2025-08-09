@@ -43,16 +43,16 @@ export default function ProjectFilters({
       >
         <option value="">Todas las áreas</option>
         <optgroup label="Ingeniería de Sistemas">
-          <option value="IA">Inteligencia Artificial</option>
-          <option value="Web">Desarrollo Web</option>
-          <option value="Seguridad">Seguridad informática</option>
-          <option value="Transformacion">Transformación Digital</option>
+          <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+          <option value="Desarrollo Web">Desarrollo Web</option>
+          <option value="Seguridad informática">Seguridad informática</option>
+          <option value="Transformación Digital">Transformación Digital</option>
         </optgroup>
         <optgroup label="Contaduría Pública">
-          <option value="Finanzas">Finanzas y gestión pública</option>
-          <option value="Auditoria">Auditoría digital</option>
+          <option value="Finanzas y gestión pública">Finanzas y gestión pública</option>
+          <option value="Auditoría digital">Auditoría digital</option>
           <option value="NIIF">NIIF</option>
-          <option value="Contabilidad">Contabilidad y tecnología</option>
+          <option value="Contabilidad y tecnología">Contabilidad y tecnología</option>
         </optgroup>
       </select>
 
