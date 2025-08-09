@@ -96,15 +96,11 @@ export default function MotivationSlider() {
         </Typography>
       </Box>
 
-      {/* Indicadores */}
-      <Box
-      >
+      <Box>
         {phrases.map((_, i) => (
           <Box
             key={i}
             sx={{
-              width: 10,
-              height: 10,
               borderRadius: "50%",
               backgroundColor:
                 i === currentIndex ? "#fff" : "rgba(255,255,255,0.5)",
