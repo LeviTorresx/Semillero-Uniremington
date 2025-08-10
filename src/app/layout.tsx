@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Roboto } from 'next/font/google'
+import { Roboto } from "next/font/google";
 import Navbar from "./components/header/Navbar";
 import Footer from "./components/footer/Footer";
-
-
 
 export const metadata: Metadata = {
   title: "Semilleros Uniremington",
   description: "Universidad Remington",
+  icons: {
+    icon: [
+      { url: "/Logo_Uniremington.png" },
+      { url: "/Logo_Uniremington.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: "/Logo_Uniremington.png", // para iOS
+  },
 };
 
 const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  display: 'swap',
-})
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -27,7 +32,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         <Navbar />
         <main className="">{children}</main>
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
