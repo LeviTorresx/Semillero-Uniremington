@@ -3,7 +3,7 @@
 import ProjectList from "@/app/components/projects/ProjectList";
 import ProjectFilters from "@/app/components/projects/ProjectsFilters";
 import { ProjectFilter } from "@/app/types/Project";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { MOCK_PROJECTS } from "@/app/types/Project";
 
@@ -44,6 +44,7 @@ export default function ProjectPage() {
   }, [searchParams]);
 
   return (
+    <Suspense>
     <main className="min-h-screen mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-center text-blue-900 mb-8">
         Proyectos
@@ -51,5 +52,6 @@ export default function ProjectPage() {
       <ProjectFilters onFilterChange={handleFilterChange} initialFilter={initialFilter} />
       <ProjectList projects={filteredProjects} />
     </main>
+    </Suspense>
   );
 }
