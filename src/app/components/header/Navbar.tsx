@@ -50,6 +50,12 @@ const Navbar = () => {
             >
               Proyectos
             </Link>
+            <Link
+              href="/pages/public/news"
+              className="text-blue-700 hover:text-red-600 transition"
+            >
+              Noticias
+            </Link>
 
             {/* Boton de Login */}
             <Link
@@ -88,6 +94,12 @@ const Navbar = () => {
               className="text-blue-700 hover:text-red-600 transition"
             >
               Proyectos
+            </Link>
+            <Link
+              href="/pages/public/news"
+              className="text-blue-700 hover:text-red-600 transition"
+            >
+              Noticias
             </Link>
 
             <Link

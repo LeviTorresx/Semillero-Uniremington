@@ -5,11 +5,12 @@ export interface Project {
   status: string;
   area: string;
   year: number | string;
+  indentifer: string; 
 }
 
 export interface ProjectFilter {
   year: number | string;
-  area: string;
+  identifer: string;
   status: string;
 }
 
@@ -24,6 +25,7 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "En curso",
     year: 2025,
     area: "Inteligencia Artificial",
+    indentifer: "ai",
   },
   // Ingeniería de Sistemas - Desarrollo Web
   {
@@ -34,6 +36,7 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "Finalizado",
     year: 2024,
     area: "Desarrollo Web",
+    indentifer: "web-dev",
   },
   // Ingeniería de Sistemas - Seguridad informática
   {
@@ -44,6 +47,7 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "En curso",
     year: 2025,
     area: "Seguridad informática",
+    indentifer: "cybersec",
   },
   // Ingeniería de Sistemas - Transformación Digital
   {
@@ -54,6 +58,7 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "Finalizado",
     year: 2023,
     area: "Transformación Digital",
+    indentifer: "digital-transformation",
   },
   // Contaduría Pública - Finanzas y gestión pública
   {
@@ -64,6 +69,7 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "En curso",
     year: 2025,
     area: "Finanzas y gestión pública",
+    indentifer: "public-finance",
   },
   // Contaduría Pública - Auditoría digital
   {
@@ -74,6 +80,7 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "Finalizado",
     year: 2024,
     area: "Auditoría digital",
+    indentifer: "digital-audit",
   },
   // Contaduría Pública - NIIF
   {
@@ -84,6 +91,7 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "En curso",
     year: 2025,
     area: "NIIF",
+    indentifer: "ifrs",
   },
   // Contaduría Pública - Contabilidad y tecnología
   {
@@ -94,6 +102,7 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "Finalizado",
     year: 2024,
     area: "Contabilidad y tecnología",
+    indentifer: "accounting-tech",
   },
   // Ingeniería de Sistemas - Inteligencia Artificial
   {
@@ -104,6 +113,7 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "En curso",
     year: 2025,
     area: "Inteligencia Artificial",
+    indentifer: "ai",
   },
   // Contaduría Pública - Auditoría digital
   {
@@ -114,5 +124,6 @@ export const MOCK_PROJECTS : Project[] =  [
     status: "Finalizado",
     year: 2023,
     area: "Auditoría digital",
+    indentifer: "digital-audit",
   },
 ];

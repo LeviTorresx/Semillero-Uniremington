@@ -5,29 +5,35 @@ import ProjectFilters from "@/app/components/projects/ProjectsFilters";
 import { ProjectFilter, MOCK_PROJECTS } from "@/app/types/Project";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { RESEARCH_AREAS } from "@/app/types/ResearchLine";
 
 export default function ProjectPageContent() {
   const searchParams = useSearchParams();
 
   const initialFilter: ProjectFilter = {
     year: searchParams.get("year") || "",
-    area: searchParams.get("area") || "",
+    identifer: searchParams.get("identifer") || "",
     status: searchParams.get("status") || "",
   };
 
   const [filteredProjects, setFilteredProjects] = useState(() => {
     let result = MOCK_PROJECTS;
-    if (initialFilter.year) result = result.filter((p) => p.year == initialFilter.year);
-    if (initialFilter.area) result = result.filter((p) => p.area === initialFilter.area);
-    if (initialFilter.status) result = result.filter((p) => p.status === initialFilter.status);
+    if (initialFilter.year)
+      result = result.filter((p) => p.year == initialFilter.year);
+    if (initialFilter.identifer)
+      result = result.filter((p) => p.indentifer === initialFilter.identifer);
+    if (initialFilter.status)
+      result = result.filter((p) => p.status === initialFilter.status);
     return result;
   });
 
   const handleFilterChange = (filters: ProjectFilter) => {
     let result = MOCK_PROJECTS;
     if (filters.year) result = result.filter((p) => p.year == filters.year);
-    if (filters.area) result = result.filter((p) => p.area === filters.area);
-    if (filters.status) result = result.filter((p) => p.status === filters.status);
+    if (filters.identifer)
+      result = result.filter((p) => p.indentifer === filters.identifer);
+    if (filters.status)
+      result = result.filter((p) => p.status === filters.status);
     setFilteredProjects(result);
   };
 
@@ -44,6 +50,7 @@ export default function ProjectPageContent() {
       <ProjectFilters
         onFilterChange={handleFilterChange}
         initialFilter={initialFilter}
+        categories={RESEARCH_AREAS}
       />
       <ProjectList projects={filteredProjects} />
     </main>

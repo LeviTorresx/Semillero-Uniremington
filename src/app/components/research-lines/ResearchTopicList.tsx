@@ -16,8 +16,8 @@ export default function ResearchTopicList({ topics }: Props) {
           className="flex items-center p-3 bg-gray-50 rounded-lg shadow-sm hover:shadow-md hover:bg-blue-300 transition-all"
         >
           <Link
-            href={`/pages/public/projects?area=${encodeURIComponent(
-              topic.name
+            href={`/pages/public/projects?identifer=${encodeURIComponent(
+              topic.identifer
             )}`}
             className="flex items-center w-full"
           >
