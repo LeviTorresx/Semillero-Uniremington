@@ -44,7 +44,7 @@ export default function LoginPage() {
 
         <p className="text-sm text-center mt-4 text-gray-600">
           ¿No tienes una cuenta?{" "}
-          <Link href="/pages/public/register" className="text-red-600 hover:underline">
+          <Link href="/register" className="text-red-600 hover:underline">
             Regístrate aquí
           </Link>
         </p>

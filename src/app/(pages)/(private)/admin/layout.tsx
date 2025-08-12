@@ -1,8 +1,8 @@
+// src/app/admin/layout.tsx
 import type { Metadata } from "next";
-import "./globals.css";
+import "../../../globals.css";
 import { Roboto } from "next/font/google";
-import Navbar from "./components/header/Navbar";
-import Footer from "./components/footer/Footer";
+import PrivateNavbar from "@/app/components/header/PrivateNavbar";
 
 export const metadata: Metadata = {
   title: "Semilleros Uniremington",
@@ -22,17 +22,23 @@ const roboto = Roboto({
   display: "swap",
 });
 
-export default function RootLayout({
+const navItems = [
+  { label: "Miembros", href: "/admin/members" },
+  { label: "Proyectos", href: "/admin/projects" },
+  { label: "Noticias", href: "/admin/news" },
+];
+
+
+export default function AdminLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <Navbar />
-        <main className="">{children}</main>
-        <Footer />
+        <PrivateNavbar navItems={navItems} title="Panel de Administracion" />
+        <main className="p-5">{children}</main>
       </body>
     </html>
   );

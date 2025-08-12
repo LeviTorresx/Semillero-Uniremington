@@ -39,19 +39,19 @@ const Navbar = () => {
           {/* Menú Desktop */}
           <nav className="hidden md:flex space-x-8 items-center text-base font-medium">
             <Link
-              href="/pages/public/about-us"
+              href="/about-us"
               className="text-blue-700 hover:text-red-600 transition"
             >
               Nosotros
             </Link>
             <Link
-              href="/pages/public/projects"
+              href="/projects"
               className="text-blue-700 hover:text-red-600 transition"
             >
               Proyectos
             </Link>
             <Link
-              href="/pages/public/news"
+              href="/news"
               className="text-blue-700 hover:text-red-600 transition"
             >
               Noticias
@@ -59,7 +59,7 @@ const Navbar = () => {
 
             {/* Boton de Login */}
             <Link
-              href="/pages/public/login"
+              href="/login"
               className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-red-600 transition font-semibold"
             >
               Iniciar Sesión
@@ -84,26 +84,26 @@ const Navbar = () => {
         <div className="md:hidden bg-white shadow-lg">
           <nav className="flex flex-col space-y-3 px-4 py-4 text-base font-medium">
             <Link
-              href="/pages/public/about-us"
+              href="/about-us"
               className="text-blue-700 hover:text-red-600 transition"
             >
               Nosotros
             </Link>
             <Link
-              href="/pages/public/projects"
+              href="/projects"
               className="text-blue-700 hover:text-red-600 transition"
             >
               Proyectos
             </Link>
             <Link
-              href="/pages/public/news"
+              href="/news"
               className="text-blue-700 hover:text-red-600 transition"
             >
               Noticias
             </Link>
 
             <Link
-              href="/pages/public/login"
+              href="/login"
               className="text-white bg-blue-700 text-center px-4 py-2 rounded-md hover:bg-red-600 transition font-semibold"
             >
               Iniciar Sesión
