@@ -2,19 +2,26 @@
 
 import ProjectList from "@/app/components/projects/ProjectList";
 import ProjectFilters from "@/app/components/projects/ProjectsFilters";
-import { ProjectFilter, MOCK_PROJECTS } from "@/app/types/Project";
+import { ProjectFilter } from "@/app/types/Project";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { RESEARCH_AREAS } from "@/app/types/ResearchLine";
+
+import { RootState } from "@/app/store/store";
+import { useSelector } from "react-redux";
 
 export default function ProjectPageContent() {
   const searchParams = useSearchParams();
+  const projects = useSelector((state: RootState) => state.projects);
+  const RESEARCH_AREAS = useSelector((state: RootState) => state.researchLines);
 
   const initialFilter: ProjectFilter = {
     year: searchParams.get("year") || "",
     identifer: searchParams.get("identifer") || "",
     status: searchParams.get("status") || "",
   };
+
+  // Datos mock para proyectos
+  const MOCK_PROJECTS = projects;
 
   const [filteredProjects, setFilteredProjects] = useState(() => {
     let result = MOCK_PROJECTS;

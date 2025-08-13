@@ -8,10 +8,11 @@ export default function ProjectCard({
   status,
   area,
   year,
+  indentifer
 }: Project) {
   return (
     
-    <Link href={`/${title}`} className="bg-white shadow-md rounded-lg p-5 border border-blue-800 hover:shadow-xl transition">
+    <Link href={`/${indentifer}`} className="bg-white shadow-md rounded-lg p-5 border border-blue-800 hover:shadow-xl transition">
       <h3 className="text-xl font-bold text-blue-800 mb-2">{title}</h3>
       <p className="text-gray-600 mb-3">{description}</p>
       <p className="text-sm text-gray-500 mb-2">

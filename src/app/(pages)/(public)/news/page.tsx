@@ -1,13 +1,16 @@
 // src/app/news/page.tsx
 "use client";
 
-import { useState } from "react";
-import { News, NEWS } from "@/app/types/New";
+import { use, useState } from "react";
+import { News } from "@/app/types/New";
 import NewsCard from "@/app/components/news/NewsCard";
 import Pagination from "@/app/components/news/Pagination";
 import NewsFilterBar from "@/app/components/news/NewsFilterBar";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store/store";
 
 export default function NewsPage() {
+  const NEWS = useSelector((state: RootState) => state.news);
   const allNews: News[] = NEWS;
 
   const [category, setCategory] = useState("");

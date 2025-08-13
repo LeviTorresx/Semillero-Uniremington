@@ -3,6 +3,7 @@ import "../../globals.css";
 import { Roboto } from "next/font/google";
 import Navbar from "@/app/components/header/Navbar";
 import Footer from "@/app/components/footer/Footer";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Semilleros Uniremington",
@@ -30,9 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <Navbar />
-        <main className="">{children}</main>
-        <Footer />
+        <Providers>
+          <Navbar />
+          <main className="">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

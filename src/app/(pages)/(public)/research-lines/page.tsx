@@ -1,8 +1,12 @@
-// src/app/research-lines/page.tsx
-import { RESEARCH_AREAS } from "../../../types/ResearchLine";
+'use client';
+
+import { useSelector } from "react-redux";
 import ResearchAreaCard from "../../../components/research-lines/ResearchAreaCard";
+import { RootState } from "@/app/store/store";
 
 export default function ResearchLinesPage() {
+  const RESEARCH_AREAS = useSelector((state: RootState) => state.researchLines);
+
   return (
     <div className="min-h-screen max-w-6xl mx-auto px-6 py-12">
       <div className="text-center mb-12">
