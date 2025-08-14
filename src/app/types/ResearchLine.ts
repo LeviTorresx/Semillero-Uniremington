@@ -1,14 +1,11 @@
-// src/app/types/ResearchLine.ts
 export type ResearchTopic = {
   name: string;
   url: string;
-  identifer: string; // Unique identifier for the topic
+  identifer: string;
 };
 
 export type ResearchArea = {
-  id: string; // Optional ID for the research area
+  id: string;
   name: string;
   topics: ResearchTopic[];
 };
-
-

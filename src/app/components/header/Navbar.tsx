@@ -4,9 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store/store";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const userAuth = useSelector(
+    (state: RootState) => state.user.isAuthenticated
+  );
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -59,10 +65,10 @@ const Navbar = () => {
 
             {/* Boton de Login */}
             <Link
-              href="/login"
+              href={userAuth ? "/member" : "/login"}
               className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-red-600 transition font-semibold"
             >
-              Iniciar Sesión
+              {userAuth ? "Panel" : "Iniciar Sesión"}
             </Link>
           </nav>
 
@@ -106,11 +112,11 @@ const Navbar = () => {
             </Link>
 
             <Link
-              href="/login"
+              href={userAuth ? "/member" : "/login"}
               className="text-white bg-blue-700 text-center px-4 py-2 rounded-md hover:bg-red-600 transition font-semibold"
               onClick={toggleMenu}
             >
-              Iniciar Sesión
+              {userAuth ? "Panel" : "Iniciar Sesión"}
             </Link>
           </nav>
         </div>

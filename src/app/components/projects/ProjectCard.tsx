@@ -5,7 +5,7 @@ interface ProjectCardProps {
   project: Project;
 }
 
-export default function ProjectCard({project}: ProjectCardProps) {
+export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -20,7 +20,8 @@ export default function ProjectCard({project}: ProjectCardProps) {
         <strong>Área:</strong> {project.area}
       </p>
       <p className="text-sm text-gray-500">
-        <strong>Investigadores:</strong> {project.researchers.join(", ")}
+        <strong>Investigadores:</strong>{" "}
+        {project.researchers.map((r) => r.name).join(", ") || "N/A"}
       </p>
       <span
         className={`inline-block mt-3 px-3 py-1 rounded-full text-sm font-semibold ${

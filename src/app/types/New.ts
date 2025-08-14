@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export interface News {
   id: string;
   title: string;
@@ -6,8 +8,6 @@ export interface News {
   category: "PUBLICATION" | "EVENT" | "AWARDS" | "OTHER";
   date: string;
   imageUrl: string;
-  author: string;
+  author: User[];
   slug: string;
 }
-
-

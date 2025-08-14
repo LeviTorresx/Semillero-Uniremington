@@ -1,13 +1,16 @@
+import { User } from "./User";
+
 export interface Project {
   id: string;
   title: string;
   description: string;
-  researchers: string[];
+  researchers: User[];
   status: string;
   area: string;
   year: number | string;
   indentiferArea: string;
-  slug: string; 
+  slug: string;
+  image?: string;
 }
 
 export interface ProjectFilter {
@@ -15,4 +18,3 @@ export interface ProjectFilter {
   identifer: string;
   status: string;
 }
-

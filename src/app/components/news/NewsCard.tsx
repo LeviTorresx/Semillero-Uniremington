@@ -2,6 +2,7 @@
 import { News } from "@/app/types/New";
 import Link from "next/link";
 import Image from "next/image";
+import { FaUserGroup } from "react-icons/fa6";
 
 interface Props {
   news: News;
@@ -18,9 +19,18 @@ export default function NewsCard({ news }: Props) {
         height={200}
       />
       <div className="mt-4 flex-1">
-        <span className="text-sm font-semibold text-blue-600">
-          {news.category}
-        </span>
+        <div className="flex items-center text-sm text-gray-500 mb-2 gap-5">
+          <span className="text-sm font-semibold text-blue-600">
+            {news.category}
+          </span>
+          <span>
+            <FaUserGroup className="inline-block mr-1 text-gray-500" />
+            {news.author.length > 0
+              ? news.author.map((a) => a.name).join(", ")
+              : "Autor desconocido"}
+          </span>
+        </div>
+
         <h3 className="text-lg font-bold mt-1">{news.title}</h3>
         <p className="text-gray-600 text-sm mt-2">{news.excerpt}</p>
       </div>

@@ -21,9 +21,7 @@ export default function ProjectsPages() {
   );
 
   if (!project) {
-    return (
-      <div >Proyecto no encontrado</div>
-    );
+    return <div>Proyecto no encontrado</div>;
   }
 
   return (
@@ -64,8 +62,8 @@ export default function ProjectsPages() {
             <FaUsers className="mr-2" /> Investigadores
           </h2>
           <ul className="list-disc list-inside text-gray-700">
-            {project.researchers.map((name, index) => (
-              <li key={index}>{name}</li>
+            {project.researchers.map((r, index) => (
+              <li key={index}>{r.name}</li>
             ))}
           </ul>
         </div>

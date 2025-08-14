@@ -13,16 +13,17 @@ interface NavItems {
 interface AdminNavbarProps {
   navItems: NavItems[];
   title: string;
+  route: string;
 }
 
-export default function AdminNavbar({ navItems, title }: AdminNavbarProps) {
+export default function AdminNavbar({ navItems, title, route }: AdminNavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="bg-white text-blue-800 shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo / Título */}
-        <div className="flex items-center gap-2 font-bold text-lg">
+        <Link href={route} className="flex items-center gap-2 font-bold text-lg">
           <Image
             src="/Logo_Uniremington.png"
             alt="Logo Uniremington"
@@ -30,7 +31,7 @@ export default function AdminNavbar({ navItems, title }: AdminNavbarProps) {
             height={40}
           />
           <span>{title}</span>
-        </div>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6">

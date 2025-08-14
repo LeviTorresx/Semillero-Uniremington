@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { FaArrowLeft, FaCalendarAlt, FaFolderOpen } from "react-icons/fa";
 import Link from "next/link";
+import { FaUserGroup } from "react-icons/fa6";
 
 export default function NewsPages() {
   const params = useParams();
@@ -44,6 +45,12 @@ export default function NewsPages() {
         </span>
         <span className="flex items-center">
           <FaFolderOpen className="mr-1" /> {news.category}
+        </span>
+        <span className="flex items-center">
+          <FaUserGroup className="mr-1" />{" "}
+          {news.author.length > 0
+            ? news.author.map((a) => a.name).join(", ")
+            : "N/A"}
         </span>
       </div>
 

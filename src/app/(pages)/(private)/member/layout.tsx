@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "../../../globals.css";
 import { Roboto } from "next/font/google";
 import PrivateNavbar from "@/app/components/header/PrivateNavbar";
+import Providers from "../../(public)/providers";
 
 export const metadata: Metadata = {
   title: "Semilleros Uniremington",
@@ -23,8 +24,9 @@ const roboto = Roboto({
 });
 
 const navItems = [
-  { label: "Proyectos", href: "/member/projects" },
-  { label: "Noticias", href: "/member/news" },
+  { label: "Proyectos", href: "/projects" },
+  { label: "Noticias", href: "/news" },
+  { label: "Perfil", href: "/member/profile" },
 ];
 
 export default function AdminLayout({
@@ -35,8 +37,14 @@ export default function AdminLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <PrivateNavbar navItems={navItems} title="Panel de miembros" />
-        <main className="p-5">{children}</main>
+        <Providers>
+          <PrivateNavbar
+            route="/member"
+            navItems={navItems}
+            title="Panel de miembros"
+          />
+          <main className="p-5">{children}</main>
+        </Providers>
       </body>
     </html>
   );
