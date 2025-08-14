@@ -23,14 +23,14 @@ const Navbar = () => {
                 <Image
                   src="/Logo_Uniremington.png"
                   alt="Logo Uniremington"
-                  width={50}
+                  width={40}
                   height={0}
                 />
                 <Image
                   src="/2-removebg-preview.png"
                   alt="Logo Uniremington"
-                  width={130}
-                  height={60}
+                  width={100}
+                  height={0}
                 />
               </div>
             </Link>
@@ -86,18 +86,21 @@ const Navbar = () => {
             <Link
               href="/about-us"
               className="text-blue-700 hover:text-red-600 transition"
+              onClick={toggleMenu}
             >
               Nosotros
             </Link>
             <Link
               href="/projects"
               className="text-blue-700 hover:text-red-600 transition"
+              onClick={toggleMenu}
             >
               Proyectos
             </Link>
             <Link
               href="/news"
               className="text-blue-700 hover:text-red-600 transition"
+              onClick={toggleMenu}
             >
               Noticias
             </Link>
@@ -105,6 +108,7 @@ const Navbar = () => {
             <Link
               href="/login"
               className="text-white bg-blue-700 text-center px-4 py-2 rounded-md hover:bg-red-600 transition font-semibold"
+              onClick={toggleMenu}
             >
               Iniciar Sesión
             </Link>
