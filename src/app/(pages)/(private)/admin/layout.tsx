@@ -37,7 +37,7 @@ export default function AdminLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <PrivateNavbar navItems={navItems} title="Panel de Administracion" />
+        <PrivateNavbar route="/admin" navItems={navItems} title="Panel de Administracion" />
         <main className="p-5">{children}</main>
       </body>
     </html>
