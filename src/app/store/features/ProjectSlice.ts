@@ -12,7 +12,8 @@ const initialState: Project[] = [
     status: "En curso",
     year: 2025,
     area: "Inteligencia Artificial",
-    indentifer: "ai",
+    indentiferArea: "ai",
+    slug: "sistema-ia-analisis-datos-empresariales",
   },
   // Ingeniería de Sistemas - Desarrollo Web
   {
@@ -24,7 +25,8 @@ const initialState: Project[] = [
     status: "Finalizado",
     year: 2024,
     area: "Desarrollo Web",
-    indentifer: "web-dev",
+    indentiferArea: "web-dev",
+    slug: "plataforma-web-gestion-academica",
   },
   // Ingeniería de Sistemas - Seguridad informática
   {
@@ -36,7 +38,8 @@ const initialState: Project[] = [
     status: "En curso",
     year: 2025,
     area: "Seguridad informática",
-    indentifer: "cybersec",
+    indentiferArea: "cybersec",
+    slug: "sistema-deteccion-intrusiones-red",
   },
   // Ingeniería de Sistemas - Transformación Digital
   {
@@ -48,7 +51,8 @@ const initialState: Project[] = [
     status: "Finalizado",
     year: 2023,
     area: "Transformación Digital",
-    indentifer: "digital-transformation",
+    indentiferArea: "digital-transformation",
+    slug: "automatizacion-procesos-administrativos",
   },
   // Contaduría Pública - Finanzas y gestión pública
   {
@@ -60,7 +64,8 @@ const initialState: Project[] = [
     status: "En curso",
     year: 2025,
     area: "Finanzas y gestión pública",
-    indentifer: "public-finance",
+    indentiferArea: "public-finance",
+    slug: "optimizacion-presupuestos-municipales",
   },
   // Contaduría Pública - Auditoría digital
   {
@@ -72,7 +77,8 @@ const initialState: Project[] = [
     status: "Finalizado",
     year: 2024,
     area: "Auditoría digital",
-    indentifer: "digital-audit",
+    indentiferArea: "digital-audit",
+    slug: "auditoria-digital-entes-publicos",
   },
   // Contaduría Pública - NIIF
   {
@@ -84,7 +90,8 @@ const initialState: Project[] = [
     status: "En curso",
     year: 2025,
     area: "NIIF",
-    indentifer: "ifrs",
+    indentiferArea: "ifrs",
+    slug: "implementacion-niif-pymes",
   },
   // Contaduría Pública - Contabilidad y tecnología
   {
@@ -96,7 +103,8 @@ const initialState: Project[] = [
     status: "Finalizado",
     year: 2024,
     area: "Contabilidad y tecnología",
-    indentifer: "accounting-tech",
+    indentiferArea: "accounting-tech",
+    slug: "contabilidad-automatizada-nube",
   },
   // Ingeniería de Sistemas - Inteligencia Artificial
   {
@@ -108,7 +116,8 @@ const initialState: Project[] = [
     status: "En curso",
     year: 2025,
     area: "Inteligencia Artificial",
-    indentifer: "ai",
+    indentiferArea: "ai",
+    slug: "asistente-virtual-orientacion-academica",
   },
   // Contaduría Pública - Auditoría digital
   {
@@ -120,7 +129,8 @@ const initialState: Project[] = [
     status: "Finalizado",
     year: 2023,
     area: "Auditoría digital",
-    indentifer: "digital-audit",
+    indentiferArea: "digital-audit",
+    slug: "blockchain-trazabilidad-contable",
   },
 ];
 

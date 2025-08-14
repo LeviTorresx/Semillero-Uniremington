@@ -28,7 +28,7 @@ export default function ProjectPageContent() {
     if (initialFilter.year)
       result = result.filter((p) => p.year == initialFilter.year);
     if (initialFilter.identifer)
-      result = result.filter((p) => p.indentifer === initialFilter.identifer);
+      result = result.filter((p) => p.indentiferArea === initialFilter.identifer);
     if (initialFilter.status)
       result = result.filter((p) => p.status === initialFilter.status);
     return result;
@@ -38,7 +38,7 @@ export default function ProjectPageContent() {
     let result = MOCK_PROJECTS;
     if (filters.year) result = result.filter((p) => p.year == filters.year);
     if (filters.identifer)
-      result = result.filter((p) => p.indentifer === filters.identifer);
+      result = result.filter((p) => p.indentiferArea === filters.identifer);
     if (filters.status)
       result = result.filter((p) => p.status === filters.status);
     setFilteredProjects(result);

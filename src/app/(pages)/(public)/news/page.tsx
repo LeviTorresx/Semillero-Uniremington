@@ -1,7 +1,7 @@
 // src/app/news/page.tsx
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import { News } from "@/app/types/New";
 import NewsCard from "@/app/components/news/NewsCard";
 import Pagination from "@/app/components/news/Pagination";

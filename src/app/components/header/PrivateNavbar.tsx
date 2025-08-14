@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaBars, FaTimes, FaUserShield, FaSignOutAlt } from "react-icons/fa";
+import { FaBars, FaTimes, FaSignOutAlt } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 

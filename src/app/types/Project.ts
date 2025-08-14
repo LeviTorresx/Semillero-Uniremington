@@ -6,7 +6,8 @@ export interface Project {
   status: string;
   area: string;
   year: number | string;
-  indentifer: string;
+  indentiferArea: string;
+  slug: string; 
 }
 
 export interface ProjectFilter {

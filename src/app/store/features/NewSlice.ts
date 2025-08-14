@@ -3,7 +3,7 @@ import { News } from "@/app/types/New";
 
 const initialState: News[] = [
   {
-    id: "",
+    id: "1",
     title: "Participación en Congreso de Innovación",
     excerpt: "El semillero presentó un proyecto en el Congreso Nacional...",
     content: "Contenido completo de la noticia...",
