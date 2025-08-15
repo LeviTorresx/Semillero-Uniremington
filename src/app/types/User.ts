@@ -1,4 +1,3 @@
-import { Project } from "./Project";
 
 export interface User {
   id: string;
@@ -7,5 +6,4 @@ export interface User {
   email: string;
   role: string ;
   password: string | null;
-  projects: Project[];
 }

@@ -24,9 +24,9 @@ const roboto = Roboto({
 });
 
 const navItems = [
-  { label: "Proyectos", href: "/projects" },
-  { label: "Noticias", href: "/news" },
-  { label: "Perfil", href: "/member/profile" },
+  { label: "Mis proyectos", href: "/member" },
+  { label: "Mis noticias", href: "/member/news" },
+  { label: "Mi perfil", href: "/member/profile" },
 ];
 
 export default function AdminLayout({

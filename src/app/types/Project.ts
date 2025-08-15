@@ -10,6 +10,7 @@ export interface Project {
   year: number | string;
   indentiferArea: string;
   slug: string;
+  validate?: boolean;
   image?: string;
 }
 

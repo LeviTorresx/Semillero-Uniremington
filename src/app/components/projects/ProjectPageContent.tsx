@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 export default function ProjectPageContent() {
   const searchParams = useSearchParams();
   const projects = useSelector((state: RootState) => state.projects);
-  const RESEARCH_AREAS = useSelector((state: RootState) => state.researchLines);
+  const researchAreas = useSelector((state: RootState) => state.researchLines);
 
   const initialFilter: ProjectFilter = {
     year: searchParams.get("year") || "",
@@ -20,22 +20,21 @@ export default function ProjectPageContent() {
     status: searchParams.get("status") || "",
   };
 
-  // Datos mock para proyectos
-  const MOCK_PROJECTS = projects;
-
   const [filteredProjects, setFilteredProjects] = useState(() => {
-    let result = MOCK_PROJECTS;
+    let result = projects;
     if (initialFilter.year)
       result = result.filter((p) => p.year == initialFilter.year);
     if (initialFilter.identifer)
-      result = result.filter((p) => p.indentiferArea === initialFilter.identifer);
+      result = result.filter(
+        (p) => p.indentiferArea === initialFilter.identifer
+      );
     if (initialFilter.status)
       result = result.filter((p) => p.status === initialFilter.status);
     return result;
   });
 
   const handleFilterChange = (filters: ProjectFilter) => {
-    let result = MOCK_PROJECTS;
+    let result = projects;
     if (filters.year) result = result.filter((p) => p.year == filters.year);
     if (filters.identifer)
       result = result.filter((p) => p.indentiferArea === filters.identifer);
@@ -57,7 +56,7 @@ export default function ProjectPageContent() {
       <ProjectFilters
         onFilterChange={handleFilterChange}
         initialFilter={initialFilter}
-        categories={RESEARCH_AREAS}
+        categories={researchAreas}
       />
       <ProjectList projects={filteredProjects} />
     </main>

@@ -1,48 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ResearchArea } from "@/app/types/ResearchLine";
+import { researchLinesMocks } from "@/app/mocks/data";
 
-const initialState: ResearchArea[] = [
-  {
-    id: "1",
-    name: "Ingeniería de Sistemas",
-    topics: [
-      { name: "Inteligencia Artificial", url: "/ai", identifer: "ai" },
-      { name: "Desarrollo Web", url: "/web-development", identifer: "web-dev" },
-      {
-        name: "Seguridad informática",
-        url: "/cybersecurity",
-        identifer: "cybersec",
-      },
-      {
-        name: "Transformación Digital",
-        url: "/digital-transformation",
-        identifer: "digital-transformation",
-      },
-    ],
-  },
-  {
-    id: "2",
-    name: "Contaduría Pública",
-    topics: [
-      {
-        name: "Finanzas y gestión pública",
-        url: "/public-finance",
-        identifer: "public-finance",
-      },
-      {
-        name: "Auditoría digital",
-        url: "/digital-audit",
-        identifer: "digital-audit",
-      },
-      { name: "NIIF", url: "/ifrs", identifer: "ifrs" },
-      {
-        name: "Contabilidad y tecnología",
-        url: "/accounting-technology",
-        identifer: "accounting-tech",
-      },
-    ],
-  },
-];
+const initialState: ResearchArea[] = researchLinesMocks;
 
 const researchLineSlice = createSlice({
   name: "researchLines",

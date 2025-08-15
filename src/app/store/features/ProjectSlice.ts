@@ -13,6 +13,7 @@ const projectSlice = createSlice({
     },
     addProject: (state, action) => {
       state.push(action.payload);
+      console.log(action.payload);
     },
     updateProject: (state, action) => {
       const index = state.findIndex(

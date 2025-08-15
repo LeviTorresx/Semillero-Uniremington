@@ -1,6 +1,50 @@
 import { News } from "../types/New";
 import { Project } from "../types/Project";
+import { ResearchArea } from "../types/ResearchLine";
 import { User } from "../types/User";
+
+export const researchLinesMocks: ResearchArea[] = [
+  {
+    id: "1",
+    name: "Ingeniería de Sistemas",
+    topics: [
+      { name: "Inteligencia Artificial", url: "/ai", identifer: "ai" },
+      { name: "Desarrollo Web", url: "/web-development", identifer: "web-dev" },
+      {
+        name: "Seguridad informática",
+        url: "/cybersecurity",
+        identifer: "cybersec",
+      },
+      {
+        name: "Transformación Digital",
+        url: "/digital-transformation",
+        identifer: "digital-transformation",
+      },
+    ],
+  },
+  {
+    id: "2",
+    name: "Contaduría Pública",
+    topics: [
+      {
+        name: "Finanzas y gestión pública",
+        url: "/public-finance",
+        identifer: "public-finance",
+      },
+      {
+        name: "Auditoría digital",
+        url: "/digital-audit",
+        identifer: "digital-audit",
+      },
+      { name: "NIIF", url: "/ifrs", identifer: "ifrs" },
+      {
+        name: "Contabilidad y tecnología",
+        url: "/accounting-technology",
+        identifer: "accounting-tech",
+      },
+    ],
+  },
+];
 
 // Lista de proyectos
 export const projectsMock: Project[] = [
@@ -145,7 +189,6 @@ export const usersMock: User[] = [
     email: "levi@example.com",
     role: "Miembro",
     password: null,
-    projects: [projectsMock[0], projectsMock[1]],
   },
   {
     id: "2",
@@ -154,7 +197,6 @@ export const usersMock: User[] = [
     email: "maria@example.com",
     role: "Investigador",
     password: null,
-    projects: [projectsMock[1]],
   },
   {
     id: "3",
@@ -163,7 +205,6 @@ export const usersMock: User[] = [
     email: "carlos@example.com",
     role: "Administrador",
     password: null,
-    projects: [projectsMock[0], projectsMock[2]],
   },
 ];
 
