@@ -13,7 +13,7 @@ import {
 import { FaEdit, FaFolder, FaPhone } from "react-icons/fa";
 
 export default function ProfilePage() {
-  const user = useSelector((state: RootState) => state.user.user);
+  const user = useSelector((state: RootState) => state.auth.user);
   const projects = useSelector((state: RootState) => state.projects);
 
   const userProjects = projects.filter((p) =>
