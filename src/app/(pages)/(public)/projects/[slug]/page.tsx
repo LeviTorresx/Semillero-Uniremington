@@ -9,6 +9,7 @@ import {
   FaFolderOpen,
   FaUsers,
   FaTag,
+  FaUser,
 } from "react-icons/fa";
 import Link from "next/link";
 
@@ -39,14 +40,25 @@ export default function ProjectsPages() {
 
       {/* Detalles */}
       <div className="flex flex-wrap items-center text-gray-500 text-sm gap-4 mb-6">
-        <span className="flex items-center">
-          <FaCalendarAlt className="mr-1" /> {project.year}
+        <span className="flex items-center gap-x-2">
+          Creado: <FaCalendarAlt className="mr-1 text-green-600" />
+          <strong>{project.creationDate}</strong>
+        </span>
+        <span className="flex items-center gap-x-2">
+          Finaliza:
+          <FaCalendarAlt className="mr-1 text-red-600" />
+          <strong>{project.creationDate}</strong>
         </span>
         <span className="flex items-center">
           <FaFolderOpen className="mr-1" /> {project.area}
         </span>
         <span className="flex items-center">
-          <FaTag className="mr-1" /> {project.status}
+          <FaTag
+            className={`mr-1 ${
+              project.status === "En curso" ? "text-green-500" : "text-red-500"
+            } `}
+          />
+          {project.status}
         </span>
       </div>
 
@@ -58,6 +70,12 @@ export default function ProjectsPages() {
       {/* Investigadores */}
       {project.researchers && project.researchers.length > 0 && (
         <div className="bg-gray-50 border rounded-lg p-4 shadow-sm">
+          <h2 className="text-xl font-semibold mb-3 flex items-center">
+            <FaUser className="mr-2" /> Lider
+          </h2>
+          <ul className="list-disc list-inside text-gray-700">
+            <li>{project.leader.name}</li>
+          </ul>
           <h2 className="text-xl font-semibold mb-3 flex items-center">
             <FaUsers className="mr-2" /> Investigadores
           </h2>

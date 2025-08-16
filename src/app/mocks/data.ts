@@ -46,140 +46,6 @@ export const researchLinesMocks: ResearchArea[] = [
   },
 ];
 
-// Lista de proyectos
-export const projectsMock: Project[] = [
-  // Ingeniería de Sistemas - Inteligencia Artificial
-  {
-    id: "1",
-    title: "Sistema de IA para análisis de datos empresariales",
-    description:
-      "Desarrollo de modelos de machine learning para predecir tendencias de mercado en PYMEs.",
-    researchers: [],
-    status: "En curso",
-    year: 2025,
-    area: "Inteligencia Artificial",
-    indentiferArea: "ai",
-    slug: "sistema-ia-analisis-datos-empresariales",
-  },
-  // Ingeniería de Sistemas - Desarrollo Web
-  {
-    id: "2",
-    title: "Plataforma web para gestión académica",
-    description:
-      "Aplicación responsive para la administración de cursos, calificaciones y asistencia.",
-    researchers: [],
-    status: "Finalizado",
-    year: 2024,
-    area: "Desarrollo Web",
-    indentiferArea: "web-dev",
-    slug: "plataforma-web-gestion-academica",
-  },
-  // Ingeniería de Sistemas - Seguridad informática
-  {
-    id: "3",
-    title: "Sistema de detección de intrusiones en red",
-    description:
-      "Implementación de un IDS basado en análisis de tráfico con inteligencia artificial.",
-    researchers: [],
-    status: "En curso",
-    year: 2025,
-    area: "Seguridad informática",
-    indentiferArea: "cybersec",
-    slug: "sistema-deteccion-intrusiones-red",
-  },
-  // Ingeniería de Sistemas - Transformación Digital
-  {
-    id: "4",
-    title: "Automatización de procesos administrativos",
-    description:
-      "Integración de RPA para reducir tiempos en trámites internos universitarios.",
-    researchers: [],
-    status: "Finalizado",
-    year: 2023,
-    area: "Transformación Digital",
-    indentiferArea: "digital-transformation",
-    slug: "automatizacion-procesos-administrativos",
-  },
-  // Contaduría Pública - Finanzas y gestión pública
-  {
-    id: "5",
-    title: "Optimización de presupuestos municipales",
-    description:
-      "Uso de modelos financieros para mejorar la distribución de recursos públicos.",
-    researchers: [],
-    status: "En curso",
-    year: 2025,
-    area: "Finanzas y gestión pública",
-    indentiferArea: "public-finance",
-    slug: "optimizacion-presupuestos-municipales",
-  },
-  // Contaduría Pública - Auditoría digital
-  {
-    id: "6",
-    title: "Auditoría digital en entes públicos",
-    description:
-      "Implementación de sistemas de control interno con trazabilidad digital.",
-    researchers: [],
-    status: "Finalizado",
-    year: 2024,
-    area: "Auditoría digital",
-    indentiferArea: "digital-audit",
-    slug: "auditoria-digital-entes-publicos",
-  },
-  // Contaduría Pública - NIIF
-  {
-    id: "7",
-    title: "Implementación de NIIF para PYMEs",
-    description:
-      "Adaptación contable de empresas medianas a las Normas Internacionales de Información Financiera.",
-    researchers: [],
-    status: "En curso",
-    year: 2025,
-    area: "NIIF",
-    indentiferArea: "ifrs",
-    slug: "implementacion-niif-pymes",
-  },
-  // Contaduría Pública - Contabilidad y tecnología
-  {
-    id: "8",
-    title: "Contabilidad automatizada en la nube",
-    description:
-      "Desarrollo de un sistema cloud para registrar y analizar operaciones contables en tiempo real.",
-    researchers: [],
-    status: "Finalizado",
-    year: 2024,
-    area: "Contabilidad y tecnología",
-    indentiferArea: "accounting-tech",
-    slug: "contabilidad-automatizada-nube",
-  },
-  // Ingeniería de Sistemas - Inteligencia Artificial
-  {
-    id: "9",
-    title: "Asistente virtual para orientación académica",
-    description:
-      "Chatbot basado en IA para guiar a estudiantes en procesos académicos y administrativos.",
-    researchers: [],
-    status: "En curso",
-    year: 2025,
-    area: "Inteligencia Artificial",
-    indentiferArea: "ai",
-    slug: "asistente-virtual-orientacion-academica",
-  },
-  // Contaduría Pública - Auditoría digital
-  {
-    id: "10",
-    title: "Blockchain para trazabilidad contable",
-    description:
-      "Aplicación de blockchain para garantizar la integridad y transparencia de registros contables.",
-    researchers: [],
-    status: "Finalizado",
-    year: 2023,
-    area: "Auditoría digital",
-    indentiferArea: "digital-audit",
-    slug: "blockchain-trazabilidad-contable",
-  },
-];
-
 // Lista de usuarios
 export const usersMock: User[] = [
   {
@@ -205,6 +71,170 @@ export const usersMock: User[] = [
     email: "carlos@example.com",
     role: "Administrador",
     password: null,
+  },
+];
+
+// Lista de proyectos
+export const projectsMock: Project[] = [
+  // Ingeniería de Sistemas - Inteligencia Artificial
+  {
+    id: "1",
+    title: "Sistema de IA para análisis de datos empresariales",
+    description:
+      "Desarrollo de modelos de machine learning para predecir tendencias de mercado en PYMEs.",
+    leader: usersMock[1],
+    researchers: [usersMock[0], usersMock[1]],
+    status: "En curso",
+    creationDate: "2025",
+    endDate: "2026",
+    area: "Inteligencia Artificial",
+    indentiferArea: "ai",
+    slug: "sistema-ia-analisis-datos-empresariales",
+    valid: true
+  },
+  // Ingeniería de Sistemas - Desarrollo Web
+  {
+    id: "2",
+    title: "Plataforma web para gestión académica",
+    description:
+      "Aplicación responsive para la administración de cursos, calificaciones y asistencia.",
+    leader: usersMock[1],
+    researchers: [usersMock[0], usersMock[1]],
+    status: "Finalizado",
+    creationDate: "2024",
+    endDate: "2024",
+    area: "Desarrollo Web",
+    indentiferArea: "web-dev",
+    slug: "plataforma-web-gestion-academica",
+    valid: true
+  },
+  // Ingeniería de Sistemas - Seguridad informática
+  {
+    id: "3",
+    title: "Sistema de detección de intrusiones en red",
+    description:
+      "Implementación de un IDS basado en análisis de tráfico con inteligencia artificial.",
+    leader: usersMock[0],
+    researchers: [usersMock[0], usersMock[1]],
+    status: "En curso",
+    creationDate: "2025",
+    endDate: "2026",
+    area: "Seguridad informática",
+    indentiferArea: "cybersec",
+    slug: "sistema-deteccion-intrusiones-red",
+    valid: true
+  },
+  // Ingeniería de Sistemas - Transformación Digital
+  {
+    id: "4",
+    title: "Automatización de procesos administrativos",
+    description:
+      "Integración de RPA para reducir tiempos en trámites internos universitarios.",
+    leader: usersMock[0],
+    researchers: [],
+    status: "Finalizado",
+    creationDate: "2023",
+    endDate: "2023",
+    area: "Transformación Digital",
+    indentiferArea: "digital-transformation",
+    slug: "automatizacion-procesos-administrativos",
+    valid: true
+  },
+  // Contaduría Pública - Finanzas y gestión pública
+  {
+    id: "5",
+    title: "Optimización de presupuestos municipales",
+    description:
+      "Uso de modelos financieros para mejorar la distribución de recursos públicos.",
+    leader: usersMock[2],
+    researchers: [],
+    status: "En curso",
+    creationDate: "2025",
+    endDate: "2027",
+    area: "Finanzas y gestión pública",
+    indentiferArea: "public-finance",
+    slug: "optimizacion-presupuestos-municipales",
+    valid: true
+  },
+  // Contaduría Pública - Auditoría digital
+  {
+    id: "6",
+    title: "Auditoría digital en entes públicos",
+    description:
+      "Implementación de sistemas de control interno con trazabilidad digital.",
+    leader: usersMock[2],
+    researchers: [],
+    status: "Finalizado",
+    creationDate: 2023,
+    endDate: "2024",
+    area: "Auditoría digital",
+    indentiferArea: "digital-audit",
+    slug: "auditoria-digital-entes-publicos",
+    valid: true
+  },
+  // Contaduría Pública - NIIF
+  {
+    id: "7",
+    title: "Implementación de NIIF para PYMEs",
+    description:
+      "Adaptación contable de empresas medianas a las Normas Internacionales de Información Financiera.",
+    leader: usersMock[2],
+    researchers: [],
+    status: "En curso",
+    creationDate: "2025",
+    endDate: "2028",
+    area: "NIIF",
+    indentiferArea: "ifrs",
+    slug: "implementacion-niif-pymes",
+    valid: true
+  },
+  // Contaduría Pública - Contabilidad y tecnología
+  {
+    id: "8",
+    title: "Contabilidad automatizada en la nube",
+    description:
+      "Desarrollo de un sistema cloud para registrar y analizar operaciones contables en tiempo real.",
+    leader: usersMock[2],
+    researchers: [],
+    status: "Finalizado",
+    creationDate: "2025",
+    endDate: "2025",
+    area: "Contabilidad y tecnología",
+    indentiferArea: "accounting-tech",
+    slug: "contabilidad-automatizada-nube",
+    valid: true
+  },
+  // Ingeniería de Sistemas - Inteligencia Artificial
+  {
+    id: "9",
+    title: "Asistente virtual para orientación académica",
+    description:
+      "Chatbot basado en IA para guiar a estudiantes en procesos académicos y administrativos.",
+    leader: usersMock[2],
+    researchers: [],
+    status: "En curso",
+    creationDate: "2025",
+    endDate: "2030",
+    area: "Inteligencia Artificial",
+    indentiferArea: "ai",
+    slug: "asistente-virtual-orientacion-academica",
+    valid: true
+  },
+  // Contaduría Pública - Auditoría digital
+  {
+    id: "10",
+    title: "Blockchain para trazabilidad contable",
+    description:
+      "Aplicación de blockchain para garantizar la integridad y transparencia de registros contables.",
+    leader: usersMock[2],
+    researchers: [],
+    status: "Finalizado",
+    creationDate: "2023",
+    endDate: "2023",
+    area: "Auditoría digital",
+    indentiferArea: "digital-audit",
+    slug: "blockchain-trazabilidad-contable",
+    valid: false
   },
 ];
 
@@ -293,11 +323,7 @@ export const newsMock: News[] = [
   },
 ];
 
-// Asignar investigadores a los proyectos (referencia circular)
-projectsMock[0].researchers = [usersMock[0], usersMock[2]];
-projectsMock[1].researchers = [usersMock[0], usersMock[1]];
-projectsMock[2].researchers = [usersMock[2]];
-
+// Asignar investigadores a los proyectos
 newsMock[0].author = [usersMock[1]];
 newsMock[1].author = [usersMock[2]];
 newsMock[2].author = [usersMock[0], usersMock[1]];

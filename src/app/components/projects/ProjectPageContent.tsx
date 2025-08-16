@@ -8,10 +8,11 @@ import { useSearchParams } from "next/navigation";
 
 import { RootState } from "@/app/store/store";
 import { useSelector } from "react-redux";
+import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors";
 
 export default function ProjectPageContent() {
   const searchParams = useSearchParams();
-  const projects = useSelector((state: RootState) => state.projects);
+  const projects = useSelector(selectValidatedProjects);
   const researchAreas = useSelector((state: RootState) => state.researchLines);
 
   const initialFilter: ProjectFilter = {
@@ -23,7 +24,7 @@ export default function ProjectPageContent() {
   const [filteredProjects, setFilteredProjects] = useState(() => {
     let result = projects;
     if (initialFilter.year)
-      result = result.filter((p) => p.year == initialFilter.year);
+      result = result.filter((p) => p.creationDate == initialFilter.year);
     if (initialFilter.identifer)
       result = result.filter(
         (p) => p.indentiferArea === initialFilter.identifer
@@ -35,7 +36,8 @@ export default function ProjectPageContent() {
 
   const handleFilterChange = (filters: ProjectFilter) => {
     let result = projects;
-    if (filters.year) result = result.filter((p) => p.year == filters.year);
+    if (filters.year)
+      result = result.filter((p) => p.creationDate == filters.year);
     if (filters.identifer)
       result = result.filter((p) => p.indentiferArea === filters.identifer);
     if (filters.status)

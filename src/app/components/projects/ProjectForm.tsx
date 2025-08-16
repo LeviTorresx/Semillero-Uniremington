@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent } from "react";
 import { Project } from "@/app/types/Project";
 import { ResearchArea } from "@/app/types/ResearchLine";
+import Image from "next/image";
 
 interface ProjectFormProps {
   formData: Project;
@@ -22,9 +23,6 @@ export default function ProjectForm({
   const selectedArea = researchLines.find(
     (area) => area.name === formData.area
   );
-
-  // Fecha actual en formato YYYY-MM-DD
-  const today = new Date().toISOString().split("T")[0];
 
   return (
     <form
@@ -55,7 +53,7 @@ export default function ProjectForm({
           <label className="block font-semibold mb-1">Fecha de creación</label>
           <input
             type="date"
-            value={today}
+            value={formData.creationDate}
             className="w-full border rounded-lg p-2 bg-gray-100"
             readOnly
           />
@@ -77,13 +75,17 @@ export default function ProjectForm({
 
         {/* Estado (fijo en En curso) */}
         <div className="col-span-1">
-          <label className="block font-semibold mb-1">Estado</label>
+          <label className={`block font-semibold mb-1 `}>Estado</label>
           <input
             type="text"
             value="En curso"
             name="status"
             readOnly
-            className="w-full border rounded-lg p-2 bg-gray-100"
+            className={`w-full border rounded-lg p-2 ${
+              formData.status === "En curso"
+                ? "bg-green-200 font-bold"
+                : "text-red-500"
+            }`}
           />
         </div>
 
@@ -128,18 +130,68 @@ export default function ProjectForm({
 
         {/* Año */}
         <div className="col-span-1">
-          <label className="block font-semibold mb-1">Año</label>
+          <label className="block font-semibold mb-1">
+            Año estimado de finalizacion
+          </label>
           <input
-            type="number"
-            name="year"
-            value={formData.year}
+            type="date"
+            name="endDate"
+            value={formData.endDate}
             onChange={onChange}
             className="w-full border rounded-lg p-2"
-            min="2000"
-            max="2100"
             required
           />
         </div>
+      </div>
+
+      {/* Documento PDF */}
+      <div className="col-span-1">
+        <label className="block font-semibold mb-2 text-gray-700">
+          Documento (PDF)
+        </label>
+        <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer hover:border-blue-500 transition-colors">
+          <span className="text-gray-500 text-sm mb-2">
+            Haz clic o arrastra aquí
+          </span>
+          <span className="text-blue-600 font-medium">Subir PDF</span>
+          <input
+            type="file"
+            name="document"
+            accept="application/pdf"
+            onChange={onChange}
+            className="hidden"
+          />
+        </label>
+        {formData.document && (
+          <p className="mt-2 text-sm text-green-600">📄 {formData.document}</p>
+        )}
+      </div>
+
+      {/* Imagen */}
+      <div className="col-span-1">
+        <label className="block font-semibold mb-2 text-gray-700">Imagen</label>
+        <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer hover:border-blue-500 transition-colors">
+          <span className="text-gray-500 text-sm mb-2">
+            Haz clic o arrastra aquí
+          </span>
+          <span className="text-blue-600 font-medium">Subir Imagen</span>
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={onChange}
+            className="hidden"
+          />
+        </label>
+        {formData.image && (
+          <div className="mt-2">
+            <Image
+              src={URL.createObjectURL(formData.image)}
+              alt="preview"
+              className="w-24 h-24 object-cover rounded-lg shadow-md"
+            />
+          </div>
+        )}
       </div>
 
       {/* Botón */}

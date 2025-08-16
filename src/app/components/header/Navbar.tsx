@@ -116,7 +116,7 @@ const Navbar = () => {
               className="text-white bg-blue-700 text-center px-4 py-2 rounded-md hover:bg-red-600 transition font-semibold"
               onClick={toggleMenu}
             >
-              {userAuth ? "Panel" : "Iniciar Sesión"}
+              {userAuth ? "Panel de miembros" : "Iniciar Sesión"}
             </Link>
           </nav>
         </div>

@@ -4,6 +4,7 @@ import ProjectForm from "@/app/components/projects/ProjectForm";
 import { addProject } from "@/app/store/features/ProjectSlice";
 import { AppDispatch, RootState } from "@/app/store/store";
 import { Project } from "@/app/types/Project";
+import { createSlug } from "@/app/utils/slugname";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,18 +13,24 @@ export default function CreateProjectPage() {
   const userAuth = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch<AppDispatch>();
 
+  // Fecha actual en formato YYYY-MM-DD
+  const today = new Date().toISOString().split("T")[0];
+
   const initialState: Project = {
     id: "",
     area: "",
     description: "",
     indentiferArea: "",
+    leader: userAuth,
     researchers: [userAuth],
     slug: "",
     status: "En curso",
     title: "",
-    year: "",
-    image: "",
-    validate: false,
+    creationDate: today,
+    endDate: "",
+    image: undefined,
+    document: undefined,
+    valid: false,
   };
 
   const [newProject, setNewProject] = useState<Project>(initialState);
@@ -37,11 +44,20 @@ export default function CreateProjectPage() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setNewProject({
+
+    const slugTag = createSlug(newProject.title);
+
+    // proyecto actualizado
+    const projectWithMeta = {
       ...newProject,
       id: crypto.randomUUID(),
-    });
-    dispatch(addProject(newProject));
+      slug: slugTag,
+    };
+
+    // guardas en redux el proyecto con slug e id
+    dispatch(addProject(projectWithMeta));
+
+    // reseteas el formulario
     setNewProject(initialState);
   };
 

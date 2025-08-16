@@ -11,14 +11,13 @@ import {
   FaUser,
 } from "react-icons/fa6";
 import { FaEdit, FaFolder, FaPhone } from "react-icons/fa";
+import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors";
 
 export default function ProfilePage() {
   const user = useSelector((state: RootState) => state.auth.user);
-  const projects = useSelector((state: RootState) => state.projects);
+  const projects = useSelector(selectValidatedProjects);
 
-  const userProjects = projects.filter((p) =>
-    p.researchers.some((r) => r.id === user.id)
-  );
+  const userProjects = projects.filter((p) => p.leader.id === user.id);
 
   if (!user) {
     return (
@@ -74,7 +73,8 @@ export default function ProfilePage() {
       {/* Proyectos */}
       <div className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-          <FaFolder className="text-blue-600" size={22} /> Mis Proyectos
+          <FaFolder className="text-blue-600" size={22} /> Proyectos en los que
+          eres Lider
         </h2>
         {userProjects && userProjects.length > 0 ? (
           <ProjectList projects={userProjects} />

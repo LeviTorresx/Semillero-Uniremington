@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 import ProjectList from "@/app/components/projects/ProjectList";
 import Link from "next/link";
 import { FaHandPeace } from "react-icons/fa";
+import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors";
 
 export default function MemberDashboard() {
   const userAuth = useSelector((state: RootState) => state.auth.user);
-  const projects = useSelector((state: RootState) => state.projects);
+  const projects = useSelector(selectValidatedProjects);
 
   const userProjects = projects.filter((p) =>
     p.researchers.some((r) => r.id == userAuth.id)
