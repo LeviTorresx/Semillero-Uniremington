@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 export default function MemberNewsPages() {
   const news = useSelector((state: RootState) => state.news);
-  const userAuth = useSelector((state: RootState) => state.user.user);
+  const userAuth = useSelector((state: RootState) => state.auth.user);
 
   const userNews = news.filter((n) =>
     n.author.some((a) => a.id === userAuth.id)

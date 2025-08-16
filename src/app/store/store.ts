@@ -8,7 +8,7 @@ export const store = configureStore({
     projects: ProjectReducer,
     news: NewReducer,
     researchLines: ResearchLineReducer,
-    user: AuthReducer,
+    auth: AuthReducer,
   },
 });
 

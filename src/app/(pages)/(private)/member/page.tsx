@@ -7,7 +7,7 @@ import Link from "next/link";
 import { FaHandPeace } from "react-icons/fa";
 
 export default function MemberDashboard() {
-  const userAuth = useSelector((state: RootState) => state.user.user);
+  const userAuth = useSelector((state: RootState) => state.auth.user);
   const projects = useSelector((state: RootState) => state.projects);
 
   const userProjects = projects.filter((p) =>

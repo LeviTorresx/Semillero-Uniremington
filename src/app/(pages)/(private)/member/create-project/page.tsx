@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function CreateProjectPage() {
   const researchLines = useSelector((state: RootState) => state.researchLines);
-  const userAuth = useSelector((state: RootState) => state.user.user);
+  const userAuth = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch<AppDispatch>();
 
   const initialState: Project = {

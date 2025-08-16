@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const userAuth = useSelector(
-    (state: RootState) => state.user.isAuthenticated
+    (state: RootState) => state.auth.isAuthenticated
   );
 
   const toggleMenu = () => {
