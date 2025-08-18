@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaCheck, FaXmark, FaEye, FaPen } from "react-icons/fa6";
+import { FaCheck, FaXmark, FaEye } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { toggleValidProject } from "@/app/store/features/ProjectSlice";
 import { Project } from "@/app/types/Project";
