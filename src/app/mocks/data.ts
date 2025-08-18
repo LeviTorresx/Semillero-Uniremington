@@ -85,12 +85,13 @@ export const projectsMock: Project[] = [
     leader: usersMock[1],
     researchers: [usersMock[0], usersMock[1]],
     status: "En curso",
-    creationDate: "2025",
-    endDate: "2026",
-    area: "Inteligencia Artificial",
-    indentiferArea: "ai",
+    creationDate: "2025-12-12",
+    endDate: "2026-12-12",
+    researchArea: researchLinesMocks[0].name,
+    researchTopic: researchLinesMocks[0].topics[0].name,
+    identiferArea: researchLinesMocks[0].topics[0].identifer,
     slug: "sistema-ia-analisis-datos-empresariales",
-    valid: true
+    valid: true,
   },
   // Ingeniería de Sistemas - Desarrollo Web
   {
@@ -103,10 +104,11 @@ export const projectsMock: Project[] = [
     status: "Finalizado",
     creationDate: "2024",
     endDate: "2024",
-    area: "Desarrollo Web",
-    indentiferArea: "web-dev",
+    researchArea: researchLinesMocks[0].name,
+    researchTopic: researchLinesMocks[0].topics[1].name,
+    identiferArea: researchLinesMocks[0].topics[1].identifer,
     slug: "plataforma-web-gestion-academica",
-    valid: true
+    valid: true,
   },
   // Ingeniería de Sistemas - Seguridad informática
   {
@@ -119,10 +121,11 @@ export const projectsMock: Project[] = [
     status: "En curso",
     creationDate: "2025",
     endDate: "2026",
-    area: "Seguridad informática",
-    indentiferArea: "cybersec",
+    researchArea: researchLinesMocks[0].name,
+    researchTopic: researchLinesMocks[0].topics[2].name,
+    identiferArea: researchLinesMocks[0].topics[2].identifer,
     slug: "sistema-deteccion-intrusiones-red",
-    valid: true
+    valid: true,
   },
   // Ingeniería de Sistemas - Transformación Digital
   {
@@ -135,10 +138,11 @@ export const projectsMock: Project[] = [
     status: "Finalizado",
     creationDate: "2023",
     endDate: "2023",
-    area: "Transformación Digital",
-    indentiferArea: "digital-transformation",
+    researchArea: researchLinesMocks[0].name,
+    researchTopic: researchLinesMocks[0].topics[3].name,
+    identiferArea: researchLinesMocks[0].topics[3].identifer,
     slug: "automatizacion-procesos-administrativos",
-    valid: true
+    valid: true,
   },
   // Contaduría Pública - Finanzas y gestión pública
   {
@@ -151,10 +155,11 @@ export const projectsMock: Project[] = [
     status: "En curso",
     creationDate: "2025",
     endDate: "2027",
-    area: "Finanzas y gestión pública",
-    indentiferArea: "public-finance",
+    researchArea: researchLinesMocks[1].name,
+    researchTopic: researchLinesMocks[1].topics[0].name,
+    identiferArea: researchLinesMocks[1].topics[0].identifer,
     slug: "optimizacion-presupuestos-municipales",
-    valid: true
+    valid: true,
   },
   // Contaduría Pública - Auditoría digital
   {
@@ -167,10 +172,11 @@ export const projectsMock: Project[] = [
     status: "Finalizado",
     creationDate: 2023,
     endDate: "2024",
-    area: "Auditoría digital",
-    indentiferArea: "digital-audit",
+    researchArea: researchLinesMocks[1].name,
+    researchTopic: researchLinesMocks[1].topics[1].name,
+    identiferArea: researchLinesMocks[1].topics[1].identifer,
     slug: "auditoria-digital-entes-publicos",
-    valid: true
+    valid: true,
   },
   // Contaduría Pública - NIIF
   {
@@ -183,10 +189,11 @@ export const projectsMock: Project[] = [
     status: "En curso",
     creationDate: "2025",
     endDate: "2028",
-    area: "NIIF",
-    indentiferArea: "ifrs",
+    researchArea: researchLinesMocks[1].name,
+    researchTopic: researchLinesMocks[1].topics[2].name,
+    identiferArea: researchLinesMocks[1].topics[2].identifer,
     slug: "implementacion-niif-pymes",
-    valid: true
+    valid: true,
   },
   // Contaduría Pública - Contabilidad y tecnología
   {
@@ -199,10 +206,11 @@ export const projectsMock: Project[] = [
     status: "Finalizado",
     creationDate: "2025",
     endDate: "2025",
-    area: "Contabilidad y tecnología",
-    indentiferArea: "accounting-tech",
+    researchArea: researchLinesMocks[1].name,
+    researchTopic: researchLinesMocks[1].topics[3].name,
+    identiferArea: researchLinesMocks[1].topics[3].identifer,
     slug: "contabilidad-automatizada-nube",
-    valid: true
+    valid: true,
   },
   // Ingeniería de Sistemas - Inteligencia Artificial
   {
@@ -215,10 +223,11 @@ export const projectsMock: Project[] = [
     status: "En curso",
     creationDate: "2025",
     endDate: "2030",
-    area: "Inteligencia Artificial",
-    indentiferArea: "ai",
+    researchArea: researchLinesMocks[0].name,
+    researchTopic: researchLinesMocks[0].topics[0].name,
+    identiferArea: researchLinesMocks[0].topics[0].identifer,
     slug: "asistente-virtual-orientacion-academica",
-    valid: true
+    valid: true,
   },
   // Contaduría Pública - Auditoría digital
   {
@@ -231,10 +240,11 @@ export const projectsMock: Project[] = [
     status: "Finalizado",
     creationDate: "2023",
     endDate: "2023",
-    area: "Auditoría digital",
-    indentiferArea: "digital-audit",
+    researchArea: researchLinesMocks[1].name,
+    researchTopic: researchLinesMocks[1].topics[3].name,
+    identiferArea: researchLinesMocks[1].topics[3].identifer,
     slug: "blockchain-trazabilidad-contable",
-    valid: false
+    valid: false,
   },
 ];
 

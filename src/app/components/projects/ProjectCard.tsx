@@ -17,7 +17,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <strong>Año:</strong> {project.creationDate}
       </p>
       <p className="text-sm text-gray-500 mb-2">
-        <strong>Área:</strong> {project.area}
+        <strong>Área:</strong> {project.researchArea}
       </p>
       <p className="text-sm text-gray-500">
         <strong>Lider: </strong>

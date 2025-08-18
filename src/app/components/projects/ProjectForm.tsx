@@ -1,12 +1,12 @@
 "use client";
 
 import { ChangeEvent, FormEvent } from "react";
-import { Project } from "@/app/types/Project";
+import { ProjectFormData } from "@/app/types/Project";
 import { ResearchArea } from "@/app/types/ResearchLine";
 import Image from "next/image";
 
 interface ProjectFormProps {
-  formData: Project;
+  formData: ProjectFormData;
   researchLines: ResearchArea[];
   onChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -21,7 +21,7 @@ export default function ProjectForm({
   researchLines,
 }: ProjectFormProps) {
   const selectedArea = researchLines.find(
-    (area) => area.name === formData.area
+    (area) => area.name === formData.researchArea
   );
 
   return (
@@ -78,7 +78,7 @@ export default function ProjectForm({
           <label className={`block font-semibold mb-1 `}>Estado</label>
           <input
             type="text"
-            value="En curso"
+            value={formData.status}
             name="status"
             readOnly
             className={`w-full border rounded-lg p-2 ${
@@ -94,7 +94,7 @@ export default function ProjectForm({
           <label className="block font-semibold mb-1">Línea</label>
           <select
             name="area"
-            value={formData.area}
+            value={formData.researchArea}
             onChange={onChange}
             className="w-full border rounded-lg p-2"
             required
@@ -113,7 +113,7 @@ export default function ProjectForm({
           <label className="block font-semibold mb-1">Área</label>
           <select
             name="indentiferArea"
-            value={formData.indentiferArea}
+            value={formData.identiferArea}
             onChange={onChange}
             className="w-full border rounded-lg p-2"
             required
@@ -163,7 +163,9 @@ export default function ProjectForm({
           />
         </label>
         {formData.document && (
-          <p className="mt-2 text-sm text-green-600">📄 {formData.document}</p>
+          <p className="mt-2 text-sm text-green-600">
+            📄 {formData.document.name}
+          </p>
         )}
       </div>
 
@@ -189,6 +191,8 @@ export default function ProjectForm({
               src={URL.createObjectURL(formData.image)}
               alt="preview"
               className="w-24 h-24 object-cover rounded-lg shadow-md"
+              width={50}
+              height={50}
             />
           </div>
         )}
@@ -200,7 +204,7 @@ export default function ProjectForm({
           type="submit"
           className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-500 transition-colors w-full sm:w-auto"
         >
-          Crear Proyecto
+          Guardar Proyecto
         </button>
       </div>
     </form>

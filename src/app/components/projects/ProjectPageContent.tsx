@@ -5,7 +5,6 @@ import ProjectFilters from "@/app/components/projects/ProjectsFilters";
 import { ProjectFilter } from "@/app/types/Project";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-
 import { RootState } from "@/app/store/store";
 import { useSelector } from "react-redux";
 import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors";
@@ -27,7 +26,7 @@ export default function ProjectPageContent() {
       result = result.filter((p) => p.creationDate == initialFilter.year);
     if (initialFilter.identifer)
       result = result.filter(
-        (p) => p.indentiferArea === initialFilter.identifer
+        (p) => p.identiferArea === initialFilter.identifer
       );
     if (initialFilter.status)
       result = result.filter((p) => p.status === initialFilter.status);
@@ -39,7 +38,7 @@ export default function ProjectPageContent() {
     if (filters.year)
       result = result.filter((p) => p.creationDate == filters.year);
     if (filters.identifer)
-      result = result.filter((p) => p.indentiferArea === filters.identifer);
+      result = result.filter((p) => p.identiferArea === filters.identifer);
     if (filters.status)
       result = result.filter((p) => p.status === filters.status);
     setFilteredProjects(result);

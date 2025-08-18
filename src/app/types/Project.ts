@@ -1,3 +1,4 @@
+import { ResearchArea, ResearchTopic } from "./ResearchLine";
 import { User } from "./User";
 
 export interface Project {
@@ -7,14 +8,21 @@ export interface Project {
   leader: User;
   researchers: User[];
   status: string;
-  area: string;
   creationDate: number | string;
   endDate: number | string;
-  indentiferArea: string;
+  researchArea?:string;
+  researchTopic?:string;
+  identiferArea?:string;
   slug: string;
   valid: boolean;
-  image?: Blob | MediaSource;
-  document?: string;
+  imageUrl?: string;
+  documentName?: string;
+}
+
+export interface ProjectFormData
+  extends Omit<Project, "imageUrl" | "documentName"> {
+  image?: File;
+  document?: File;
 }
 
 export interface ProjectFilter {

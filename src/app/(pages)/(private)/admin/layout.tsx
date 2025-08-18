@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "../../../globals.css";
 import { Roboto } from "next/font/google";
 import PrivateNavbar from "@/app/components/header/PrivateNavbar";
+import Providers from "../../(public)/providers";
 
 export const metadata: Metadata = {
   title: "Semilleros Uniremington",
@@ -28,7 +29,6 @@ const navItems = [
   { label: "Noticias", href: "/admin/news" },
 ];
 
-
 export default function AdminLayout({
   children,
 }: {
@@ -37,8 +37,14 @@ export default function AdminLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <PrivateNavbar route="/admin" navItems={navItems} title="Panel de Administracion" />
-        <main className="p-5">{children}</main>
+        <Providers>
+          <PrivateNavbar
+            route="/admin"
+            navItems={navItems}
+            title="Panel de Administracion"
+          />
+          <main className="p-5">{children}</main>
+        </Providers>
       </body>
     </html>
   );

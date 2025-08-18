@@ -10,6 +10,7 @@ import {
   FaUsers,
   FaTag,
   FaUser,
+  FaEdit,
 } from "react-icons/fa";
 import Link from "next/link";
 
@@ -21,9 +22,14 @@ export default function ProjectsPages() {
     state.projects.find((p) => p.slug === slug)
   );
 
+  const userAuth = useSelector((state: RootState) => state.auth);
+
   if (!project) {
     return <div>Proyecto no encontrado</div>;
   }
+
+  const isMember =
+    userAuth?.isAuthenticated && project.leader?.id === userAuth.user?.id;
 
   return (
     <div className="min-h-screen mx-auto max-w-5xl p-6">
@@ -36,7 +42,19 @@ export default function ProjectsPages() {
       </Link>
 
       {/* Título */}
-      <h1 className="text-3xl font-bold mb-3">{project.title}</h1>
+      <div className="flex justify-between items-center mb-3">
+        <h1 className="text-3xl font-bold">{project.title}</h1>
+
+        {/* Botón Editar solo si está autenticado */}
+        {isMember && (
+          <Link
+            href={`/member/edit-project/${project.slug}`}
+            className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+          >
+            <FaEdit className="mr-2" /> Editar
+          </Link>
+        )}
+      </div>
 
       {/* Detalles */}
       <div className="flex flex-wrap items-center text-gray-500 text-sm gap-4 mb-6">
@@ -47,10 +65,10 @@ export default function ProjectsPages() {
         <span className="flex items-center gap-x-2">
           Finaliza:
           <FaCalendarAlt className="mr-1 text-red-600" />
-          <strong>{project.creationDate}</strong>
+          <strong>{project.endDate}</strong>
         </span>
         <span className="flex items-center">
-          <FaFolderOpen className="mr-1" /> {project.area}
+          <FaFolderOpen className="mr-1" /> {project.researchArea}
         </span>
         <span className="flex items-center">
           <FaTag
@@ -68,7 +86,7 @@ export default function ProjectsPages() {
       </article>
 
       {/* Investigadores */}
-      {project.researchers && project.researchers.length > 0 && (
+      {project.researchers && project.leader && (
         <div className="bg-gray-50 border rounded-lg p-4 shadow-sm">
           <h2 className="text-xl font-semibold mb-3 flex items-center">
             <FaUser className="mr-2" /> Lider

@@ -3,7 +3,7 @@
 import ProjectForm from "@/app/components/projects/ProjectForm";
 import { addProject } from "@/app/store/features/ProjectSlice";
 import { AppDispatch, RootState } from "@/app/store/store";
-import { Project } from "@/app/types/Project";
+import { Project, ProjectFormData } from "@/app/types/Project";
 import { createSlug } from "@/app/utils/slugname";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,9 +18,9 @@ export default function CreateProjectPage() {
 
   const initialState: Project = {
     id: "",
-    area: "",
     description: "",
-    indentiferArea: "",
+    researchArea: undefined,
+    researchTopic: undefined,
     leader: userAuth,
     researchers: [userAuth],
     slug: "",
@@ -28,18 +28,29 @@ export default function CreateProjectPage() {
     title: "",
     creationDate: today,
     endDate: "",
-    image: undefined,
-    document: undefined,
+    imageUrl: undefined,
+    documentName: undefined,
     valid: false,
   };
 
-  const [newProject, setNewProject] = useState<Project>(initialState);
+  const [newProject, setNewProject] = useState<ProjectFormData>(initialState);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target;
-    setNewProject((prev) => ({ ...prev, [name]: value }));
+    const { name, value, files } = e.target as HTMLInputElement;
+
+    if (files && files.length > 0) {
+      setNewProject((prev) => ({
+        ...prev,
+        [name]: files[0],
+      }));
+    } else {
+      setNewProject((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -47,11 +58,15 @@ export default function CreateProjectPage() {
 
     const slugTag = createSlug(newProject.title);
 
-    // proyecto actualizado
-    const projectWithMeta = {
-      ...newProject,
+    // separas lo serializable de lo no serializable
+    const { image, document, ...rest } = newProject;
+
+    const projectWithMeta: Project = {
+      ...rest,
       id: crypto.randomUUID(),
       slug: slugTag,
+      imageUrl: image ? URL.createObjectURL(image) : "", // para preview en frontend
+      documentName: document ? document.name : "", // solo el nombre
     };
 
     // guardas en redux el proyecto con slug e id

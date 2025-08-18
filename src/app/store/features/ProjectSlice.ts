@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Project } from "@/app/types/Project";
 import { projectsMock } from "@/app/mocks/data";
 
@@ -8,14 +8,13 @@ const projectSlice = createSlice({
   name: "project",
   initialState,
   reducers: {
-    setProjects: (state, action) => {
+    setProjects: (state, action: PayloadAction<Project[]>) => {
       return action.payload;
     },
-    addProject: (state, action) => {
+    addProject: (state, action: PayloadAction<Project>) => {
       state.push(action.payload);
-      console.log(action.payload);
     },
-    updateProject: (state, action) => {
+    updateProject: (state, action: PayloadAction<Project>) => {
       const index = state.findIndex(
         (project) => project.id === action.payload.id
       );
@@ -23,12 +22,24 @@ const projectSlice = createSlice({
         state[index] = action.payload;
       }
     },
-    deleteProject: (state, action) => {
+    deleteProject: (state, action: PayloadAction<string>) => {
       return state.filter((project) => project.id !== action.payload);
     },
+    toggleValidProject: (state, action: PayloadAction<string>) => {
+      const project = state.find((p) => p.id === action.payload);
+      if (project) {
+        project.valid = !project.valid; // alterna true/false
+      }
+    },
+   
   },
 });
 
 export default projectSlice.reducer;
-export const { setProjects, addProject, updateProject, deleteProject } =
-  projectSlice.actions;
+export const {
+  setProjects,
+  addProject,
+  updateProject,
+  deleteProject,
+  toggleValidProject,
+} = projectSlice.actions;
