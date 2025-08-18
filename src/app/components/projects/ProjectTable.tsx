@@ -67,7 +67,7 @@ export default function ProjectTable({
             </tr>
           </thead>
           <tbody>
-            {projects.length === 0 ? (
+            {filteredProjects.length === 0 ? (
               <tr>
                 <td
                   colSpan={4}
@@ -77,7 +77,7 @@ export default function ProjectTable({
                 </td>
               </tr>
             ) : (
-              projects.map((project) => (
+              filteredProjects.map((project) => (
                 <tr
                   key={project.id}
                   className="border-b bg-white hover:bg-gray-50 transition"
@@ -122,12 +122,12 @@ export default function ProjectTable({
 
         {/* Vista móvil como cards */}
         <div className="md:hidden flex flex-col gap-4 p-4">
-          {projects.length === 0 ? (
+          {filteredProjects.length === 0 ? (
             <p className="text-gray-500 italic text-center">
               No hay proyectos en esta categoría o por validacion
             </p>
           ) : (
-            projects.map((project) => (
+            filteredProjects.map((project) => (
               <div
                 key={project.id}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col gap-2"
