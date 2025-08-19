@@ -112,6 +112,7 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[0].topics[1].name,
     identiferArea: researchLinesMocks[0].topics[1].identifer,
     slug: "plataforma-web-gestion-academica",
+    imageUrl: "/400x200.png",
     valid: true,
   },
   // Ingeniería de Sistemas - Seguridad informática
