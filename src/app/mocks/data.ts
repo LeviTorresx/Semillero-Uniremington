@@ -53,7 +53,7 @@ export const usersMock: User[] = [
     name: "Levi Torres",
     phone: "3001234567",
     email: "levi@example.com",
-    role: "ADMIN",
+    role: "MEMBER",
     password: null,
     valid: true,
   },

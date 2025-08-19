@@ -43,7 +43,7 @@ export default function MemberNewsPages() {
         </h1>
         <div className="flex flex-col sm:flex-row sm:justify-center gap-4">
           <Link
-            href={"/create-news"}
+            href={"/member/create-news"}
             className="text-white bg-blue-500 px-4 py-2 rounded-3xl hover:bg-blue-400"
           >
             Crear una nueva noticia

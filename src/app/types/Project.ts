@@ -10,9 +10,9 @@ export interface Project {
   status: string;
   creationDate: number | string;
   endDate: number | string;
-  researchArea?:string;
-  researchTopic?:string;
-  identiferArea?:string;
+  researchArea:string;
+  researchTopic:string;
+  identiferArea:string;
   slug: string;
   valid: boolean;
   imageUrl?: string;

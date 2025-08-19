@@ -12,3 +12,6 @@ export interface News {
   slug: string;
   valid: boolean;
 }
+export interface NewsFormData extends Omit<News, "imageUrl"> {
+  image?: File;
+}

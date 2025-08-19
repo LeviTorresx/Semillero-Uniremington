@@ -19,8 +19,9 @@ export default function CreateProjectPage() {
   const initialState: Project = {
     id: "",
     description: "",
-    researchArea: undefined,
-    researchTopic: undefined,
+    researchArea: "",
+    researchTopic: "",
+    identiferArea: "",
     leader: userAuth,
     researchers: [userAuth],
     slug: "",
