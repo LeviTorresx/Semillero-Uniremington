@@ -94,7 +94,8 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[0].topics[0].name,
     identiferArea: researchLinesMocks[0].topics[0].identifer,
     slug: "sistema-ia-analisis-datos-empresariales",
-    imageUrl:"/template.png",
+    imageUrl: "/template.png",
+    documentUrl: "/document.pdf",
     valid: true,
   },
   // Ingeniería de Sistemas - Desarrollo Web
@@ -113,6 +114,7 @@ export const projectsMock: Project[] = [
     identiferArea: researchLinesMocks[0].topics[1].identifer,
     slug: "plataforma-web-gestion-academica",
     imageUrl: "/400x200.png",
+    documentUrl: "/document.pdf",
     valid: true,
   },
   // Ingeniería de Sistemas - Seguridad informática
@@ -130,6 +132,8 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[0].topics[2].name,
     identiferArea: researchLinesMocks[0].topics[2].identifer,
     slug: "sistema-deteccion-intrusiones-red",
+    imageUrl: "/template.png",
+    documentUrl: "/document.pdf",
     valid: true,
   },
   // Ingeniería de Sistemas - Transformación Digital
@@ -147,6 +151,8 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[0].topics[3].name,
     identiferArea: researchLinesMocks[0].topics[3].identifer,
     slug: "automatizacion-procesos-administrativos",
+    imageUrl: "/400x200.png",
+    documentUrl: "/document.pdf",
     valid: true,
   },
   // Contaduría Pública - Finanzas y gestión pública
@@ -164,6 +170,8 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[1].topics[0].name,
     identiferArea: researchLinesMocks[1].topics[0].identifer,
     slug: "optimizacion-presupuestos-municipales",
+    imageUrl: "/template.png",
+    documentUrl: "/document.pdf",
     valid: true,
   },
   // Contaduría Pública - Auditoría digital
@@ -181,6 +189,8 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[1].topics[1].name,
     identiferArea: researchLinesMocks[1].topics[1].identifer,
     slug: "auditoria-digital-entes-publicos",
+    imageUrl: "/400x200.png",
+    documentUrl: "/document.pdf",
     valid: true,
   },
   // Contaduría Pública - NIIF
@@ -198,6 +208,8 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[1].topics[2].name,
     identiferArea: researchLinesMocks[1].topics[2].identifer,
     slug: "implementacion-niif-pymes",
+    imageUrl: "/template.png",
+    documentUrl: "/document.pdf",
     valid: true,
   },
   // Contaduría Pública - Contabilidad y tecnología
@@ -215,6 +227,8 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[1].topics[3].name,
     identiferArea: researchLinesMocks[1].topics[3].identifer,
     slug: "contabilidad-automatizada-nube",
+    imageUrl: "/400x200.png",
+    documentUrl: "/document.pdf",
     valid: true,
   },
   // Ingeniería de Sistemas - Inteligencia Artificial
@@ -232,6 +246,8 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[0].topics[0].name,
     identiferArea: researchLinesMocks[0].topics[0].identifer,
     slug: "asistente-virtual-orientacion-academica",
+    imageUrl: "/400x200.png",
+    documentUrl: "/document.pdf",
     valid: true,
   },
   // Contaduría Pública - Auditoría digital
@@ -249,6 +265,8 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[1].topics[3].name,
     identiferArea: researchLinesMocks[1].topics[3].identifer,
     slug: "blockchain-trazabilidad-contable",
+    imageUrl: "/400x200.png",
+    documentUrl: "/document.pdf",
     valid: false,
   },
 ];

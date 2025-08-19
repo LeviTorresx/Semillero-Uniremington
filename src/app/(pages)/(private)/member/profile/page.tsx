@@ -12,10 +12,11 @@ import {
 } from "react-icons/fa6";
 import { FaEdit, FaFolder, FaPhone } from "react-icons/fa";
 import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors";
+import { stat, statSync } from "fs";
 
 export default function ProfilePage() {
   const user = useSelector((state: RootState) => state.auth.user);
-  const projects = useSelector(selectValidatedProjects);
+  const projects = useSelector((state: RootState) => state.projects);
 
   const userProjects = projects.filter((p) => p.leader.id === user.id);
 

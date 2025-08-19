@@ -29,8 +29,8 @@ export default function CreateProjectPage() {
     title: "",
     creationDate: today,
     endDate: "",
-    imageUrl: undefined,
-    documentName: undefined,
+    imageUrl: "",
+    documentUrl: "",
     valid: false,
   };
 
@@ -66,14 +66,14 @@ export default function CreateProjectPage() {
       ...rest,
       id: crypto.randomUUID(),
       slug: slugTag,
-      imageUrl: image ? URL.createObjectURL(image) : "", // para preview en frontend
-      documentName: document ? document.name : "", // solo el nombre
+      //temporal
+      imageUrl: image ? URL.createObjectURL(image) : "",
+      documentUrl: document ? URL.createObjectURL(document) : "",
     };
 
-    // guardas en redux el proyecto con slug e id
+
     dispatch(addProject(projectWithMeta));
 
-    // reseteas el formulario
     setNewProject(initialState);
   };
 

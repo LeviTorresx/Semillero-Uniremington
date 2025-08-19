@@ -59,8 +59,8 @@ export default function EditProjectPage() {
 
     const updatedProject: Project = {
       ...rest,
-      imageUrl: image ? URL.createObjectURL(image) : formData.image?.name,
-      documentName: document ? document.name : formData.document?.name,
+      imageUrl: image ? URL.createObjectURL(image) : "",
+      documentUrl: document ? URL.createObjectURL(document) : "",
     };
 
     dispatch(updateProject(updatedProject));

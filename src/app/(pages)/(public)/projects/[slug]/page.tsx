@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
-import { FaCalendarAlt, FaEdit } from "react-icons/fa";
+import { FaCalendarAlt, FaDochub, FaEdit, FaFile } from "react-icons/fa";
 
 export default function ProjectsPages() {
   const params = useParams();
@@ -117,6 +117,32 @@ export default function ProjectsPages() {
               <li key={index}>{r.name}</li>
             ))}
           </ul>
+        </div>
+      )}
+      {/* Documento asociado */}
+      {project.documentUrl && (
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold mb-3 flex items-center">
+            <FaFile className="mr-2" /> Documento
+          </h2>
+
+          {/* Vista previa del PDF */}
+          <div className=" border rounded-lg overflow-hidden shadow">
+            <iframe
+              src={project.documentUrl}
+              className="w-full h-96"
+              title="Documento del proyecto"
+            />
+          </div>
+          {/* Botón para abrir/descargar */}
+          <a
+            href={project.documentUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+          >
+            Ver Documento
+          </a>
         </div>
       )}
 

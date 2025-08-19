@@ -93,7 +93,7 @@ export default function ProjectForm({
         <div className="col-span-1">
           <label className="block font-semibold mb-1">Línea</label>
           <select
-            name="area"
+            name="researchArea"
             value={formData.researchArea}
             onChange={onChange}
             className="w-full border rounded-lg p-2"
@@ -112,8 +112,8 @@ export default function ProjectForm({
         <div className="col-span-1">
           <label className="block font-semibold mb-1">Área</label>
           <select
-            name="indentiferArea"
-            value={formData.identiferArea}
+            name="researchTopic"
+            value={formData.researchTopic}
             onChange={onChange}
             className="w-full border rounded-lg p-2"
             required

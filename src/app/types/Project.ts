@@ -15,8 +15,8 @@ export interface Project {
   identiferArea:string;
   slug: string;
   valid: boolean;
-  imageUrl?: string;
-  documentName?: string;
+  imageUrl: string;
+  documentUrl: string;
 }
 
 export interface ProjectFormData
