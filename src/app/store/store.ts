@@ -3,12 +3,14 @@ import ProjectReducer from "./features/ProjectSlice";
 import NewReducer from "./features/NewSlice";
 import ResearchLineReducer from "./features/ResearchLineSlice";
 import AuthReducer from "./features/AuthSlice";
+import MemberReducer from"./features/MemberSlice"
 export const store = configureStore({
   reducer: {
     projects: ProjectReducer,
     news: NewReducer,
     researchLines: ResearchLineReducer,
     auth: AuthReducer,
+    members: MemberReducer
   },
 });
 

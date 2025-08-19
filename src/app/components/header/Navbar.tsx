@@ -10,13 +10,25 @@ import { RootState } from "@/app/store/store";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const userAuth = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
-  );
+  const userAuth = useSelector((state: RootState) => state.auth);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  // Verifica si hay sesión y su rol
+  const isAuthenticated = userAuth?.isAuthenticated;
+  const userRole = userAuth?.user?.role;
+
+  // Define a dónde mandar el botón
+  const panelHref =
+    userRole === "ADMIN" ? "/admin" : userRole === "MEMBER" ? "/member" : "/login";
+
+  const panelText = isAuthenticated
+    ? userRole === "ADMIN"
+      ? "Panel Admin"
+      : "Panel de Miembros"
+    : "Iniciar Sesión";
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -63,16 +75,16 @@ const Navbar = () => {
               Noticias
             </Link>
 
-            {/* Boton de Login */}
+            {/* Botón dinámico según rol */}
             <Link
-              href={userAuth ? "/member" : "/login"}
+              href={panelHref}
               className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-red-600 transition font-semibold"
             >
-              {userAuth ? "Panel de miembros" : "Iniciar Sesión"}
+              {panelText}
             </Link>
           </nav>
 
-          {/* Boton menu movil */}
+          {/* Botón menú móvil */}
           <div className="md:hidden flex items-center">
             <button onClick={toggleMenu} aria-label="Abrir menú">
               {isOpen ? (
@@ -111,12 +123,13 @@ const Navbar = () => {
               Noticias
             </Link>
 
+            {/* Botón dinámico según rol */}
             <Link
-              href={userAuth ? "/member" : "/login"}
+              href={panelHref}
               className="text-white bg-blue-700 text-center px-4 py-2 rounded-md hover:bg-red-600 transition font-semibold"
               onClick={toggleMenu}
             >
-              {userAuth ? "Panel de miembros" : "Iniciar Sesión"}
+              {panelText}
             </Link>
           </nav>
         </div>

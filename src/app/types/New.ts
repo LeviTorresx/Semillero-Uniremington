@@ -10,4 +10,5 @@ export interface News {
   imageUrl: string;
   author: User[];
   slug: string;
+  valid: boolean;
 }

@@ -3,36 +3,38 @@
 import Link from "next/link";
 import { FaCheck, FaXmark, FaEye } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import { toggleValidProject } from "@/app/store/features/ProjectSlice";
-import { Project } from "@/app/types/Project";
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { toggleValidMember } from "@/app/store/features/MemberSlice";
 
-interface ProjectTableProps {
-  projects: Project[];
+import { FaSearch } from "react-icons/fa";
+import { User } from "@/app/types/User";
+
+interface MemberTableProps {
+  members: User[];
   title: string;
   color: "yellow" | "green";
   validState: boolean; // true = validados, false = pendientes
 }
 
-export default function ProjectTable({
-  projects,
+export default function MemberTable({
+  members,
   title,
   color,
   validState,
-}: ProjectTableProps) {
+}: MemberTableProps) {
   const dispatch = useDispatch();
-
   const [search, setSearch] = useState("");
 
-  const filteredProjects = projects.filter(
-    (p) =>
-      p.title.toLowerCase().includes(search.toLowerCase()) ||
-      p.researchArea?.toLowerCase().includes(search.toLowerCase())
+  const filteredMembers = members.filter(
+    (m) =>
+      m.name.toLowerCase().includes(search.toLowerCase()) ||
+      m.email.toLowerCase().includes(search.toLowerCase()) ||
+      m.role.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <section className="mt-8">
+      {/* Header + filtro */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
         <h2
           className={`text-xl md:text-2xl font-bold mb-4 ${
@@ -47,57 +49,54 @@ export default function ProjectTable({
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Buscar proyecto..."
+            placeholder="Buscar miembro..."
             className="w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none text-sm"
           />
-        </div>{" "}
+        </div>
       </div>
 
-      {/* Tabla responsiva */}
+      {/* Tabla Desktop */}
       <div className="overflow-x-auto shadow-md rounded-xl border border-gray-200">
         <table className="hidden md:table w-full text-sm text-gray-700">
           <thead
             className={`bg-${color}-100 text-${color}-800 uppercase text-xs font-semibold sticky top-0`}
           >
             <tr>
-              <th className="px-6 py-3 text-left">Título</th>
-              <th className="px-6 py-3 text-left">Área</th>
-              <th className="px-6 py-3 text-left">Fecha</th>
-              <th className="px-6 py-3 text-left">Lider</th>
+              <th className="px-6 py-3 text-left">Nombre</th>
+              <th className="px-6 py-3 text-left">Correo</th>
+              <th className="px-6 py-3 text-left">Rol</th>
               <th className="px-6 py-3 text-center">Acciones</th>
             </tr>
           </thead>
           <tbody>
-            {filteredProjects.length === 0 ? (
+            {filteredMembers.length === 0 ? (
               <tr>
                 <td
                   colSpan={4}
                   className="px-6 py-4 text-center text-gray-500 italic"
                 >
-                  No hay proyectos en esta categoría o por validacion
+                  No hay miembros en esta categoría o por validación
                 </td>
               </tr>
             ) : (
-              filteredProjects.map((project) => (
+              filteredMembers.map((member) => (
                 <tr
-                  key={project.id}
+                  key={member.id}
                   className="border-b bg-white hover:bg-gray-50 transition"
                 >
-                  <td className="px-6 py-4 font-medium">{project.title}</td>
-                  <td className="px-6 py-4">{project.researchArea}</td>
-                  <td className="px-6 py-4">{project.creationDate}</td>
-                  <td className="px-6 py-4">{project.leader.name}</td>
+                  <td className="px-6 py-4 font-medium">{member.name}</td>
+                  <td className="px-6 py-4">{member.email}</td>
+                  <td className="px-6 py-4">{member.role}</td>
                   <td className="px-6 py-4 flex justify-center gap-3">
                     <Link
-                      href={`/projects/${project.slug}`}
+                      href={`/members/${member.id}`}
                       className="p-2.5 bg-blue-100 rounded-full text-blue-600 hover:bg-blue-200 transition"
                       title="Ver detalles"
                     >
                       <FaEye size={16} />
                     </Link>
-
                     <button
-                      onClick={() => dispatch(toggleValidProject(project.id))}
+                      onClick={() => dispatch(toggleValidMember(member.id))}
                       className={`p-2.5 rounded-full transition ${
                         validState
                           ? "bg-red-100 text-red-600 hover:bg-red-200"
@@ -122,42 +121,35 @@ export default function ProjectTable({
           </tbody>
         </table>
 
-        {/* Vista móvil como cards */}
+        {/* Vista móvil */}
         <div className="md:hidden flex flex-col gap-4 p-4">
-          {filteredProjects.length === 0 ? (
+          {filteredMembers.length === 0 ? (
             <p className="text-gray-500 italic text-center">
-              No hay proyectos en esta categoría o por validacion
+              No hay miembros en esta categoría o por validación
             </p>
           ) : (
-            filteredProjects.map((project) => (
+            filteredMembers.map((member) => (
               <div
-                key={project.id}
+                key={member.id}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col gap-2"
               >
-                <h3 className="font-semibold text-gray-800">{project.title}</h3>
+                <h3 className="font-semibold text-gray-800">{member.name}</h3>
                 <p className="text-sm text-gray-500">
-                  Área:{" "}
-                  <span className="font-medium">{project.researchArea}</span>
+                  Email: <span className="font-medium">{member.email}</span>
                 </p>
                 <p className="text-sm text-gray-500">
-                  Fecha:{" "}
-                  <span className="font-medium">{project.leader.name}</span>
-                </p>
-                <p className="text-sm text-gray-500">
-                  Fecha:{" "}
-                  <span className="font-medium">{project.creationDate}</span>
+                  Rol: <span className="font-medium">{member.role}</span>
                 </p>
                 <div className="flex justify-end gap-2 mt-2">
                   <Link
-                    href={`/projects/${project.slug}`}
+                    href={`/members/${member.id}`}
                     className="p-2 bg-blue-100 rounded-full text-blue-600 hover:bg-blue-200 transition"
                     title="Ver detalles"
                   >
                     <FaEye />
                   </Link>
-
                   <button
-                    onClick={() => dispatch(toggleValidProject(project.id))}
+                    onClick={() => dispatch(toggleValidMember(member.id))}
                     className={`p-2 rounded-full transition ${
                       validState
                         ? "bg-red-100 text-red-600 hover:bg-red-200"

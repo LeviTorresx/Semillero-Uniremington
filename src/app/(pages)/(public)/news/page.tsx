@@ -7,10 +7,10 @@ import NewsCard from "@/app/components/news/NewsCard";
 import Pagination from "@/app/components/news/Pagination";
 import NewsFilterBar from "@/app/components/news/NewsFilterBar";
 import { useSelector } from "react-redux";
-import { RootState } from "@/app/store/store";
+import { selectValidatedNews } from "@/app/store/selectors/newsSelectors";
 
 export default function NewsPage() {
-  const NEWS = useSelector((state: RootState) => state.news);
+  const NEWS = useSelector(selectValidatedNews);
   const allNews: News[] = NEWS;
 
   const [category, setCategory] = useState("");

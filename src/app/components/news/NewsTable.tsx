@@ -3,32 +3,32 @@
 import Link from "next/link";
 import { FaCheck, FaXmark, FaEye } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import { toggleValidProject } from "@/app/store/features/ProjectSlice";
-import { Project } from "@/app/types/Project";
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
 
-interface ProjectTableProps {
-  projects: Project[];
+import { News } from "@/app/types/New";
+import { FaSearch } from "react-icons/fa";
+import { toggleValidNews } from "@/app/store/features/NewSlice";
+
+interface NewsTableProps {
+  news: News[];
   title: string;
   color: "yellow" | "green";
-  validState: boolean; // true = validados, false = pendientes
+  validState: boolean;
 }
 
-export default function ProjectTable({
-  projects,
+export default function NewsTable({
+  news,
   title,
   color,
   validState,
-}: ProjectTableProps) {
+}: NewsTableProps) {
   const dispatch = useDispatch();
-
   const [search, setSearch] = useState("");
 
-  const filteredProjects = projects.filter(
-    (p) =>
-      p.title.toLowerCase().includes(search.toLowerCase()) ||
-      p.researchArea?.toLowerCase().includes(search.toLowerCase())
+  const filteredNews = news.filter(
+    (n) =>
+      n.title.toLowerCase().includes(search.toLowerCase()) ||
+      n.category.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -47,13 +47,13 @@ export default function ProjectTable({
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Buscar proyecto..."
+            placeholder="Buscar noticia..."
             className="w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none text-sm"
           />
-        </div>{" "}
+        </div>
       </div>
 
-      {/* Tabla responsiva */}
+      {/* Tabla en escritorio */}
       <div className="overflow-x-auto shadow-md rounded-xl border border-gray-200">
         <table className="hidden md:table w-full text-sm text-gray-700">
           <thead
@@ -61,35 +61,37 @@ export default function ProjectTable({
           >
             <tr>
               <th className="px-6 py-3 text-left">Título</th>
-              <th className="px-6 py-3 text-left">Área</th>
+              <th className="px-6 py-3 text-left">Categoría</th>
               <th className="px-6 py-3 text-left">Fecha</th>
-              <th className="px-6 py-3 text-left">Lider</th>
+              <th className="px-6 py-3 text-left">Autor(es)</th>
               <th className="px-6 py-3 text-center">Acciones</th>
             </tr>
           </thead>
           <tbody>
-            {filteredProjects.length === 0 ? (
+            {filteredNews.length === 0 ? (
               <tr>
                 <td
-                  colSpan={4}
+                  colSpan={5}
                   className="px-6 py-4 text-center text-gray-500 italic"
                 >
-                  No hay proyectos en esta categoría o por validacion
+                  No hay noticias en esta categoría o por validar
                 </td>
               </tr>
             ) : (
-              filteredProjects.map((project) => (
+              filteredNews.map((n) => (
                 <tr
-                  key={project.id}
+                  key={n.id}
                   className="border-b bg-white hover:bg-gray-50 transition"
                 >
-                  <td className="px-6 py-4 font-medium">{project.title}</td>
-                  <td className="px-6 py-4">{project.researchArea}</td>
-                  <td className="px-6 py-4">{project.creationDate}</td>
-                  <td className="px-6 py-4">{project.leader.name}</td>
+                  <td className="px-6 py-4 font-medium">{n.title}</td>
+                  <td className="px-6 py-4">{n.category}</td>
+                  <td className="px-6 py-4">{n.date}</td>
+                  <td className="px-6 py-4">
+                    {n.author.map((a) => a.name).join(", ")}
+                  </td>
                   <td className="px-6 py-4 flex justify-center gap-3">
                     <Link
-                      href={`/projects/${project.slug}`}
+                      href={`/news/${n.slug}`}
                       className="p-2.5 bg-blue-100 rounded-full text-blue-600 hover:bg-blue-200 transition"
                       title="Ver detalles"
                     >
@@ -97,7 +99,7 @@ export default function ProjectTable({
                     </Link>
 
                     <button
-                      onClick={() => dispatch(toggleValidProject(project.id))}
+                      onClick={() => dispatch(toggleValidNews(n.id))}
                       className={`p-2.5 rounded-full transition ${
                         validState
                           ? "bg-red-100 text-red-600 hover:bg-red-200"
@@ -105,8 +107,8 @@ export default function ProjectTable({
                       }`}
                       title={
                         validState
-                          ? "Marcar como inválido"
-                          : "Marcar como válido"
+                          ? "Marcar como inválida"
+                          : "Marcar como válida"
                       }
                     >
                       {validState ? (
@@ -124,32 +126,32 @@ export default function ProjectTable({
 
         {/* Vista móvil como cards */}
         <div className="md:hidden flex flex-col gap-4 p-4">
-          {filteredProjects.length === 0 ? (
+          {filteredNews.length === 0 ? (
             <p className="text-gray-500 italic text-center">
-              No hay proyectos en esta categoría o por validacion
+              No hay noticias en esta categoría o por validar
             </p>
           ) : (
-            filteredProjects.map((project) => (
+            filteredNews.map((n) => (
               <div
-                key={project.id}
+                key={n.id}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col gap-2"
               >
-                <h3 className="font-semibold text-gray-800">{project.title}</h3>
+                <h3 className="font-semibold text-gray-800">{n.title}</h3>
                 <p className="text-sm text-gray-500">
-                  Área:{" "}
-                  <span className="font-medium">{project.researchArea}</span>
+                  Categoría: <span className="font-medium">{n.category}</span>
                 </p>
                 <p className="text-sm text-gray-500">
-                  Fecha:{" "}
-                  <span className="font-medium">{project.leader.name}</span>
+                  Fecha: <span className="font-medium">{n.date}</span>
                 </p>
                 <p className="text-sm text-gray-500">
-                  Fecha:{" "}
-                  <span className="font-medium">{project.creationDate}</span>
+                  Autor(es):{" "}
+                  <span className="font-medium">
+                    {n.author.map((a) => a.name).join(", ")}
+                  </span>
                 </p>
                 <div className="flex justify-end gap-2 mt-2">
                   <Link
-                    href={`/projects/${project.slug}`}
+                    href={`/news/${n.slug}`}
                     className="p-2 bg-blue-100 rounded-full text-blue-600 hover:bg-blue-200 transition"
                     title="Ver detalles"
                   >
@@ -157,14 +159,14 @@ export default function ProjectTable({
                   </Link>
 
                   <button
-                    onClick={() => dispatch(toggleValidProject(project.id))}
+                    onClick={() => dispatch(toggleValidNews(n.id))}
                     className={`p-2 rounded-full transition ${
                       validState
                         ? "bg-red-100 text-red-600 hover:bg-red-200"
                         : "bg-green-100 text-green-600 hover:bg-green-200"
                     }`}
                     title={
-                      validState ? "Marcar como inválido" : "Marcar como válido"
+                      validState ? "Marcar como inválida" : "Marcar como válida"
                     }
                   >
                     {validState ? <FaXmark /> : <FaCheck />}

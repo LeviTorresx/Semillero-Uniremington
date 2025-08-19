@@ -53,24 +53,27 @@ export const usersMock: User[] = [
     name: "Levi Torres",
     phone: "3001234567",
     email: "levi@example.com",
-    role: "Miembro",
+    role: "ADMIN",
     password: null,
+    valid: true,
   },
   {
     id: "2",
     name: "María Gómez",
     phone: "3009876543",
     email: "maria@example.com",
-    role: "Investigador",
+    role: "MEMBER",
     password: null,
+    valid: true,
   },
   {
     id: "3",
     name: "Carlos Ramírez",
     phone: "3012345678",
     email: "carlos@example.com",
-    role: "Administrador",
+    role: "MEMBER",
     password: null,
+    valid: true,
   },
 ];
 
@@ -259,6 +262,7 @@ export const newsMock: News[] = [
     imageUrl: "/template.png",
     author: [],
     slug: "participacion-en-congreso",
+    valid: true,
   },
   {
     id: "2",
@@ -270,6 +274,7 @@ export const newsMock: News[] = [
     imageUrl: "/400x200.png",
     author: [],
     slug: "reconocimiento-a-la-investigacion",
+    valid: true,
   },
   {
     id: "3",
@@ -281,6 +286,7 @@ export const newsMock: News[] = [
     imageUrl: "/template.png",
     author: [],
     slug: "publicacion-articulo-revista",
+    valid: true,
   },
 
   {
@@ -294,6 +300,7 @@ export const newsMock: News[] = [
     imageUrl: "/400x200.png",
     author: [],
     slug: "evento-networking-empresas",
+    valid: true,
   },
   {
     id: "5",
@@ -306,6 +313,7 @@ export const newsMock: News[] = [
     imageUrl: "/template.png",
     author: [],
     slug: "semillero-gana-concurso-innovacion",
+    valid: true,
   },
   {
     id: "6",
@@ -318,6 +326,7 @@ export const newsMock: News[] = [
     imageUrl: "/400x200.png",
     author: [],
     slug: "nuevo-proyecto-investigacion-ia",
+    valid: true,
   },
   {
     id: "7",
@@ -330,6 +339,7 @@ export const newsMock: News[] = [
     imageUrl: "/400x200.png",
     author: [],
     slug: "participacion-feria-ciencia-tecnologia",
+    valid: false,
   },
 ];
 

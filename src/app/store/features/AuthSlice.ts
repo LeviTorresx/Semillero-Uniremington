@@ -29,6 +29,7 @@ const authSlice = createSlice({
         email: "",
         role: "",
         password: null,
+        valid: false,
       };
     },
   },
