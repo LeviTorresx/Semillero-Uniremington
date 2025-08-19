@@ -9,11 +9,11 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-700 text-white py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-blue-700 text-white py-6"> {/* reducido de py-10 a py-6 */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Datos de contacto */}
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-white">Contacto</h3>
+          <h3 className="text-base font-semibold mb-3 text-white">Contacto</h3>
           <p className="text-sm">Carrera 65 # 58B - 03, Medellín, Colombia</p>
           <p className="text-sm">Teléfono: +57 604 444 5656</p>
           <p className="text-sm">Email: contacto@uniremington.edu.co</p>
@@ -21,71 +21,38 @@ const Footer = () => {
 
         {/* Redes sociales */}
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-white">Síguenos</h3>
-          <div className="flex space-x-4">
-            <Link
-              href="https://facebook.com"
-              target="_blank"
-              aria-label="Facebook"
-            >
-              <FaFacebookF
-                className="text-white hover:text-red-500 transition"
-                size={20}
-              />
+          <h3 className="text-base font-semibold mb-3 text-white">Síguenos</h3>
+          <div className="flex space-x-3">
+            <Link href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <FaFacebookF className="text-white hover:text-red-500 transition" size={18} />
             </Link>
-            <Link
-              href="https://instagram.com"
-              target="_blank"
-              aria-label="Instagram"
-            >
-              <FaInstagram
-                className="text-white hover:text-red-500 transition"
-                size={20}
-              />
+            <Link href="https://instagram.com" target="_blank" aria-label="Instagram">
+              <FaInstagram className="text-white hover:text-red-500 transition" size={18} />
             </Link>
-            <Link
-              href="https://linkedin.com"
-              target="_blank"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedinIn
-                className="text-white hover:text-red-500 transition"
-                size={20}
-              />
+            <Link href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+              <FaLinkedinIn className="text-white hover:text-red-500 transition" size={18} />
             </Link>
-            <Link
-              href="https://twitter.com"
-              target="_blank"
-              aria-label="Twitter"
-            >
-              <FaTwitter
-                className="text-white hover:text-red-500 transition"
-                size={20}
-              />
+            <Link href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <FaTwitter className="text-white hover:text-red-500 transition" size={18} />
             </Link>
           </div>
         </div>
 
         {/* Logo universidad */}
         <div className="flex flex-col items-start md:items-end">
-          <h3 className="text-lg font-semibold mb-4 text-white">
-            Uniremington
-          </h3>
-          <div className="flex space-x-4">
-            <Image
-              src="/Logo_Uniremington.png"
-              alt="Logo Uniremington"
-              width={100}
-              height={40}
-            />
-          </div>
+          <h3 className="text-base font-semibold mb-3 text-white">Uniremington</h3>
+          <Image
+            src="/Logo_Uniremington.png"
+            alt="Logo Uniremington"
+            width={90} // un poco más pequeño
+            height={36}
+          />
         </div>
       </div>
 
-      {/* Linea inferior */}
-      <div className="mt-8 border-t border-white/30 pt-4 text-center text-sm text-white/70">
-        © {new Date().getFullYear()} Uniremington. Todos los derechos
-        reservados.
+      {/* Línea inferior */}
+      <div className="mt-6 border-t border-white/30 pt-3 text-center text-xs text-white/70">
+        © {new Date().getFullYear()} Uniremington. Todos los derechos reservados.
       </div>
     </footer>
   );
