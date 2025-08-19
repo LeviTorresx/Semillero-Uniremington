@@ -94,6 +94,7 @@ export const projectsMock: Project[] = [
     researchTopic: researchLinesMocks[0].topics[0].name,
     identiferArea: researchLinesMocks[0].topics[0].identifer,
     slug: "sistema-ia-analisis-datos-empresariales",
+    imageUrl:"/template.png",
     valid: true,
   },
   // Ingeniería de Sistemas - Desarrollo Web

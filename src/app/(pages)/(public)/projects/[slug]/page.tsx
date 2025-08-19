@@ -5,14 +5,14 @@ import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import {
   FaArrowLeft,
-  FaCalendarAlt,
   FaFolderOpen,
   FaUsers,
   FaTag,
   FaUser,
-  FaEdit,
-} from "react-icons/fa";
+} from "react-icons/fa6";
 import Link from "next/link";
+import Image from "next/image";
+import { FaCalendarAlt, FaEdit } from "react-icons/fa";
 
 export default function ProjectsPages() {
   const params = useParams();
@@ -40,6 +40,21 @@ export default function ProjectsPages() {
       >
         <FaArrowLeft className="mr-2" /> Volver a proyectos
       </Link>
+
+      {/* Imagen del proyecto */}
+      {project.imageUrl && (
+        <div className="w-full mb-6">
+          <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow">
+            <Image
+              src={project.imageUrl}
+              alt={project.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+      )}
 
       {/* Título */}
       <div className="flex justify-between items-center mb-3">
