@@ -13,14 +13,14 @@ export default function AdminMembersDashboard() {
   return (
     <div className="p-6">
       <MemberTable
-        members={validMembers}
+        members={invalidMembers}
         title="Miembros por validar"
         color="yellow"
         validState={false}
       />
 
       <MemberTable
-        members={invalidMembers}
+        members={validMembers}
         title="Miembros validados"
         color="green"
         validState={true}

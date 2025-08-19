@@ -6,8 +6,9 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { toggleValidMember } from "@/app/store/features/MemberSlice";
 
-import { FaSearch } from "react-icons/fa";
+import { FaArrowRight, FaSearch } from "react-icons/fa";
 import { User } from "@/app/types/User";
+import MemberCard from "./MemberCard";
 
 interface MemberTableProps {
   members: User[];
@@ -24,6 +25,7 @@ export default function MemberTable({
 }: MemberTableProps) {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+  const [selectedMember, setSelectedMember] = useState<User | null>(null);
 
   const filteredMembers = members.filter(
     (m) =>
@@ -88,13 +90,13 @@ export default function MemberTable({
                   <td className="px-6 py-4">{member.email}</td>
                   <td className="px-6 py-4">{member.role}</td>
                   <td className="px-6 py-4 flex justify-center gap-3">
-                    <Link
-                      href={`/members/${member.id}`}
-                      className="p-2.5 bg-blue-100 rounded-full text-blue-600 hover:bg-blue-200 transition"
-                      title="Ver detalles"
+                    <button
+                      onClick={() => setSelectedMember(member)}
+                      className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 hover:scale-105 transition-transform duration-200"
                     >
-                      <FaEye size={16} />
-                    </Link>
+                      <span>Ver más</span>
+                      <FaArrowRight className="text-white text-sm" />
+                    </button>
                     <button
                       onClick={() => dispatch(toggleValidMember(member.id))}
                       className={`p-2.5 rounded-full transition ${
@@ -141,13 +143,13 @@ export default function MemberTable({
                   Rol: <span className="font-medium">{member.role}</span>
                 </p>
                 <div className="flex justify-end gap-2 mt-2">
-                  <Link
-                    href={`/members/${member.id}`}
-                    className="p-2 bg-blue-100 rounded-full text-blue-600 hover:bg-blue-200 transition"
-                    title="Ver detalles"
+                  <button
+                    onClick={() => setSelectedMember(member)}
+                    className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 hover:scale-105 transition-transform duration-200"
                   >
-                    <FaEye />
-                  </Link>
+                    <span>Ver más</span>
+                    <FaArrowRight className="text-white text-sm" />
+                  </button>
                   <button
                     onClick={() => dispatch(toggleValidMember(member.id))}
                     className={`p-2 rounded-full transition ${
@@ -167,6 +169,12 @@ export default function MemberTable({
           )}
         </div>
       </div>
+      {selectedMember && (
+        <MemberCard
+          member={selectedMember}
+          onClose={() => setSelectedMember(null)}
+        />
+      )}
     </section>
   );
 }
