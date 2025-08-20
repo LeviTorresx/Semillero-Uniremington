@@ -11,8 +11,6 @@ import {
   FaUser,
 } from "react-icons/fa6";
 import { FaEdit, FaFolder, FaPhone } from "react-icons/fa";
-import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors";
-import { stat, statSync } from "fs";
 
 export default function ProfilePage() {
   const user = useSelector((state: RootState) => state.auth.user);

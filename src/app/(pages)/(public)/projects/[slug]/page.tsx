@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
-import { FaCalendarAlt, FaDochub, FaEdit, FaFile } from "react-icons/fa";
+import { FaCalendarAlt, FaEdit, FaFile } from "react-icons/fa";
 
 export default function ProjectsPages() {
   const params = useParams();

@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { FaCheck, FaXmark, FaEye } from "react-icons/fa6";
+import { FaCheck, FaXmark, } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { toggleValidMember } from "@/app/store/features/MemberSlice";

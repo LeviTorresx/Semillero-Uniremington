@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaBars, FaTimes, FaSignOutAlt } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface NavItems {
   label: string;
@@ -16,14 +17,26 @@ interface AdminNavbarProps {
   route: string;
 }
 
-export default function AdminNavbar({ navItems, title, route }: AdminNavbarProps) {
+export default function AdminNavbar({
+  navItems,
+  title,
+  route,
+}: AdminNavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
+  const handleLogut = () => {
+    //estado globasl
+    router.push("/login");
+  };
 
   return (
     <header className="bg-white text-blue-800 shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo / Título */}
-        <Link href={route} className="flex items-center gap-2 font-bold text-lg">
+        <Link
+          href={route}
+          className="flex items-center gap-2 font-bold text-lg"
+        >
           <Image
             src="/Logo_Uniremington.png"
             alt="Logo Uniremington"
@@ -44,7 +57,10 @@ export default function AdminNavbar({ navItems, title, route }: AdminNavbarProps
               {item.label}
             </Link>
           ))}
-          <button className="flex items-center gap-1 px-4 py-2 rounded-3xl hover:bg-red-300 transition-colors">
+          <button
+            className="flex items-center gap-1 px-4 py-2 rounded-3xl hover:bg-red-300 transition-colors"
+            onClick={handleLogut}
+          >
             <FaSignOutAlt /> Cerrar sesión
           </button>
         </nav>
@@ -73,7 +89,10 @@ export default function AdminNavbar({ navItems, title, route }: AdminNavbarProps
           ))}
           <button
             className="flex items-center gap-1 px-4 py-3 rounded-3xl hover:bg-red-300 transition-colors"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              setMenuOpen(false);
+              handleLogut();
+            }}
           >
             <FaSignOutAlt /> Cerrar sesión
           </button>
