@@ -1,4 +1,3 @@
-import { ResearchArea, ResearchTopic } from "./ResearchLine";
 import { User } from "./User";
 
 export interface Project {
@@ -7,7 +6,7 @@ export interface Project {
   description: string;
   leader: User;
   researchers: User[];
-  status: string;
+  status: string; 
   creationDate: number | string;
   endDate: number | string;
   researchArea:string;

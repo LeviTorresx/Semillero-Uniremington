@@ -4,7 +4,12 @@ import { RootState } from "@/app/store/store";
 import { useSelector } from "react-redux";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { FaArrowLeft, FaCalendarAlt, FaFolderOpen } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaCalendarAlt,
+  FaEdit,
+  FaFolderOpen,
+} from "react-icons/fa";
 import Link from "next/link";
 import { FaUserGroup } from "react-icons/fa6";
 
@@ -16,9 +21,15 @@ export default function NewsPages() {
     state.news.find((n) => n.slug === slug)
   );
 
+  const userAuth = useSelector((state: RootState) => state.auth);
+
   if (!news) {
     return <div>Not Found</div>;
   }
+
+  const isMember =
+    userAuth?.isAuthenticated &&
+    news.author.some((a) => a.id === userAuth.user?.id);
 
   return (
     <div className="min-h-screen mx-auto max-w-5xl p-6">
@@ -30,8 +41,19 @@ export default function NewsPages() {
         <FaArrowLeft className="mr-2" /> Volver a noticias
       </Link>
 
-      {/* Título */}
-      <h1 className="text-3xl font-bold mb-3">{news.title}</h1>
+      <div className="flex justify-between items-center mb-3">
+        {/* Título */}
+        <h1 className="text-3xl font-bold mb-3">{news.title}</h1>
+        {/* Botón Editar solo si está autenticado */}
+        {isMember && (
+          <Link
+            href={`/member/edit-news/${news.slug}`}
+            className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+          >
+            <FaEdit className="mr-2" /> Editar
+          </Link>
+        )}
+      </div>
 
       {/* Fecha y categoría */}
       <div className="flex items-center text-gray-500 text-sm space-x-4 mb-6">
