@@ -5,7 +5,7 @@ import * as jose from "jose";
 export async function middleware(request: NextRequest) {
   console.log("🔍 Middleware ejecutándose en:", request.nextUrl.pathname);
 
-  const token = request.cookies.get("token")?.value;
+  const token = request.cookies.get("jwt")?.value;
   console.log("📌 Token encontrado:", token);
 
   if (!token) {

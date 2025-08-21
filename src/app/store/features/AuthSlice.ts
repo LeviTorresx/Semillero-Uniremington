@@ -8,8 +8,16 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  isAuthenticated: true,
-  user: usersMock[0], 
+  isAuthenticated: false,
+  user: {
+    id: "",
+    name: "",
+    email: "",
+    role: "",
+    phone: "",
+    password: null,
+    valid: false,
+  },
 };
 
 const authSlice = createSlice({

@@ -5,15 +5,29 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import LoginForm from "@/app/components/auth/LoginForm";
+import { loginUser } from "@/app/apis/auth/Login";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [LoginRequest, setLoginRequest] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+
+    try {
+      const data = await loginUser(LoginRequest);
+      alert("Login successful!");
+      console.log("Respuesta del backend:", data);
+      router.push("/member");
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Credenciales inválidas");
+    }
   };
 
   return (
@@ -35,10 +49,14 @@ export default function LoginPage() {
         </h2>
 
         <LoginForm
-          email={email}
-          password={password}
-          onEmailChange={(e) => setEmail(e.target.value)}
-          onPasswordChange={(e) => setPassword(e.target.value)}
+          email={LoginRequest.email}
+          password={LoginRequest.password}
+          onEmailChange={(e) =>
+            setLoginRequest({ ...LoginRequest, email: e.target.value })
+          }
+          onPasswordChange={(e) =>
+            setLoginRequest({ ...LoginRequest, password: e.target.value })
+          }
           handleSubmit={handleSubmit}
         />
 
