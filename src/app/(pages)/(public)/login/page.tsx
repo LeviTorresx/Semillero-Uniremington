@@ -7,6 +7,11 @@ import Image from "next/image";
 import LoginForm from "@/app/components/auth/LoginForm";
 import { loginUser } from "@/app/apis/auth/Login";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { AppDispatch } from "@/app/store/store";
+import { useDispatch } from "react-redux";
+import { fetchUserThunk } from "@/app/store/features/AuthSlice";
 
 export default function LoginPage() {
   const [LoginRequest, setLoginRequest] = useState({
@@ -16,17 +21,24 @@ export default function LoginPage() {
 
   const router = useRouter();
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  const MySwal = withReactContent(Swal);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const data = await loginUser(LoginRequest);
-      alert("Login successful!");
-      console.log("Respuesta del backend:", data);
-      router.push("/member");
+      const response = await loginUser(LoginRequest);
+      MySwal.fire("¡Éxito!", "Has iniciado sesión", "success");
+      console.log("Respuesta del backend:", response);
+
+      dispatch(fetchUserThunk());
+
+      //router.push("/member");
     } catch (error) {
       console.error("Login failed:", error);
-      alert("Credenciales inválidas");
+      MySwal.fire("Error", "Credenciales inválidas ❌", "error");
     }
   };
 

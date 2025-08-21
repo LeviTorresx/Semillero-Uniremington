@@ -16,7 +16,7 @@ export default function ProfilePage() {
   const user = useSelector((state: RootState) => state.auth.user);
   const projects = useSelector((state: RootState) => state.projects);
 
-  const userProjects = projects.filter((p) => p.leader.id === user.id);
+  const userProjects = projects.filter((p) => p.leader.id === user?.id);
 
   if (!user) {
     return (

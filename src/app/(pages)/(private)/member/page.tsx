@@ -12,7 +12,7 @@ export default function MemberDashboard() {
   const projects = useSelector(selectValidatedProjects);
 
   const userProjects = projects.filter((p) =>
-    p.researchers.some((r) => r.id == userAuth.id)
+    p.researchers.some((r) => r.id == userAuth?.id)
   );
 
   return (

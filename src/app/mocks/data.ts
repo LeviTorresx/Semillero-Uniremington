@@ -54,7 +54,7 @@ export const usersMock: User[] = [
     phone: "3001234567",
     email: "levi@example.com",
     role: "MEMBER",
-    password: null,
+    password: "",
     valid: true,
   },
   {
@@ -63,7 +63,7 @@ export const usersMock: User[] = [
     phone: "3009876543",
     email: "maria@example.com",
     role: "MEMBER",
-    password: null,
+    password: "",
     valid: true,
   },
   {
@@ -72,7 +72,7 @@ export const usersMock: User[] = [
     phone: "3012345678",
     email: "carlos@example.com",
     role: "MEMBER",
-    password: null,
+    password: "",
     valid: true,
   },
 ];

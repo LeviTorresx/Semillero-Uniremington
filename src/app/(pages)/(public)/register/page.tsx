@@ -5,21 +5,33 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import RegisterForm from "@/app/components/auth/RegisterForm";
+import { User } from "@/app/types/User";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function RegisterPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userData, setUserData] = useState<User>({
+    id: "",
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
+    role: "MEMBER",
+    valid: false,
+  });
+
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const MySwal = withReactContent(Swal);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      alert("Las contraseñas no coinciden.");
+    if (userData.password !== confirmPassword) {
+      MySwal.fire("Error", "Las contraseñas no coinciden", "error");
       return;
     }
-    console.log("Registro:", { name, email, password });
+
   };
 
   return (
@@ -41,13 +53,19 @@ export default function RegisterPage() {
         </h2>
 
         <RegisterForm
-          name={name}
-          email={email}
-          password={password}
+          name={userData.name}
+          email={userData.email}
+          password={userData.password}
           confirmPassword={confirmPassword}
-          onNameChange={(e) => setName(e.target.value)}
-          onEmailChange={(e) => setEmail(e.target.value)}
-          onPasswordChange={(e) => setPassword(e.target.value)}
+          onNameChange={(e) =>
+            setUserData({ ...userData, name: e.target.value })
+          }
+          onEmailChange={(e) =>
+            setUserData({ ...userData, email: e.target.value })
+          }
+          onPasswordChange={(e) =>
+            setUserData({ ...userData, password: e.target.value })
+          }
           onConfirmPasswordChange={(e) => setConfirmPassword(e.target.value)}
           handleSubmit={handleSubmit}
         />

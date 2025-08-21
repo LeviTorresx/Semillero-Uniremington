@@ -5,6 +5,6 @@ export interface User {
   phone: string;
   email: string;
   role: string ;
-  password: string | null;
+  password: string;
   valid: boolean;
 }
