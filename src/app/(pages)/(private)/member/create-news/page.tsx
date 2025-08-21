@@ -20,7 +20,7 @@ export default function CreateNewsPage() {
     content: "",
     category: "PUBLICATION",
     date: today,
-    author: [userAuth],
+    author: userAuth !== null ? [userAuth]: [],
     slug: "",
     imageUrl: "",
     valid: false,

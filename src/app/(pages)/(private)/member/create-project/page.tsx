@@ -22,8 +22,19 @@ export default function CreateProjectPage() {
     researchArea: "",
     researchTopic: "",
     identiferArea: "",
-    leader: userAuth,
-    researchers: [userAuth],
+    leader:
+      userAuth !== null
+        ? userAuth
+        : {
+            id: "",
+            name: "",
+            email: "",
+            password: "",
+            phone: "",
+            role: "MEMBER",
+            valid: false,
+          },
+    researchers: userAuth !== null ? [userAuth] : [],
     slug: "",
     status: "En curso",
     title: "",
@@ -70,7 +81,6 @@ export default function CreateProjectPage() {
       imageUrl: image ? URL.createObjectURL(image) : "",
       documentUrl: document ? URL.createObjectURL(document) : "",
     };
-
 
     dispatch(addProject(projectWithMeta));
 
