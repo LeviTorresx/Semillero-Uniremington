@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Project } from "@/app/types/Project";
 import { projectsMock } from "@/app/mocks/data";
+import { User } from "@/app/types/User";
 
 const initialState: Project[] = projectsMock;
 
@@ -31,7 +32,13 @@ const projectSlice = createSlice({
         project.valid = !project.valid; // alterna true/false
       }
     },
-   
+    addMemberToProject: (state, action) => {
+      const { projectId, user } = action.payload;
+      const project = state.find((p) => p.id === projectId);
+      if (project && !project.researchers.some((m) => m.id === user.id)) {
+        project.researchers.push(user);
+      }
+    },
   },
 });
 
@@ -42,4 +49,5 @@ export const {
   updateProject,
   deleteProject,
   toggleValidProject,
+  addMemberToProject,
 } = projectSlice.actions;

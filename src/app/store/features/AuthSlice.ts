@@ -1,3 +1,4 @@
+import { usersMock } from "@/app/mocks/data";
 import { User } from "@/app/types/User";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -7,16 +8,8 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  isAuthenticated: false,
-  user: {
-    id: "",
-    name: "",
-    phone: "",
-    email: "",
-    role: "",
-    password: null,
-    valid: false,
-  },
+  isAuthenticated: true,
+  user: usersMock[0], 
 };
 
 const authSlice = createSlice({

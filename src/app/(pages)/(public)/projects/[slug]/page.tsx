@@ -1,35 +1,59 @@
 "use client";
 
-import { RootState } from "@/app/store/store";
-import { useParams } from "next/navigation";
-import { useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/app/store/store";
+import { useParams, useRouter } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
 import {
   FaArrowLeft,
   FaFolderOpen,
   FaUsers,
   FaTag,
   FaUser,
-} from "react-icons/fa6";
+  FaCalendarAlt,
+  FaEdit,
+  FaFile,
+  FaCheck,
+} from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
-import { FaCalendarAlt, FaEdit, FaFile } from "react-icons/fa";
+import { addMemberToProject } from "@/app/store/features/ProjectSlice";
 
 export default function ProjectsPages() {
   const params = useParams();
   const { slug } = params;
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
   const project = useSelector((state: RootState) =>
     state.projects.find((p) => p.slug === slug)
   );
-
   const userAuth = useSelector((state: RootState) => state.auth);
 
   if (!project) {
     return <div>Proyecto no encontrado</div>;
   }
 
-  const isMember =
+  const isLeader =
     userAuth?.isAuthenticated && project.leader?.id === userAuth.user?.id;
+
+  const isEnrolled = project.researchers.some(
+    (r) => r.id === userAuth.user?.id
+  );
+
+  const handleEnroll = () => {
+    if (!userAuth.isAuthenticated) {
+      alert("Debes iniciar sesión para inscribirte en un proyecto.");
+      return router.push("/login");
+    }
+
+    dispatch(
+      addMemberToProject({
+        projectId: project.id,
+        user: userAuth.user!,
+      })
+    );
+    alert(`Te inscribiste en: ${project.title}`);
+  };
 
   return (
     <div className="min-h-screen mx-auto max-w-5xl p-6">
@@ -56,18 +80,33 @@ export default function ProjectsPages() {
         </div>
       )}
 
-      {/* Título */}
+      {/* Título + botones */}
       <div className="flex justify-between items-center mb-3">
         <h1 className="text-3xl font-bold">{project.title}</h1>
 
-        {/* Botón Editar solo si está autenticado */}
-        {isMember && (
+        {/* Botón Editar si es líder */}
+        {isLeader ? (
           <Link
             href={`/member/edit-project/${project.slug}`}
             className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
           >
             <FaEdit className="mr-2" /> Editar
           </Link>
+        ) : (
+          <>
+            {!isEnrolled ? (
+              <button
+                onClick={handleEnroll}
+                className="inline-flex items-center bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition"
+              >
+                Inscribirse
+              </button>
+            ) : (
+              <span className="text-sm text-green-600 flex items-center gap-2">
+                <FaCheck /> Estás inscrito en este proyecto
+              </span>
+            )}
+          </>
         )}
       </div>
 
@@ -89,7 +128,7 @@ export default function ProjectsPages() {
           <FaTag
             className={`mr-1 ${
               project.status === "En curso" ? "text-green-500" : "text-red-500"
-            } `}
+            }`}
           />
           {project.status}
         </span>
@@ -119,22 +158,20 @@ export default function ProjectsPages() {
           </ul>
         </div>
       )}
-      {/* Documento asociado */}
+
+      {/* Documento */}
       {project.documentUrl && (
         <div className="mt-8">
           <h2 className="text-xl font-semibold mb-3 flex items-center">
             <FaFile className="mr-2" /> Documento
           </h2>
-
-          {/* Vista previa del PDF */}
-          <div className=" border rounded-lg overflow-hidden shadow">
+          <div className="border rounded-lg overflow-hidden shadow">
             <iframe
               src={project.documentUrl}
               className="w-full h-96"
               title="Documento del proyecto"
             />
           </div>
-          {/* Botón para abrir/descargar */}
           <a
             href={project.documentUrl}
             target="_blank"
@@ -146,7 +183,6 @@ export default function ProjectsPages() {
         </div>
       )}
 
-      {/* Pie */}
       <div className="mt-12 border-t pt-6 text-sm text-gray-500">
         Proyecto registrado por el Semillero de Investigación
       </div>
