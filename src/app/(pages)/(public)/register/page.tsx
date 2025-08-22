@@ -8,6 +8,8 @@ import RegisterForm from "@/app/components/auth/RegisterForm";
 import { User } from "@/app/types/User";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { register } from "@/app/apis/auth/Register";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const [userData, setUserData] = useState<User>({
@@ -24,7 +26,9 @@ export default function RegisterPage() {
 
   const MySwal = withReactContent(Swal);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (userData.password !== confirmPassword) {
@@ -32,6 +36,15 @@ export default function RegisterPage() {
       return;
     }
 
+    try {
+      const response = await register(userData);
+      MySwal.fire("¡Éxito!", "Cuenta creada con éxito", "success");
+      console.log("Respuesta del backend:", response);
+      router.push("login");
+    } catch (error) {
+      console.error("Registration failed:", error);
+      MySwal.fire("Error", "No se pudo crear la cuenta ", "error");
+    }
   };
 
   return (
@@ -55,6 +68,7 @@ export default function RegisterPage() {
         <RegisterForm
           name={userData.name}
           email={userData.email}
+          phone={userData.phone}
           password={userData.password}
           confirmPassword={confirmPassword}
           onNameChange={(e) =>
@@ -62,6 +76,9 @@ export default function RegisterPage() {
           }
           onEmailChange={(e) =>
             setUserData({ ...userData, email: e.target.value })
+          }
+          onPhoneChange={(e) =>
+            setUserData({ ...userData, phone: e.target.value })
           }
           onPasswordChange={(e) =>
             setUserData({ ...userData, password: e.target.value })

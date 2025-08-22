@@ -1,3 +1,4 @@
+import { User } from "@/app/types/User";
 import axios from "axios";
 
 export async function fetchUser() {
@@ -12,8 +13,9 @@ export async function fetchUser() {
       throw new Error("Failed to fetch user data");
     }
 
-    const userData = await response.data;
+    const userData = (await response.data) as User;
     console.log("User data fetched successfully:", userData);
+
     return userData;
   } catch (error) {
     console.error("Error fetching user:", error);

@@ -34,7 +34,7 @@ export default function LoginPage() {
       console.log("Respuesta del backend:", response);
 
       dispatch(fetchUserThunk());
-
+      router.push("/member");
       //router.push("/member");
     } catch (error) {
       console.error("Login failed:", error);

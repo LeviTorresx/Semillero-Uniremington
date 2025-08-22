@@ -6,9 +6,11 @@ import React from "react";
 interface Props {
   name: string;
   email: string;
+  phone: string;
   password: string;
   confirmPassword: string;
   onNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onPhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onPasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onConfirmPasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -18,10 +20,12 @@ interface Props {
 export default function RegisterForm({
   name,
   email,
+  phone,
   password,
   confirmPassword,
   onNameChange,
   onEmailChange,
+  onPhoneChange,
   onPasswordChange,
   onConfirmPasswordChange,
   handleSubmit,
@@ -58,6 +62,22 @@ export default function RegisterForm({
           className="w-full border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-700"
           value={email}
           onChange={onEmailChange}
+          required
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="phone"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Telefono
+        </label>
+        <input
+          type="text"
+          id="prhone"
+          className="w-full border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-700"
+          value={phone}
+          onChange={onPhoneChange}
           required
         />
       </div>

@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Project } from "@/app/types/Project";
 import { projectsMock } from "@/app/mocks/data";
-import { User } from "@/app/types/User";
 
 const initialState: Project[] = projectsMock;
 

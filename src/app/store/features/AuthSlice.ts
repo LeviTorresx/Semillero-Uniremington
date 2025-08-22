@@ -20,7 +20,7 @@ export const fetchUserThunk = createAsyncThunk<User>(
       const user: User = await fetchUser();
       return user;
     } catch (error) {
-      return rejectWithValue("No autenticado");
+      return rejectWithValue("No autenticado" + error);
     }
   }
 );
