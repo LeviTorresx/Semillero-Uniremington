@@ -1,12 +1,18 @@
 import { Project } from "@/app/types/Project";
 import Link from "next/link";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store/store";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+
+  const members = useSelector((state: RootState) => state.members);
+  const leader = members.find((m) => m.userId === project.leaderId);
+
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -24,7 +30,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <div className="w-full h-48 relative">
           <Image
             src={project.imageUrl}
-            alt={project.title}
+            alt={project.tittle}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -36,7 +42,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       {/* Contenido */}
       <div className="p-5 flex-1 flex flex-col">
         <h3 className="text-xl font-bold text-blue-800 mb-2">
-          {project.title}
+          {project.tittle}
         </h3>
         <p className="text-gray-600 mb-3 line-clamp-3">{project.description}</p>
         <p className="text-sm text-gray-500 mb-2">
@@ -46,7 +52,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <strong>Área:</strong> {project.researchArea}
         </p>
         <p className="text-sm text-gray-500">
-          <strong>Líder:</strong> {project.leader?.name}
+          <strong>Líder:</strong> {leader?.name}
         </p>
 
         <span

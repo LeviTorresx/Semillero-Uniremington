@@ -24,21 +24,28 @@ export default function ProjectsPages() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
+  const members = useSelector((state: RootState) => state.members);
+
   const project = useSelector((state: RootState) =>
     state.projects.find((p) => p.slug === slug)
   );
+
   const userAuth = useSelector((state: RootState) => state.auth);
 
   if (!project) {
     return <div>Proyecto no encontrado</div>;
   }
 
-  const isLeader =
-    userAuth?.isAuthenticated && project.leader?.id === userAuth.user?.id;
+  const leader = members.find((m) => m.userId === project.leaderId);
 
-  const isEnrolled = project.researchers.some(
-    (r) => r.id === userAuth.user?.id
+  const researchers = members.filter((m) =>
+    project.researchesIds.some((r) => r === m.userId)
   );
+
+  const isLeader =
+    userAuth?.isAuthenticated && leader?.userId === userAuth.user?.userId;
+
+  const isEnrolled = researchers.some((r) => r.userId === userAuth.user?.userId);
 
   const handleEnroll = () => {
     if (!userAuth.isAuthenticated) {
@@ -52,7 +59,7 @@ export default function ProjectsPages() {
         user: userAuth.user!,
       })
     );
-    alert(`Te inscribiste en: ${project.title}`);
+    alert(`Te inscribiste en: ${project.tittle}`);
   };
 
   return (
@@ -71,7 +78,7 @@ export default function ProjectsPages() {
           <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow">
             <Image
               src={project.imageUrl}
-              alt={project.title}
+              alt={project.tittle}
               fill
               className="object-cover"
               priority
@@ -82,7 +89,7 @@ export default function ProjectsPages() {
 
       {/* Título + botones */}
       <div className="flex justify-between items-center mb-3">
-        <h1 className="text-3xl font-bold">{project.title}</h1>
+        <h1 className="text-3xl font-bold">{project.tittle}</h1>
 
         {/* Botón Editar si es líder */}
         {isLeader ? (
@@ -140,19 +147,19 @@ export default function ProjectsPages() {
       </article>
 
       {/* Investigadores */}
-      {project.researchers && project.leader && (
+      {researchers && leader && (
         <div className="bg-gray-50 border rounded-lg p-4 shadow-sm">
           <h2 className="text-xl font-semibold mb-3 flex items-center">
             <FaUser className="mr-2" /> Lider
           </h2>
           <ul className="list-disc list-inside text-gray-700">
-            <li>{project.leader.name}</li>
+            <li>{leader.name}</li>
           </ul>
           <h2 className="text-xl font-semibold mb-3 flex items-center">
             <FaUsers className="mr-2" /> Investigadores
           </h2>
           <ul className="list-disc list-inside text-gray-700">
-            {project.researchers.map((r, index) => (
+            {researchers.map((r, index) => (
               <li key={index}>{r.name}</li>
             ))}
           </ul>

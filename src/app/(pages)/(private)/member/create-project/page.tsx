@@ -1,12 +1,15 @@
 "use client";
 
+import { createProject } from "@/app/apis/projects/CreateProject";
 import ProjectForm from "@/app/components/projects/ProjectForm";
 import { addProject } from "@/app/store/features/ProjectSlice";
 import { AppDispatch, RootState } from "@/app/store/store";
-import { Project, ProjectFormData } from "@/app/types/Project";
+import { Project, ProjectRequest } from "@/app/types/Project";
 import { createSlug } from "@/app/utils/slugname";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function CreateProjectPage() {
   const researchLines = useSelector((state: RootState) => state.researchLines);
@@ -16,36 +19,23 @@ export default function CreateProjectPage() {
   // Fecha actual en formato YYYY-MM-DD
   const today = new Date().toISOString().split("T")[0];
 
-  const initialState: Project = {
-    id: "",
+  const MySwal = withReactContent(Swal);
+
+  const initialState: ProjectRequest = {
     description: "",
     researchArea: "",
     researchTopic: "",
-    identiferArea: "",
-    leader:
-      userAuth !== null
-        ? userAuth
-        : {
-            id: "",
-            name: "",
-            email: "",
-            password: "",
-            phone: "",
-            role: "MEMBER",
-            valid: false,
-          },
-    researchers: userAuth !== null ? [userAuth] : [],
+    identifierArea: "",
+    leaderId: 0,
+    researchesIds: [0],
     slug: "",
     status: "En curso",
-    title: "",
+    tittle: "",
     creationDate: today,
     endDate: "",
-    imageUrl: "",
-    documentUrl: "",
-    valid: false,
   };
 
-  const [newProject, setNewProject] = useState<ProjectFormData>(initialState);
+  const [newProject, setNewProject] = useState<ProjectRequest>(initialState);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -65,26 +55,41 @@ export default function CreateProjectPage() {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const slugTag = createSlug(newProject.title);
+    if (!userAuth) {
+      MySwal.fire(
+        "Error",
+        "Debes estar autenticado para crear un proyecto",
+        "error"
+      );
+      return;
+    }
 
-    // separas lo serializable de lo no serializable
-    const { image, document, ...rest } = newProject;
+    try {
+      const slugTag = createSlug(newProject.tittle);
 
-    const projectWithMeta: Project = {
-      ...rest,
-      id: crypto.randomUUID(),
-      slug: slugTag,
-      //temporal
-      imageUrl: image ? URL.createObjectURL(image) : "",
-      documentUrl: document ? URL.createObjectURL(document) : "",
-    };
+      const projectToStore: ProjectRequest = {
+        ...newProject,
+        slug: slugTag,
+        leaderId: userAuth.userId,
+        researchesIds: [userAuth.userId],
+      };
 
-    dispatch(addProject(projectWithMeta));
+      const createdProject = await createProject(projectToStore);
 
-    setNewProject(initialState);
+      dispatch(addProject(createdProject as Project));
+
+      MySwal.fire("¡Éxito!", "Proyecto creado con éxito", "success");
+      console.log("Proyecto creado:", projectToStore); 
+
+      // 👉 Reseteamos el formulario
+      setNewProject(initialState);
+    } catch (error) {
+      MySwal.fire("Error", "No se pudo crear el proyecto", "error");
+      console.error("Error creando el proyecto:", error);
+    }
   };
 
   return (

@@ -5,15 +5,14 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import RegisterForm from "@/app/components/auth/RegisterForm";
-import { User } from "@/app/types/User";
+import { UserRequest } from "@/app/types/User";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { register } from "@/app/apis/auth/Register";
 import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
-  const [userData, setUserData] = useState<User>({
-    id: "",
+  const [userData, setUserData] = useState<UserRequest>({
     name: "",
     email: "",
     password: "",

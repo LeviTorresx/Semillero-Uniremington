@@ -26,7 +26,7 @@ export default function ProjectPageContent() {
       result = result.filter((p) => p.creationDate == initialFilter.year);
     if (initialFilter.identifer)
       result = result.filter(
-        (p) => p.identiferArea === initialFilter.identifer
+        (p) => p.identifierArea === initialFilter.identifer
       );
     if (initialFilter.status)
       result = result.filter((p) => p.status === initialFilter.status);
@@ -38,7 +38,7 @@ export default function ProjectPageContent() {
     if (filters.year)
       result = result.filter((p) => p.creationDate == filters.year);
     if (filters.identifer)
-      result = result.filter((p) => p.identiferArea === filters.identifer);
+      result = result.filter((p) => p.identifierArea === filters.identifer);
     if (filters.status)
       result = result.filter((p) => p.status === filters.status);
     setFilteredProjects(result);

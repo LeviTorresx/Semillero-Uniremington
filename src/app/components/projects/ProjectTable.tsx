@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { FaCheck, FaXmark, FaEye } from "react-icons/fa6";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleValidProject } from "@/app/store/features/ProjectSlice";
 import { Project } from "@/app/types/Project";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { RootState } from "@/app/store/store";
 
 interface ProjectTableProps {
   projects: Project[];
@@ -22,12 +23,20 @@ export default function ProjectTable({
   validState,
 }: ProjectTableProps) {
   const dispatch = useDispatch();
+  
+  const members = useSelector((state: RootState) => state.members);
+
+ const projectsWithLeaders = projects.map((project) => ({
+    ...project,
+    leader: members.find((m) => m.userId == project.leaderId) || { name: "Desconocido" },
+  }));
+
 
   const [search, setSearch] = useState("");
 
-  const filteredProjects = projects.filter(
+  const filteredProjects = projectsWithLeaders.filter(
     (p) =>
-      p.title.toLowerCase().includes(search.toLowerCase()) ||
+      p.tittle.toLowerCase().includes(search.toLowerCase()) ||
       p.researchArea?.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -83,7 +92,7 @@ export default function ProjectTable({
                   key={project.id}
                   className="border-b bg-white hover:bg-gray-50 transition"
                 >
-                  <td className="px-6 py-4 font-medium">{project.title}</td>
+                  <td className="px-6 py-4 font-medium">{project.tittle}</td>
                   <td className="px-6 py-4">{project.researchArea}</td>
                   <td className="px-6 py-4">{project.creationDate}</td>
                   <td className="px-6 py-4">{project.leader.name}</td>
@@ -134,7 +143,7 @@ export default function ProjectTable({
                 key={project.id}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col gap-2"
               >
-                <h3 className="font-semibold text-gray-800">{project.title}</h3>
+                <h3 className="font-semibold text-gray-800">{project.tittle}</h3>
                 <p className="text-sm text-gray-500">
                   Área:{" "}
                   <span className="font-medium">{project.researchArea}</span>

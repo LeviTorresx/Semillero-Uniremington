@@ -22,10 +22,10 @@ const projectSlice = createSlice({
         state[index] = action.payload;
       }
     },
-    deleteProject: (state, action: PayloadAction<string>) => {
+    deleteProject: (state, action: PayloadAction<number>) => {
       return state.filter((project) => project.id !== action.payload);
     },
-    toggleValidProject: (state, action: PayloadAction<string>) => {
+    toggleValidProject: (state, action: PayloadAction<number>) => {
       const project = state.find((p) => p.id === action.payload);
       if (project) {
         project.valid = !project.valid; // alterna true/false
@@ -34,8 +34,8 @@ const projectSlice = createSlice({
     addMemberToProject: (state, action) => {
       const { projectId, user } = action.payload;
       const project = state.find((p) => p.id === projectId);
-      if (project && !project.researchers.some((m) => m.id === user.id)) {
-        project.researchers.push(user);
+      if (project && !project.researchesIds.some((m) => m === user.id)) {
+        project.researchesIds.push(user);
       }
     },
   },

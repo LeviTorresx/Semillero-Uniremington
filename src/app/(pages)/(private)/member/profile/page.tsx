@@ -15,8 +15,11 @@ import { FaEdit, FaFolder, FaPhone } from "react-icons/fa";
 export default function ProfilePage() {
   const user = useSelector((state: RootState) => state.auth.user);
   const projects = useSelector((state: RootState) => state.projects);
+  const members = useSelector((state: RootState) => state.members);
 
-  const userProjects = projects.filter((p) => p.leader.id === user?.id);
+  const leader = members.find((m) => m.userId === user?.userId);
+
+  const userProjects = projects.filter(() => leader === user?.userId);
 
   if (!user) {
     return (

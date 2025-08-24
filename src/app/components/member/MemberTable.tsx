@@ -82,7 +82,7 @@ export default function MemberTable({
             ) : (
               filteredMembers.map((member) => (
                 <tr
-                  key={member.id}
+                  key={member.userId}
                   className="border-b bg-white hover:bg-gray-50 transition"
                 >
                   <td className="px-6 py-4 font-medium">{member.name}</td>
@@ -97,7 +97,7 @@ export default function MemberTable({
                       <FaArrowRight className="text-white text-sm" />
                     </button>
                     <button
-                      onClick={() => dispatch(toggleValidMember(member.id))}
+                      onClick={() => dispatch(toggleValidMember(member.userId))}
                       className={`p-2.5 rounded-full transition ${
                         validState
                           ? "bg-red-100 text-red-600 hover:bg-red-200"
@@ -131,7 +131,7 @@ export default function MemberTable({
           ) : (
             filteredMembers.map((member) => (
               <div
-                key={member.id}
+                key={member.userId}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col gap-2"
               >
                 <h3 className="font-semibold text-gray-800">{member.name}</h3>
@@ -150,7 +150,7 @@ export default function MemberTable({
                     <FaArrowRight className="text-white text-sm" />
                   </button>
                   <button
-                    onClick={() => dispatch(toggleValidMember(member.id))}
+                    onClick={() => dispatch(toggleValidMember(member.userId))}
                     className={`p-2 rounded-full transition ${
                       validState
                         ? "bg-red-100 text-red-600 hover:bg-red-200"

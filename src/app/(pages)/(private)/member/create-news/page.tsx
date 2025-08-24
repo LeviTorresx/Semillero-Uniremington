@@ -47,7 +47,7 @@ export default function CreateNewsPage() {
   };
 
   // Submit
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const slugtag = createSlug(formData.title);
     const { image, ...rest } = formData;
@@ -60,6 +60,8 @@ export default function CreateNewsPage() {
     };
 
     dispatch(addNew(newsWithMeta));
+
+
 
     console.log("Noticia creada:", formData);
     alert("Noticia creada con éxito!");

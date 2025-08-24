@@ -1,12 +1,12 @@
 "use client";
 
 import { ChangeEvent, FormEvent } from "react";
-import { ProjectFormData } from "@/app/types/Project";
+import { ProjectRequest } from "@/app/types/Project";
 import { ResearchArea } from "@/app/types/ResearchLine";
 import Image from "next/image";
 
 interface ProjectFormProps {
-  formData: ProjectFormData;
+  formData: ProjectRequest;
   researchLines: ResearchArea[];
   onChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -39,8 +39,8 @@ export default function ProjectForm({
           <label className="block font-semibold mb-1">Título</label>
           <input
             type="text"
-            name="title"
-            value={formData.title}
+            name="tittle"
+            value={formData.tittle}
             onChange={onChange}
             className="w-full border rounded-lg p-2"
             placeholder="Nombre del proyecto"

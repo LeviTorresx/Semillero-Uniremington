@@ -13,7 +13,7 @@ export default function MemberNewsPages() {
   const userAuth = useSelector((state: RootState) => state.auth.user);
 
   const userNews = news.filter((n) =>
-    n.author.some((a) => a.id === userAuth?.id)
+    n.author.some((a) => a.userId === userAuth?.userId)
   );
 
   const allNews: News[] = userNews;

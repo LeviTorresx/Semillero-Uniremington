@@ -1,17 +1,15 @@
-import { User } from "./User";
-
 export interface Project {
-  id: string;
-  title: string;
+  id: number;
+  tittle: string;
   description: string;
-  leader: User;
-  researchers: User[];
-  status: string; 
+  leaderId: number;
+  researchesIds: number[];
+  status: string;
   creationDate: number | string;
   endDate: number | string;
-  researchArea:string;
-  researchTopic:string;
-  identiferArea:string;
+  researchArea: string;
+  researchTopic: string;
+  identifierArea: string;
   slug: string;
   valid: boolean;
   imageUrl: string;
@@ -19,7 +17,7 @@ export interface Project {
 }
 
 export interface ProjectFormData
-  extends Omit<Project, "imageUrl" | "documentName"> {
+  extends Omit<Project, "imageUrl" | "documentName "> {
   image?: File;
   document?: File;
 }
@@ -28,4 +26,20 @@ export interface ProjectFilter {
   year: number | string;
   identifer: string;
   status: string;
+}
+
+export interface ProjectRequest {
+  tittle: string;
+  description: string;
+  leaderId: number;
+  researchesIds: number[];
+  status: string;
+  creationDate: number | string;
+  endDate: number | string;
+  researchArea: string;
+  researchTopic: string;
+  identifierArea: string;
+  slug: string;
+  image?: File;
+  document?: File;
 }

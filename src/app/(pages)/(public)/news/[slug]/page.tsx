@@ -29,7 +29,7 @@ export default function NewsPages() {
 
   const isMember =
     userAuth?.isAuthenticated &&
-    news.author.some((a) => a.id === userAuth.user?.id);
+    news.author.some((a) => a.userId === userAuth.user?.userId);
 
   return (
     <div className="min-h-screen mx-auto max-w-5xl p-6">
