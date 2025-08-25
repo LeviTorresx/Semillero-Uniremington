@@ -84,7 +84,7 @@ export default function CreateProjectPage() {
       MySwal.fire("¡Éxito!", "Proyecto creado con éxito", "success");
       console.log("Proyecto creado:", projectToStore); 
 
-      // 👉 Reseteamos el formulario
+   
       setNewProject(initialState);
     } catch (error) {
       MySwal.fire("Error", "No se pudo crear el proyecto", "error");

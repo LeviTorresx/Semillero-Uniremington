@@ -17,8 +17,8 @@ const Footer = () => {
           {/* Datos de contacto */}
           <div className="text-center md:text-left">
             <h3 className="text-base font-semibold mb-2">Contacto</h3>
-            <p className="text-sm">Carrera 65 # 58B - 03, Medellín, Colombia</p>
-            <p className="text-sm">Teléfono: +57 604 444 5656</p>
+            <p className="text-sm">Calle 22 # 9-44  Caucasia - Antioquia , Colombia</p>
+            <p className="text-sm">Teléfono: 604 839 1089</p>
             <p className="text-sm">Email: contacto@uniremington.edu.co</p>
           </div>
 
