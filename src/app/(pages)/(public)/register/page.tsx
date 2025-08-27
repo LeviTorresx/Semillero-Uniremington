@@ -17,7 +17,6 @@ export default function RegisterPage() {
     email: "",
     password: "",
     phone: "",
-    role: "MEMBER",
     valid: false,
   });
 
