@@ -6,7 +6,7 @@ import NewsTable from "@/app/components/news/NewsTable";
 
 
 export default function AdminNewsDashboard() {
-  const news = useSelector((state: RootState) => state.news);
+  const news = useSelector((state: RootState) => state.news.news);
 
   const validNews = news.filter((n) => n.valid);
   const pendingNews = news.filter((n) => !n.valid);

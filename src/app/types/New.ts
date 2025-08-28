@@ -1,17 +1,29 @@
-import { User } from "./User";
 
 export interface News {
-  id: string;
+  newsId:number;
   title: string;
   excerpt: string;
   content: string;
   category: "PUBLICATION" | "EVENT" | "AWARDS" | "OTHER";
   date: string;
   imageUrl: string;
-  author: User[];
+  authorId: number;
   slug: string;
   valid: boolean;
 }
+
 export interface NewsFormData extends Omit<News, "imageUrl"> {
   image?: File;
+}
+
+export interface NewsRequest {
+  title: string;
+  excerpt: string;
+  content: string;
+  category: "PUBLICATION" | "EVENT" | "AWARDS" | "OTHER";
+  date: string;
+  image?: File;
+  authorId: number;
+  slug: string;
+  valid: boolean;
 }

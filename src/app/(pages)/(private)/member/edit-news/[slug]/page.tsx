@@ -1,18 +1,21 @@
 "use client";
 
 import NewsForm from "@/app/components/news/NewsForm";
-import { updateNew } from "@/app/store/features/NewSlice";
 import { AppDispatch, RootState } from "@/app/store/store";
-import { News, NewsFormData } from "@/app/types/New";
+import { editNewsThunk } from "@/app/store/thunks/NewsThunks";
+import { News, NewsRequest } from "@/app/types/New";
 import { useParams } from "next/navigation";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function EditNewsPage() {
   const { slug } = useParams();
+  const MySwal = withReactContent(Swal);
 
   const news = useSelector((state: RootState) =>
-    state.news.find((n) => n.slug === slug)
+    state.news.news.find((n) => n.slug === slug)
   );
 
   const dispatch = useDispatch<AppDispatch>();
@@ -21,7 +24,7 @@ export default function EditNewsPage() {
     if (!news) alert("no existe la noticia");
   }, [news]);
 
-  const [formData, setFormData] = useState<NewsFormData | null>(null);
+  const [formData, setFormData] = useState<News | null>(null);
 
   useEffect(() => {
     if (news) {
@@ -43,21 +46,26 @@ export default function EditNewsPage() {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  // Manejo de envío
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!formData) return;
 
-    const { image, ...rest } = formData;
+    try {
+      await dispatch(
+        editNewsThunk({
+          newsId: formData.newsId,
+          newsData: formData as NewsRequest,
+        })
+      );
 
-    const updatedNews: News = {
-      ...rest,
-      imageUrl: image ? URL.createObjectURL(image) : "",
-    };
-
-    console.log("Noticia actualizada:", updatedNews);
-    //disparador
-    dispatch(updateNew(updatedNews));
+      MySwal.fire("¡Éxito!", "Noticia actualizada con éxito", "success");
+      console.log("Noticia actualizada:", formData);
+    } catch (error) {
+      console.error("Error actualizando la noticia:", error);
+      MySwal.fire("Error", "No se pudo actualizar la noticia", "error");
+    }
   };
 
   return (

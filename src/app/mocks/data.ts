@@ -273,44 +273,44 @@ export const projectsMock: Project[] = [
 
 export const newsMock: News[] = [
   {
-    id: "1",
+    newsId: 1,
     title: "Participación en Congreso de Innovación",
     excerpt: "El semillero presentó un proyecto en el Congreso Nacional...",
     content: "Contenido completo de la noticia...",
     category: "EVENT",
     date: "2025-07-15",
     imageUrl: "/template.png",
-    author: [],
+    authorId: 0,
     slug: "participacion-en-congreso",
     valid: true,
   },
   {
-    id: "2",
+    newsId: 2,
     title: "Nuevo reconocimiento a la investigación",
     excerpt: "Nuestro semillero recibió un premio por su trabajo en...",
     content: "Contenido completo de la noticia...",
     category: "AWARDS",
     date: "2025-06-10",
     imageUrl: "/400x200.png",
-    author: [],
+    authorId: 0,
     slug: "reconocimiento-a-la-investigacion",
     valid: true,
   },
   {
-    id: "3",
+    newsId: 3,
     title: "Publicación de artículo en revista científica",
     excerpt: "Un nuevo artículo del semillero ha sido publicado en...",
     content: "Contenido completo de la noticia...",
     category: "PUBLICATION",
     date: "2024-05-20",
     imageUrl: "/template.png",
-    author: [],
+    authorId: 0,
     slug: "publicacion-articulo-revista",
     valid: true,
   },
 
   {
-    id: "4",
+    newsId: 4,
     title: "Evento de networking con empresas",
     excerpt:
       "Organizamos un evento para conectar estudiantes con empresas del sector.",
@@ -318,12 +318,12 @@ export const newsMock: News[] = [
     category: "EVENT",
     date: "2024-04-15",
     imageUrl: "/400x200.png",
-    author: [],
+    authorId: 0,
     slug: "evento-networking-empresas",
     valid: true,
   },
   {
-    id: "5",
+    newsId: 5,
     title: "Semillero gana concurso de innovación",
     excerpt:
       "Nuestro proyecto fue seleccionado como el mejor en el concurso anual.",
@@ -331,12 +331,12 @@ export const newsMock: News[] = [
     category: "AWARDS",
     date: "2024-03-05",
     imageUrl: "/template.png",
-    author: [],
+    authorId: 0,
     slug: "semillero-gana-concurso-innovacion",
     valid: true,
   },
   {
-    id: "6",
+    newsId: 6,
     title: "Nuevo proyecto de investigación iniciado",
     excerpt:
       "Iniciamos un nuevo proyecto sobre inteligencia artificial aplicada a la educación.",
@@ -344,12 +344,12 @@ export const newsMock: News[] = [
     category: "PUBLICATION",
     date: "2024-02-10",
     imageUrl: "/400x200.png",
-    author: [],
+    authorId: 0,
     slug: "nuevo-proyecto-investigacion-ia",
     valid: true,
   },
   {
-    id: "7",
+    newsId: 7,
     title: "Semillero participa en feria de ciencia y tecnología",
     excerpt:
       "Presentamos nuestros proyectos en la feria anual de ciencia y tecnología.",
@@ -357,14 +357,14 @@ export const newsMock: News[] = [
     category: "EVENT",
     date: "2024-01-20",
     imageUrl: "/400x200.png",
-    author: [],
+    authorId: 0,
     slug: "participacion-feria-ciencia-tecnologia",
     valid: false,
   },
 ];
 
 // Asignar investigadores a los proyectos
-newsMock[0].author = [usersMock[1]];
-newsMock[1].author = [usersMock[2]];
-newsMock[2].author = [usersMock[0], usersMock[1]];
-newsMock[3].author = [usersMock[1]];
+newsMock[0].authorId = usersMock[1].userId;
+newsMock[1].authorId = usersMock[2].userId;
+newsMock[2].authorId = usersMock[0].userId;
+newsMock[3].authorId = usersMock[1].userId;

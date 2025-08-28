@@ -39,9 +39,8 @@ export default function ProjectsPages() {
   const leader = members.find((m) => m.userId === project.leaderId);
 
   const researchers = members.filter((m) =>
-  (project.researchesIds ?? []).some((r) => r === m.userId)
-);
-
+    (project.researchesIds ?? []).some((r) => r === m.userId)
+  );
 
   const isLeader =
     userAuth?.isAuthenticated && leader?.userId === userAuth.user?.userId;

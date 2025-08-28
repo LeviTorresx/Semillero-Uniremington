@@ -18,18 +18,21 @@ export default function NewsPages() {
   const { slug } = params;
 
   const news = useSelector((state: RootState) =>
-    state.news.find((n) => n.slug === slug)
+    state.news.news.find((n) => n.slug === slug)
   );
 
   const userAuth = useSelector((state: RootState) => state.auth);
+  const members = useSelector((state: RootState) => state.members);
 
   if (!news) {
     return <div>Not Found</div>;
   }
 
+  // Buscar el autor de la noticia entre los miembros
+  const author = members.find((m) => m.userId === news.authorId);
+
   const isMember =
-    userAuth?.isAuthenticated &&
-    news.author.some((a) => a.userId === userAuth.user?.userId);
+    userAuth?.isAuthenticated && news.authorId === userAuth.user?.userId;
 
   return (
     <div className="min-h-screen mx-auto max-w-5xl p-6">
@@ -55,7 +58,7 @@ export default function NewsPages() {
         )}
       </div>
 
-      {/* Fecha y categoría */}
+      {/* Fecha, categoría y autor */}
       <div className="flex items-center text-gray-500 text-sm space-x-4 mb-6">
         <span className="flex items-center">
           <FaCalendarAlt className="mr-1" />{" "}
@@ -70,9 +73,7 @@ export default function NewsPages() {
         </span>
         <span className="flex items-center">
           <FaUserGroup className="mr-1" />{" "}
-          {news.author.length > 0
-            ? news.author.map((a) => a.name).join(", ")
-            : "N/A"}
+          {author ? author.name : "Autor desconocido"}
         </span>
       </div>
 

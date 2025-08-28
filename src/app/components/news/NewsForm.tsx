@@ -1,10 +1,10 @@
 "use client";
 
-import { NewsFormData } from "@/app/types/New";
+import { NewsRequest } from "@/app/types/New";
 import { ChangeEvent, FormEvent } from "react";
 
 interface NewsFormProps {
-  formData: NewsFormData;
+  formData: NewsRequest;
   onChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => void;

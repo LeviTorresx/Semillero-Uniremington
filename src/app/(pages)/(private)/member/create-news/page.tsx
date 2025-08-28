@@ -1,32 +1,34 @@
 "use client";
 
 import NewsForm from "@/app/components/news/NewsForm";
-import { addNew } from "@/app/store/features/NewSlice";
-import { RootState } from "@/app/store/store";
-import { News, NewsFormData } from "@/app/types/New";
+import { AppDispatch, RootState } from "@/app/store/store";
+import { createNewsThunk } from "@/app/store/thunks/NewsThunks";
+import { NewsRequest } from "@/app/types/New";
 import { createSlug } from "@/app/utils/slugname";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function CreateNewsPage() {
   const today = new Date().toISOString().split("T")[0];
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const userAuth = useSelector((state: RootState) => state.auth.user);
+  const MySwal = withReactContent(Swal);
 
-  const initialState: News = {
-    id: "",
+  const initialState: NewsRequest = {
     title: "",
     excerpt: "",
     content: "",
     category: "PUBLICATION",
     date: today,
-    author: userAuth !== null ? [userAuth]: [],
+    authorId: userAuth?.userId ?? 0,
     slug: "",
-    imageUrl: "",
+    image: new File([], ""),
     valid: false,
   };
 
-  const [formData, setFormData] = useState<NewsFormData>(initialState);
+  const [formData, setFormData] = useState<NewsRequest>(initialState);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -47,25 +49,37 @@ export default function CreateNewsPage() {
   };
 
   // Submit
-  const  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const slugtag = createSlug(formData.title);
-    const { image, ...rest } = formData;
 
-    const newsWithMeta: News = {
-      ...rest,
-      id: crypto.randomUUID(),
-      slug: slugtag,
-      imageUrl: image ? URL.createObjectURL(image) : "",
-    };
+    if (!userAuth) {
+      MySwal.fire(
+        "Error",
+        "Debes estar autenticado para crear una noticia",
+        "error"
+      );
+      return;
+    }
 
-    dispatch(addNew(newsWithMeta));
+    try {
+      const slugTag = createSlug(formData.title);
 
+      const newsToStore: NewsRequest = {
+        ...formData,
+        slug: slugTag,
+        authorId: userAuth.userId, // 🔹 opcional, si tu backend lo espera
+      };
 
+      await dispatch(createNewsThunk(newsToStore));
 
-    console.log("Noticia creada:", formData);
-    alert("Noticia creada con éxito!");
-    setFormData(initialState);
+      MySwal.fire("¡Éxito!", "Noticia creada con éxito", "success");
+      console.log("Noticia creada:", newsToStore);
+
+      setFormData(initialState);
+    } catch (error) {
+      MySwal.fire("Error", "No se pudo crear la noticia", "error");
+      console.error("Error creando la noticia:", error);
+    }
   };
 
   return (

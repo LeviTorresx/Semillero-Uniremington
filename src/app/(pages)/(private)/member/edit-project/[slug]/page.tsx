@@ -7,11 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Project, ProjectRequest } from "@/app/types/Project";
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { editProjectThunk } from "@/app/store/thunks/projectsThunks";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 export default function EditProjectPage() {
   const { slug } = useParams();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
+  const MySwal = withReactContent(Swal);
 
   const researchLines = useSelector((state: RootState) => state.researchLines);
   const project = useSelector((state: RootState) =>
@@ -47,18 +50,28 @@ export default function EditProjectPage() {
   };
 
   // Manejo de envío
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+// Manejo de envío
+const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    if (!projectData) return;
+  if (!projectData) return;
 
+  try {
     await dispatch(
       editProjectThunk({
         projectId: projectData.projectId,
         projectData: projectData as ProjectRequest,
       })
     );
-  };
+
+    MySwal.fire("¡Éxito!", "Proyecto actualizado con éxito", "success");
+    console.log("Proyecto actualizado:", projectData);
+  } catch (error) {
+    console.error("Error actualizando el proyecto:", error);
+    MySwal.fire("Error", "No se pudo actualizar el proyecto", "error");
+  }
+};
+
 
   return (
     <div>

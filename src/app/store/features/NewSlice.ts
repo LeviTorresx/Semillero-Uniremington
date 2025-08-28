@@ -1,36 +1,54 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { News } from "@/app/types/New";
-import { newsMock } from "@/app/mocks/data";
+import { createNewsThunk, editNewsThunk, fetchNews } from "../thunks/NewsThunks";
 
-const initialState: News[] = newsMock;
 
-const newSlice = createSlice({
+interface NewsState {
+  news: News[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: NewsState = {
+  news: [],
+  loading: false,
+  error: null,
+};
+
+const newsSlice = createSlice({
   name: "news",
   initialState,
-  reducers: {
-    setNews: (state, action) => {
-      return action.payload;
-    },
-    addNew: (state, action) => {
-      state.push(action.payload);
-    },
-    updateNew: (state, action) => {
-      const index = state.findIndex((n) => n.id === action.payload.id);
+  reducers: {},
+  extraReducers: (builder) => {
+    // 🔹 Fetch all news
+    builder.addCase(fetchNews.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(fetchNews.fulfilled, (state, action) => {
+      state.loading = false;
+      state.news = action.payload;
+    });
+    builder.addCase(fetchNews.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message || "Error fetching news";
+    });
+
+    // 🔹 Create news
+    builder.addCase(createNewsThunk.fulfilled, (state, action) => {
+      state.news.push(action.payload);
+    });
+
+    // 🔹 Edit news
+    builder.addCase(editNewsThunk.fulfilled, (state, action) => {
+      const index = state.news.findIndex((n) => n.newsId === action.payload.newsId);
       if (index !== -1) {
-        state[index] = action.payload;
+        state.news[index] = action.payload;
       }
-    },
-    deleteNew: (state, action) => {
-      return state.filter((n) => n.id !== action.payload);
-    },
-    toggleValidNews: (state, action: PayloadAction<string>) => {
-      const news = state.find((n) => n.id === action.payload);
-      if (news) {
-        news.valid = !news.valid; // alterna true/false
-      }
-    },
+    });
+
+   
   },
 });
 
-export default newSlice.reducer;
-export const { setNews, addNew, updateNew, deleteNew, toggleValidNews } = newSlice.actions;
+export default newsSlice.reducer;

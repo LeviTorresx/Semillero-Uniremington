@@ -8,13 +8,13 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
+
 export default function MemberNewsPages() {
-  const news = useSelector((state: RootState) => state.news);
+  const news = useSelector((state: RootState) => state.news.news);
   const userAuth = useSelector((state: RootState) => state.auth.user);
 
-  const userNews = news.filter((n) =>
-    n.author.some((a) => a.userId === userAuth?.userId)
-  );
+
+  const userNews = news.filter((n) => n.authorId === userAuth?.userId);
 
   const allNews: News[] = userNews;
 
@@ -81,7 +81,7 @@ export default function MemberNewsPages() {
       {paginatedNews.length > 0 ? (
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {paginatedNews.map((news) => (
-            <NewsCard key={news.id} news={news} />
+            <NewsCard key={news.newsId} news={news} />
           ))}
         </div>
       ) : (
