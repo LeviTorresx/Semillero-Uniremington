@@ -1,52 +1,56 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { Project } from "@/app/types/Project";
-import { projectsMock } from "@/app/mocks/data";
+import { createProjectThunk, editProjectThunk, fetchProjects } from "../thunks/projectsThunks";
 
-const initialState: Project[] = projectsMock;
+
+interface ProjectState {
+  projects: Project[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: ProjectState = {
+  projects: [],
+  loading: false,
+  error: null,
+};
 
 const projectSlice = createSlice({
   name: "project",
   initialState,
   reducers: {
-    setProjects: (state, action: PayloadAction<Project[]>) => {
-      return action.payload;
-    },
-    addProject: (state, action: PayloadAction<Project>) => {
-      state.push(action.payload);
-    },
-    updateProject: (state, action: PayloadAction<Project>) => {
-      const index = state.findIndex(
-        (project) => project.id === action.payload.id
+    // Reducers locales (si quieres alguno extra manual)
+  },
+  extraReducers: (builder) => {
+    // 🔹 Fetch all projects
+    builder.addCase(fetchProjects.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(fetchProjects.fulfilled, (state, action) => {
+      state.loading = false;
+      state.projects = action.payload;
+    });
+    builder.addCase(fetchProjects.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message || "Error fetching projects";
+    });
+
+    // 🔹 Create project
+    builder.addCase(createProjectThunk.fulfilled, (state, action) => {
+      state.projects.push(action.payload);
+    });
+
+    // 🔹 Edit project
+    builder.addCase(editProjectThunk.fulfilled, (state, action) => {
+      const index = state.projects.findIndex(
+        (p) => p.projectId === action.payload.projectId
       );
       if (index !== -1) {
-        state[index] = action.payload;
+        state.projects[index] = action.payload;
       }
-    },
-    deleteProject: (state, action: PayloadAction<number>) => {
-      return state.filter((project) => project.id !== action.payload);
-    },
-    toggleValidProject: (state, action: PayloadAction<number>) => {
-      const project = state.find((p) => p.id === action.payload);
-      if (project) {
-        project.valid = !project.valid; // alterna true/false
-      }
-    },
-    addMemberToProject: (state, action) => {
-      const { projectId, user } = action.payload;
-      const project = state.find((p) => p.id === projectId);
-      if (project && !project.researchesIds.some((m) => m === user.id)) {
-        project.researchesIds.push(user);
-      }
-    },
+    });
   },
 });
 
 export default projectSlice.reducer;
-export const {
-  setProjects,
-  addProject,
-  updateProject,
-  deleteProject,
-  toggleValidProject,
-  addMemberToProject,
-} = projectSlice.actions;

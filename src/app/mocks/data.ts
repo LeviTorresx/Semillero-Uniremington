@@ -81,7 +81,7 @@ export const usersMock: User[] = [
 export const projectsMock: Project[] = [
   // Ingeniería de Sistemas - Inteligencia Artificial
   {
-    id: 1,
+    projectId: 1,
     tittle: "Sistema de IA para análisis de datos empresariales",
     description:
       "Desarrollo de modelos de machine learning para predecir tendencias de mercado en PYMEs.",
@@ -100,7 +100,7 @@ export const projectsMock: Project[] = [
   },
   // Ingeniería de Sistemas - Desarrollo Web
   {
-    id: 2,
+    projectId: 2,
     tittle: "Plataforma web para gestión académica",
     description:
       "Aplicación responsive para la administración de cursos, calificaciones y asistencia.",
@@ -119,7 +119,7 @@ export const projectsMock: Project[] = [
   },
   // Ingeniería de Sistemas - Seguridad informática
   {
-    id: 3,
+    projectId: 3,
     tittle: "Sistema de detección de intrusiones en red",
     description:
       "Implementación de un IDS basado en análisis de tráfico con inteligencia artificial.",
@@ -138,7 +138,7 @@ export const projectsMock: Project[] = [
   },
   // Ingeniería de Sistemas - Transformación Digital
   {
-    id: 4,
+    projectId: 4,
     tittle: "Automatización de procesos administrativos",
     description:
       "Integración de RPA para reducir tiempos en trámites internos universitarios.",
@@ -157,7 +157,7 @@ export const projectsMock: Project[] = [
   },
   // Contaduría Pública - Finanzas y gestión pública
   {
-    id: 5,
+    projectId: 5,
     tittle: "Optimización de presupuestos municipales",
     description:
       "Uso de modelos financieros para mejorar la distribución de recursos públicos.",
@@ -176,7 +176,7 @@ export const projectsMock: Project[] = [
   },
   // Contaduría Pública - Auditoría digital
   {
-    id: 6,
+    projectId: 6,
     tittle: "Auditoría digital en entes públicos",
     description:
       "Implementación de sistemas de control interno con trazabilidad digital.",
@@ -195,7 +195,7 @@ export const projectsMock: Project[] = [
   },
   // Contaduría Pública - NIIF
   {
-    id: 7,
+    projectId: 7,
     tittle: "Implementación de NIIF para PYMEs",
     description:
       "Adaptación contable de empresas medianas a las Normas Internacionales de Información Financiera.",
@@ -214,7 +214,7 @@ export const projectsMock: Project[] = [
   },
   // Contaduría Pública - Contabilidad y tecnología
   {
-    id: 8,
+    projectId: 8,
     tittle: "Contabilidad automatizada en la nube",
     description:
       "Desarrollo de un sistema cloud para registrar y analizar operaciones contables en tiempo real.",
@@ -233,7 +233,7 @@ export const projectsMock: Project[] = [
   },
   // Ingeniería de Sistemas - Inteligencia Artificial
   {
-    id: 9,
+    projectId: 9,
     tittle: "Asistente virtual para orientación académica",
     description:
       "Chatbot basado en IA para guiar a estudiantes en procesos académicos y administrativos.",
@@ -252,7 +252,7 @@ export const projectsMock: Project[] = [
   },
   // Contaduría Pública - Auditoría digital
   {
-    id: 10,
+    projectId: 10,
     tittle: "Blockchain para trazabilidad contable",
     description:
       "Aplicación de blockchain para garantizar la integridad y transparencia de registros contables.",

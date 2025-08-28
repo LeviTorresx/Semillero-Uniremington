@@ -11,7 +11,7 @@ import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors"
 
 export default function ProjectPageContent() {
   const searchParams = useSearchParams();
-  const projects = useSelector(selectValidatedProjects);
+  const projects = useSelector((state: RootState) => state.projects.projects);
   const researchAreas = useSelector((state: RootState) => state.researchLines);
 
   const initialFilter: ProjectFilter = {

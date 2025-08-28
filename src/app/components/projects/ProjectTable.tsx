@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { FaCheck, FaXmark, FaEye } from "react-icons/fa6";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleValidProject } from "@/app/store/features/ProjectSlice";
+import { useSelector } from "react-redux";
+//import { toggleValidProject } from "@/app/store/features/ProjectSlice";
 import { Project } from "@/app/types/Project";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -22,7 +22,7 @@ export default function ProjectTable({
   color,
   validState,
 }: ProjectTableProps) {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   
   const members = useSelector((state: RootState) => state.members);
 
@@ -89,7 +89,7 @@ export default function ProjectTable({
             ) : (
               filteredProjects.map((project) => (
                 <tr
-                  key={project.id}
+                  key={project.projectId}
                   className="border-b bg-white hover:bg-gray-50 transition"
                 >
                   <td className="px-6 py-4 font-medium">{project.tittle}</td>
@@ -106,7 +106,7 @@ export default function ProjectTable({
                     </Link>
 
                     <button
-                      onClick={() => dispatch(toggleValidProject(project.id))}
+                      
                       className={`p-2.5 rounded-full transition ${
                         validState
                           ? "bg-red-100 text-red-600 hover:bg-red-200"
@@ -140,7 +140,7 @@ export default function ProjectTable({
           ) : (
             filteredProjects.map((project) => (
               <div
-                key={project.id}
+                key={project.projectId}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col gap-2"
               >
                 <h3 className="font-semibold text-gray-800">{project.tittle}</h3>
@@ -166,7 +166,7 @@ export default function ProjectTable({
                   </Link>
 
                   <button
-                    onClick={() => dispatch(toggleValidProject(project.id))}
+                    //onClick={() => dispatch(toggleValidProject(project.id))}
                     className={`p-2 rounded-full transition ${
                       validState
                         ? "bg-red-100 text-red-600 hover:bg-red-200"

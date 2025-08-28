@@ -1,8 +1,8 @@
 "use client";
 
-import { RootState, AppDispatch } from "@/app/store/store";
+import { RootState } from "@/app/store/store";
 import { useParams, useRouter } from "next/navigation";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   FaArrowLeft,
   FaFolderOpen,
@@ -16,18 +16,18 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
-import { addMemberToProject } from "@/app/store/features/ProjectSlice";
+//import { addMemberToProject } from "@/app/store/features/ProjectSlice";
 
 export default function ProjectsPages() {
   const params = useParams();
   const { slug } = params;
-  const dispatch = useDispatch<AppDispatch>();
+  //const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
   const members = useSelector((state: RootState) => state.members);
 
   const project = useSelector((state: RootState) =>
-    state.projects.find((p) => p.slug === slug)
+    state.projects.projects.find((p) => p.slug === slug)
   );
 
   const userAuth = useSelector((state: RootState) => state.auth);
@@ -39,13 +39,16 @@ export default function ProjectsPages() {
   const leader = members.find((m) => m.userId === project.leaderId);
 
   const researchers = members.filter((m) =>
-    project.researchesIds.some((r) => r === m.userId)
-  );
+  (project.researchesIds ?? []).some((r) => r === m.userId)
+);
+
 
   const isLeader =
     userAuth?.isAuthenticated && leader?.userId === userAuth.user?.userId;
 
-  const isEnrolled = researchers.some((r) => r.userId === userAuth.user?.userId);
+  const isEnrolled = researchers.some(
+    (r) => r.userId === userAuth.user?.userId
+  );
 
   const handleEnroll = () => {
     if (!userAuth.isAuthenticated) {
@@ -53,12 +56,7 @@ export default function ProjectsPages() {
       return router.push("/login");
     }
 
-    dispatch(
-      addMemberToProject({
-        projectId: project.id,
-        user: userAuth.user!,
-      })
-    );
+    //disparch(addMemberToProject({ projectId: project.projectId, memberId: userAuth.user!.userId }));
     alert(`Te inscribiste en: ${project.tittle}`);
   };
 

@@ -7,6 +7,7 @@ import PrivateNavbar from "@/app/components/header/PrivateNavbar";
 import { AppDispatch } from "@/app/store/store";
 import { useEffect } from "react";
 import { fetchUserThunk } from "@/app/store/features/AuthSlice";
+import { fetchProjects } from "@/app/store/thunks/projectsThunks";
 
 const navItems = [
   { label: "Mis proyectos", href: "/member" },
@@ -23,6 +24,10 @@ export default function MemberLayout({
   useEffect(() => {
     dispatch(fetchUserThunk());
   }, [dispatch]);
+
+    useEffect(() => {
+      dispatch(fetchProjects());
+    }, [dispatch]);
 
   return (
     <>

@@ -1,10 +1,9 @@
 "use client";
 
-import { createProject } from "@/app/apis/projects/CreateProject";
 import ProjectForm from "@/app/components/projects/ProjectForm";
-import { addProject } from "@/app/store/features/ProjectSlice";
 import { AppDispatch, RootState } from "@/app/store/store";
-import { Project, ProjectRequest } from "@/app/types/Project";
+import { createProjectThunk } from "@/app/store/thunks/projectsThunks";
+import { ProjectRequest } from "@/app/types/Project";
 import { createSlug } from "@/app/utils/slugname";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -77,14 +76,11 @@ export default function CreateProjectPage() {
         researchesIds: [userAuth.userId],
       };
 
-      const createdProject = await createProject(projectToStore);
-
-      dispatch(addProject(createdProject as Project));
+      await dispatch(createProjectThunk(projectToStore));
 
       MySwal.fire("¡Éxito!", "Proyecto creado con éxito", "success");
-      console.log("Proyecto creado:", projectToStore); 
+      console.log("Proyecto creado:", projectToStore);
 
-   
       setNewProject(initialState);
     } catch (error) {
       MySwal.fire("Error", "No se pudo crear el proyecto", "error");

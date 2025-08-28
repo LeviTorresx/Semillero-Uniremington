@@ -8,8 +8,8 @@ import { useSelector } from "react-redux";
 export default function AdminProjectDashboard() {
   const projects = useSelector((state: RootState) => state.projects);
 
-  const validProjects = projects.filter((p) => p.valid);
-  const invalidProjects = projects.filter((p) => !p.valid);
+  const validProjects = projects.projects.filter((p) => p.valid);
+  const invalidProjects = projects.projects.filter((p) => !p.valid);
 
   return (
     <div className=" p-6">

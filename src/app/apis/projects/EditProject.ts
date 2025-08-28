@@ -1,7 +1,10 @@
 import axios from "axios";
 import { Project, ProjectRequest } from "@/app/types/Project";
 
-export async function createProject(projectData: ProjectRequest) {
+export async function editProject(
+  projectId: number,
+  projectData: ProjectRequest
+) {
   const apiUrl = "http://localhost:8081";
 
   try {
@@ -14,8 +17,8 @@ export async function createProject(projectData: ProjectRequest) {
     if (image) formData.append("image", image);
     if (document) formData.append("document", document);
 
-    const response = await axios.post<Project>(
-      `${apiUrl}/member/create-project`,
+    const response = await axios.put<Project>(
+      `${apiUrl}/member/edit-project`,
       formData,
       {
         headers: {
@@ -28,7 +31,7 @@ export async function createProject(projectData: ProjectRequest) {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error creating project:",
+        "Error editing project:",
         error.response?.data || error.message
       );
     } else {
@@ -37,4 +40,3 @@ export async function createProject(projectData: ProjectRequest) {
     throw error;
   }
 }
-
