@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { RootState } from "@/app/store/store";
 import { useSelector } from "react-redux";
-import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors";
+
 
 export default function ProjectPageContent() {
   const searchParams = useSearchParams();

@@ -4,7 +4,7 @@ import ProjectForm from "@/app/components/projects/ProjectForm";
 import { RootState, AppDispatch } from "@/app/store/store";
 import { useParams, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { Project, ProjectFormData, ProjectRequest } from "@/app/types/Project";
+import { Project, ProjectRequest } from "@/app/types/Project";
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { editProjectThunk } from "@/app/store/thunks/projectsThunks";
 
