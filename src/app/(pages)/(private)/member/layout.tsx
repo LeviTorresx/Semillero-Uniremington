@@ -1,13 +1,8 @@
 // src/app/admin/layout.tsx
 "use client";
-
-import { useDispatch } from "react-redux";
 import "../../../globals.css";
 import PrivateNavbar from "@/app/components/header/PrivateNavbar";
-import { AppDispatch } from "@/app/store/store";
-import { useEffect } from "react";
-import { fetchUserThunk } from "@/app/store/features/AuthSlice";
-import { fetchProjects } from "@/app/store/thunks/projectsThunks";
+import PrivateDataProvider from "./PrivateMemberProvider";
 
 const navItems = [
   { label: "Mis proyectos", href: "/member" },
@@ -20,15 +15,6 @@ export default function MemberLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    dispatch(fetchUserThunk());
-  }, [dispatch]);
-
-    useEffect(() => {
-      dispatch(fetchProjects());
-    }, [dispatch]);
-
   return (
     <>
       <PrivateNavbar
@@ -36,7 +22,9 @@ export default function MemberLayout({
         navItems={navItems}
         title="Panel de Miembros"
       />
-      <main className="p-5">{children}</main>
+      <main className="p-5">
+        <PrivateDataProvider> {children} </PrivateDataProvider>
+      </main>
     </>
   );
 }
