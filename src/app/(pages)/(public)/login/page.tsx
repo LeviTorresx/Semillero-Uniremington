@@ -12,6 +12,7 @@ import withReactContent from "sweetalert2-react-content";
 import { AppDispatch } from "@/app/store/store";
 import { useDispatch } from "react-redux";
 import { fetchUserThunk } from "@/app/store/features/AuthSlice";
+import { AxiosError } from "axios";
 
 export default function LoginPage() {
   const [LoginRequest, setLoginRequest] = useState({
@@ -25,22 +26,25 @@ export default function LoginPage() {
 
   const MySwal = withReactContent(Swal);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    try {
-      const response = await loginUser(LoginRequest);
-      MySwal.fire("¡Éxito!", "Has iniciado sesión", "success");
-      console.log("Respuesta del backend:", response);
+  try {
+    const response = await loginUser(LoginRequest);
+    MySwal.fire("¡Éxito!", "Has iniciado sesión ✅", "success");
+    console.log("Respuesta del backend:", response);
 
-      dispatch(fetchUserThunk());
-      router.push("/member");
-      //router.push("/member");
-    } catch (error) {
-      console.error("Login failed:", error);
-      MySwal.fire("Error", "Credenciales inválidas ❌", "error");
-    }
-  };
+    dispatch(fetchUserThunk());
+    router.push("/member");
+  } catch (err) {
+    const error = err as Error | AxiosError;
+    const msg =
+      error instanceof Error ? error.message : "Ocurrió un error inesperado";
+    console.error("Login failed:", msg);
+
+    MySwal.fire("Error", msg, "error");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
