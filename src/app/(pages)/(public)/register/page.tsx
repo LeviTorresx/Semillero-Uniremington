@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { register } from "@/app/apis/auth/Register";
 import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
 
 export default function RegisterPage() {
   const [userData, setUserData] = useState<UserRequest>({
@@ -39,9 +40,12 @@ export default function RegisterPage() {
       MySwal.fire("¡Éxito!", "Cuenta creada con éxito", "success");
       console.log("Respuesta del backend:", response);
       router.push("login");
-    } catch (error) {
-      console.error("Registration failed:", error);
-      MySwal.fire("Error", "No se pudo crear la cuenta ", "error");
+    } catch (err) {
+      const error = err as Error | AxiosError;
+      const msg =
+        error instanceof Error ? error.message : "Ocurrió un error inesperado";
+      console.error("Registration failed:", msg);
+      MySwal.fire("Error", msg, "error");
     }
   };
 

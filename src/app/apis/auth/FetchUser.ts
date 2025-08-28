@@ -2,7 +2,7 @@ import { User } from "@/app/types/User";
 import axios from "axios";
 
 export async function fetchUser() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = "http://localhost:8081";
 
   try {
     const response = await axios.get(`${apiUrl}/auth/user`, {
