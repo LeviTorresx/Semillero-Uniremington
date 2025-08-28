@@ -75,7 +75,7 @@ export default function ProjectsPages() {
         <div className="w-full mb-6">
           <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow">
             <Image
-              src={project.imageUrl}
+              src={`http://localhost:8083/${project.imageUrl}`}
               alt={project.tittle}
               fill
               className="object-cover"
