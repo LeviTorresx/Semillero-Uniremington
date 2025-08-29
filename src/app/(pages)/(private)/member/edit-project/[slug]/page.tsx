@@ -64,7 +64,7 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     leaderId: projectData.leaderId,
     identifierArea: projectData.identifierArea,
     researchArea: projectData.researchArea,
-    researchesIds: projectData.researchesIds,
+    researcherIds: projectData.researcherIds,
     researchTopic :projectData.researchTopic,
     slug : projectData.slug,
     status: projectData.status,

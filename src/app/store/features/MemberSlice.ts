@@ -1,8 +1,6 @@
-import { usersMock } from "@/app/mocks/data";
 import { User } from "@/app/types/User";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchMembers } from "../thunks/MembersThunks";
-
+import { addMemberToProject, fetchMembers } from "../thunks/MembersThunks";
 
 interface MemberState {
   users: User[];
@@ -36,13 +34,28 @@ const memberSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchMembers.fulfilled, (state, action: PayloadAction<User[]>) => {
-        state.users = action.payload;
-        state.loading = false;
-      })
+      .addCase(
+        fetchMembers.fulfilled,
+        (state, action: PayloadAction<User[]>) => {
+          state.users = action.payload;
+          state.loading = false;
+        }
+      )
       .addCase(fetchMembers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Error al cargar los miembros";
+      })
+      .addCase(addMemberToProject.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addMemberToProject.fulfilled, (state, action) => {
+        state.loading = false;
+        // opcional: si quieres, puedes actualizar members automáticamente
+      })
+      .addCase(addMemberToProject.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   },
 });

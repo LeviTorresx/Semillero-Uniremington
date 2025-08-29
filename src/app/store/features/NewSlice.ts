@@ -41,7 +41,7 @@ const newsSlice = createSlice({
 
     // 🔹 Edit news
     builder.addCase(editNewsThunk.fulfilled, (state, action) => {
-      const index = state.news.findIndex((n) => n.newsId === action.payload.newsId);
+      const index = state.news.findIndex((n) => n.newId === action.payload.newId);
       if (index !== -1) {
         state.news[index] = action.payload;
       }

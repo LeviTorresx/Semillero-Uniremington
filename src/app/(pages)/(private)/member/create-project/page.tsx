@@ -26,7 +26,7 @@ export default function CreateProjectPage() {
     researchTopic: "",
     identifierArea: "",
     leaderId: userAuth?.userId ?? 0,
-    researchesIds: [userAuth?.userId ?? 0],
+    researcherIds: [userAuth?.userId ?? 0],
     slug: "",
     status: "En curso",
     tittle: "",
@@ -49,10 +49,27 @@ export default function CreateProjectPage() {
         [name]: files[0],
       }));
     } else {
-      setNewProject((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
+      setNewProject((prev) => {
+        const updatedProject = {
+          ...prev,
+          [name]: value,
+        };
+
+        // Si el cambio es en researchTopic, buscar el identificador
+        if (name === "researchTopic") {
+          let matchedIdentifier = "";
+          for (const line of researchLines) {
+            const matchedTopic = line.topics.find((t) => t.name === value);
+            if (matchedTopic) {
+              matchedIdentifier = matchedTopic.identifer; // ojo, está con typo en tu mock: identifer
+              break;
+            }
+          }
+          updatedProject.identifierArea = matchedIdentifier;
+        }
+
+        return updatedProject;
+      });
     }
   };
 
@@ -75,7 +92,7 @@ export default function CreateProjectPage() {
         ...newProject,
         slug: slugTag,
         leaderId: userAuth.userId,
-        researchesIds: [userAuth.userId],
+        researcherIds: [userAuth.userId],
       };
 
       await dispatch(createProjectThunk(projectToStore));

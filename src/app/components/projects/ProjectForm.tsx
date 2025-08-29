@@ -127,19 +127,6 @@ export default function ProjectForm({
             ))}
           </select>
         </div>
-
-        {/* IdentiferArea (relleno automáticamente) */}
-        <div className="col-span-1">
-          <label className="block font-semibold mb-1">Identificador de Área</label>
-          <input
-            type="text"
-            name="identiferArea"
-            value={formData.researchTopic} // aquí usamos el identifer del topic seleccionado
-            readOnly
-            className="w-full border rounded-lg p-2 bg-gray-100 text-gray-700"
-          />
-        </div>
-
         {/* Año */}
         <div className="col-span-1">
           <label className="block font-semibold mb-1">

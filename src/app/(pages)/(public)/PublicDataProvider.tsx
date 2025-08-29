@@ -1,7 +1,9 @@
 "use client";
 
+import { fetchUserThunk } from "@/app/store/features/AuthSlice";
 import { AppDispatch, RootState } from "@/app/store/store";
 import { fetchMembers } from "@/app/store/thunks/MembersThunks";
+import { fetchNews } from "@/app/store/thunks/NewsThunks";
 import { fetchProjects } from "@/app/store/thunks/projectsThunks";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,16 +13,26 @@ export default function PublicDataProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const dispatch = useDispatch<AppDispatch>();
+ const dispatch = useDispatch<AppDispatch>();
+
   const projects = useSelector((state: RootState) => state.projects.projects);
-  const members = useSelector((state: RootState) => state.members.users);
+  const userAuth = useSelector((state: RootState) => state.auth);
+  const news =  useSelector((state: RootState) => state.news.news);
+  const members =  useSelector((state: RootState) => state.members.users);
 
   useEffect(() => {
-    if (!projects || !members) {
-      dispatch(fetchProjects());
-      dispatch(fetchMembers());
+    const needsUser = !userAuth || !userAuth.isAuthenticated;
+    const needsProjects = !projects || projects.length === 0;
+    const needsNews = !news || news.length === 0;
+    const needsMembers = !members || members.length === 0;
+
+    if (needsUser || needsProjects || needsMembers) {
+      if (needsUser) dispatch(fetchUserThunk());
+      if (needsProjects) dispatch(fetchProjects());
+      if (needsNews) dispatch(fetchNews());
+      if (needsMembers) dispatch(fetchMembers());
     }
-  }, [dispatch, projects, members]);
+  }, [dispatch, userAuth, projects, news, members]);
 
   return <>{children}</>;
 }

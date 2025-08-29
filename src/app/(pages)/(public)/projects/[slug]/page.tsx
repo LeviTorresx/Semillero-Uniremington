@@ -1,8 +1,8 @@
 "use client";
 
-import { RootState } from "@/app/store/store";
+import { AppDispatch, RootState } from "@/app/store/store";
 import { useParams, useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   FaArrowLeft,
   FaFolderOpen,
@@ -16,13 +16,19 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
-//import { addMemberToProject } from "@/app/store/features/ProjectSlice";
+
+import Swal from "sweetalert2";
+import { addMemberToProject } from "@/app/store/thunks/MembersThunks";
+
 
 export default function ProjectsPages() {
   const params = useParams();
   const { slug } = params;
-  //const dispatch = useDispatch<AppDispatch>();
+
   const router = useRouter();
+
+
+  const dispatch = useDispatch<AppDispatch>();
 
   const members = useSelector((state: RootState) => state.members.users);
 
@@ -39,7 +45,7 @@ export default function ProjectsPages() {
   const leader = members.find((m) => m.userId === project.leaderId);
 
   const researchers = members.filter((m) =>
-    (project.researchesIds ?? []).some((r) => r === m.userId)
+    (project.researcherIds ?? []).some((r) => r === m.userId)
   );
 
   const isLeader =
@@ -49,14 +55,47 @@ export default function ProjectsPages() {
     (r) => r.userId === userAuth.user?.userId
   );
 
-  const handleEnroll = () => {
+  const handleEnroll = async () => {
     if (!userAuth.isAuthenticated) {
-      alert("Debes iniciar sesión para inscribirte en un proyecto.");
+      await Swal.fire({
+        icon: "warning",
+        title: "Debes iniciar sesión",
+        text: "Para inscribirte en un proyecto necesitas iniciar sesión.",
+        confirmButtonText: "Ir a login",
+      });
       return router.push("/login");
     }
 
-    //disparch(addMemberToProject({ projectId: project.projectId, memberId: userAuth.user!.userId }));
-    alert(`Te inscribiste en: ${project.tittle}`);
+    try {
+      const resultAction = await dispatch(
+        addMemberToProject({
+          projectId: project.projectId,
+          userId: userAuth.user!.userId,
+        })
+      );
+
+      if (addMemberToProject.fulfilled.match(resultAction)) {
+        Swal.fire({
+          icon: "success",
+          title: "Inscripción exitosa",
+          text: resultAction.payload, // "User added" desde el backend
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error al inscribirse",
+          text: (resultAction.payload as string) || "Ocurrió un error",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error inesperado",
+        text: "Ocurrió un error al inscribirte en el proyecto. "+error,
+      });
+    }
   };
 
   return (

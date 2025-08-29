@@ -86,7 +86,7 @@ export const projectsMock: Project[] = [
     description:
       "Desarrollo de modelos de machine learning para predecir tendencias de mercado en PYMEs.",
     leaderId: usersMock[1].userId,
-    researchesIds: [usersMock[0].userId, usersMock[1].userId],
+    researcherIds: [usersMock[0].userId, usersMock[1].userId],
     status: "En curso",
     creationDate: "2025-12-12",
     endDate: "2026-12-12",
@@ -105,7 +105,7 @@ export const projectsMock: Project[] = [
     description:
       "Aplicación responsive para la administración de cursos, calificaciones y asistencia.",
     leaderId: usersMock[1].userId,
-    researchesIds: [usersMock[0].userId, usersMock[1].userId],
+    researcherIds: [usersMock[0].userId, usersMock[1].userId],
     status: "Finalizado",
     creationDate: "2024",
     endDate: "2024",
@@ -124,7 +124,7 @@ export const projectsMock: Project[] = [
     description:
       "Implementación de un IDS basado en análisis de tráfico con inteligencia artificial.",
     leaderId: usersMock[0].userId,
-    researchesIds: [usersMock[0].userId, usersMock[1].userId],
+    researcherIds: [usersMock[0].userId, usersMock[1].userId],
     status: "En curso",
     creationDate: "2025",
     endDate: "2026",
@@ -143,7 +143,7 @@ export const projectsMock: Project[] = [
     description:
       "Integración de RPA para reducir tiempos en trámites internos universitarios.",
     leaderId: usersMock[0].userId,
-    researchesIds: [],
+    researcherIds: [],
     status: "Finalizado",
     creationDate: "2023",
     endDate: "2023",
@@ -162,7 +162,7 @@ export const projectsMock: Project[] = [
     description:
       "Uso de modelos financieros para mejorar la distribución de recursos públicos.",
     leaderId: usersMock[2].userId,
-    researchesIds: [],
+    researcherIds: [],
     status: "En curso",
     creationDate: "2025",
     endDate: "2027",
@@ -181,7 +181,7 @@ export const projectsMock: Project[] = [
     description:
       "Implementación de sistemas de control interno con trazabilidad digital.",
     leaderId: usersMock[2].userId,
-    researchesIds: [],
+    researcherIds: [],
     status: "Finalizado",
     creationDate: 2023,
     endDate: "2024",
@@ -200,7 +200,7 @@ export const projectsMock: Project[] = [
     description:
       "Adaptación contable de empresas medianas a las Normas Internacionales de Información Financiera.",
     leaderId: usersMock[2].userId,
-    researchesIds: [],
+    researcherIds: [],
     status: "En curso",
     creationDate: "2025",
     endDate: "2028",
@@ -219,7 +219,7 @@ export const projectsMock: Project[] = [
     description:
       "Desarrollo de un sistema cloud para registrar y analizar operaciones contables en tiempo real.",
     leaderId: usersMock[2].userId,
-    researchesIds: [],
+    researcherIds: [],
     status: "Finalizado",
     creationDate: "2025",
     endDate: "2025",
@@ -238,7 +238,7 @@ export const projectsMock: Project[] = [
     description:
       "Chatbot basado en IA para guiar a estudiantes en procesos académicos y administrativos.",
     leaderId: usersMock[2].userId,
-    researchesIds: [],
+    researcherIds: [],
     status: "En curso",
     creationDate: "2025",
     endDate: "2030",
@@ -257,7 +257,7 @@ export const projectsMock: Project[] = [
     description:
       "Aplicación de blockchain para garantizar la integridad y transparencia de registros contables.",
     leaderId: usersMock[2].userId,
-    researchesIds: [],
+    researcherIds: [],
     status: "Finalizado",
     creationDate: "2023",
     endDate: "2023",

@@ -3,7 +3,7 @@ export interface Project {
   tittle: string;
   description: string;
   leaderId: number;
-  researchesIds: number[];
+  researcherIds: number[];
   status: string;
   creationDate: number | string;
   endDate: number | string;
@@ -32,7 +32,7 @@ export interface ProjectRequest {
   tittle: string;
   description: string;
   leaderId: number;
-  researchesIds: number[];
+  researcherIds: number[];
   status: string;
   creationDate: number | string;
   endDate: number | string;
