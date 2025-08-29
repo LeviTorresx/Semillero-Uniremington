@@ -3,8 +3,6 @@ import { Project } from "@/app/types/Project";
 
 const apiUrl = "http://localhost:8083/projects";
 
-
-
 // Obtener todos los proyectos
 export async function getAllProjects(): Promise<Project[]> {
   try {

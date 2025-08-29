@@ -11,7 +11,7 @@ interface MemberState {
 }
 
 const initialState: MemberState = {
-  users: usersMock,
+  users: [],
   loading: false,
   error: null,
 };
