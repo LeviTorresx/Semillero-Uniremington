@@ -273,7 +273,7 @@ export const projectsMock: Project[] = [
 
 export const newsMock: News[] = [
   {
-    newsId: 1,
+    newId: 1,
     tittle: "Participación en Congreso de Innovación",
     excerpt: "El semillero presentó un proyecto en el Congreso Nacional...",
     content: "Contenido completo de la noticia...",
@@ -285,7 +285,7 @@ export const newsMock: News[] = [
     valid: true,
   },
   {
-    newsId: 2,
+    newId: 2,
     tittle: "Nuevo reconocimiento a la investigación",
     excerpt: "Nuestro semillero recibió un premio por su trabajo en...",
     content: "Contenido completo de la noticia...",
@@ -297,7 +297,7 @@ export const newsMock: News[] = [
     valid: true,
   },
   {
-    newsId: 3,
+    newId: 3,
     tittle: "Publicación de artículo en revista científica",
     excerpt: "Un nuevo artículo del semillero ha sido publicado en...",
     content: "Contenido completo de la noticia...",
@@ -310,7 +310,7 @@ export const newsMock: News[] = [
   },
 
   {
-    newsId: 4,
+    newId: 4,
     tittle: "Evento de networking con empresas",
     excerpt:
       "Organizamos un evento para conectar estudiantes con empresas del sector.",
@@ -323,7 +323,7 @@ export const newsMock: News[] = [
     valid: true,
   },
   {
-    newsId: 5,
+    newId: 5,
     tittle: "Semillero gana concurso de innovación",
     excerpt:
       "Nuestro proyecto fue seleccionado como el mejor en el concurso anual.",
@@ -336,7 +336,7 @@ export const newsMock: News[] = [
     valid: true,
   },
   {
-    newsId: 6,
+    newId: 6,
     tittle: "Nuevo proyecto de investigación iniciado",
     excerpt:
       "Iniciamos un nuevo proyecto sobre inteligencia artificial aplicada a la educación.",
@@ -349,7 +349,7 @@ export const newsMock: News[] = [
     valid: true,
   },
   {
-    newsId: 7,
+    newId: 7,
     tittle: "Semillero participa en feria de ciencia y tecnología",
     excerpt:
       "Presentamos nuestros proyectos en la feria anual de ciencia y tecnología.",

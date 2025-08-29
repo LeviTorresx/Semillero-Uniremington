@@ -1,38 +1,32 @@
-import { News, NewsRequest } from "@/app/types/New";
 import axios from "axios";
+import { NewsRequest } from "@/app/types/New";
 
+const API_URL = "http://localhost:8081/member";
 
 export async function editNews(newsId: number, newsData: NewsRequest) {
-  const apiUrl = "http://localhost:8081";
-
   try {
     const formData = new FormData();
-
     const { image, ...dataWithoutFile } = newsData;
 
-    // newsId como query param
+    // JSON serializado de los datos sin imagen
     formData.append("data", JSON.stringify(dataWithoutFile));
+
+    // Imagen solo si existe
     if (image) {
       formData.append("image", image);
     }
 
-    const response = await axios.put<News>(
-      `${apiUrl}/member/edit-news?newsId=${newsId}`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    // newsId como query param
+    const response = await axios.put(`${API_URL}/edit-news?newsId=${newsId}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
-    return response.data;
+    return response.data; // devuelve NewsDTO
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.error(
-        "Error editing news:",
-        error.response?.data || error.message
-      );
+      console.error("Error editando noticia:", error.response?.data || error.message);
     } else {
       console.error("Unexpected error:", error);
     }

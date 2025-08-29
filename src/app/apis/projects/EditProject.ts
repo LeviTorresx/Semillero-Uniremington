@@ -18,7 +18,7 @@ export async function editProject(
     if (document) formData.append("document", document);
 
     const response = await axios.put<Project>(
-      `${apiUrl}/member/edit-project`,
+      `${apiUrl}/member/edit-project?projectId=${projectId}`,
       formData,
       {
         headers: {

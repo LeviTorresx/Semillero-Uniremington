@@ -81,7 +81,7 @@ export default function NewsTable({
             ) : (
               filteredNews.map((n) => (
                 <tr
-                  key={n.newsId}
+                  key={n.newId}
                   className="border-b bg-white hover:bg-gray-50 transition"
                 >
                   <td className="px-6 py-4 font-medium">{n.tittle}</td>
@@ -146,7 +146,7 @@ export default function NewsTable({
           ) : (
             filteredNews.map((n) => (
               <div
-                key={n.newsId}
+                key={n.newId}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col gap-2"
               >
                 <h3 className="font-semibold text-gray-800">{n.tittle}</h3>

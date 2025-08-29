@@ -66,7 +66,7 @@ export default function NewsPage() {
       {paginatedNews.length > 0 ? (
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {paginatedNews.map((news) => (
-            <NewsCard key={news.newsId} news={news} />
+            <NewsCard key={news.newId} news={news} />
           ))}
         </div>
       ) : (

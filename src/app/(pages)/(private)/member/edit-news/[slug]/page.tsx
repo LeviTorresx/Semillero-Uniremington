@@ -24,11 +24,13 @@ export default function EditNewsPage() {
     if (!news) alert("no existe la noticia");
   }, [news]);
 
-  const [formData, setFormData] = useState<News | null>(null);
+  const [formData, setFormData] = useState<(News & { image?: File }) | null>(
+    null
+  );
 
   useEffect(() => {
     if (news) {
-      setFormData(news);
+      setFormData({...news});
     }
   }, [news]);
 
@@ -40,7 +42,7 @@ export default function EditNewsPage() {
     const { name, value, files } = e.target as HTMLInputElement;
 
     if (files && files.length > 0) {
-      setFormData((prev) => (prev ? { ...prev, [name]: files[0] } : prev));
+      setFormData((prev) => (prev ? { ...prev, image: files[0] } : prev));
     } else {
       setFormData((prev) => (prev ? { ...prev, [name]: value } : prev));
     }
@@ -52,16 +54,30 @@ export default function EditNewsPage() {
 
     if (!formData) return;
 
+    console.log()
+
+    const editedNews: NewsRequest = {
+      tittle: formData.tittle,
+      excerpt: formData.excerpt,
+      content: formData.content,
+      category: formData.category,
+      date: formData.date,
+      image: formData.image, 
+      authorId: formData.authorId,
+      slug: formData.slug,
+      valid: formData.valid,
+    };
+
     try {
       await dispatch(
         editNewsThunk({
-          newsId: formData.newsId,
-          newsData: formData as NewsRequest,
+          newsId: formData.newId,
+          newsData: editedNews,
         })
       );
 
       MySwal.fire("¡Éxito!", "Noticia actualizada con éxito", "success");
-      console.log("Noticia actualizada:", formData);
+      console.log("Noticia actualizada:", editedNews);
     } catch (error) {
       console.error("Error actualizando la noticia:", error);
       MySwal.fire("Error", "No se pudo actualizar la noticia", "error");

@@ -1,6 +1,6 @@
 
 export interface News {
-  newsId:number;
+  newId:number;
   tittle: string;
   excerpt: string;
   content: string;

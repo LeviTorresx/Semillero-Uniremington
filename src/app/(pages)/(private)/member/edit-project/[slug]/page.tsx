@@ -20,7 +20,7 @@ export default function EditProjectPage() {
   const project = useSelector((state: RootState) =>
     state.projects.projects.find((p) => p.slug === slug)
   );
-  const [projectData, setProjectData] = useState<Project | null>(null);
+  const [projectData, setProjectData] = useState<(Project & { image?: File, document?: File } ) | null>(null);
 
   useEffect(() => {
     if (!project) {
@@ -30,7 +30,7 @@ export default function EditProjectPage() {
 
   useEffect(() => {
     if (project) {
-      setProjectData(project);
+      setProjectData({... project});
     }
   }, [project]);
 
@@ -56,16 +56,33 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 
   if (!projectData) return;
 
+  const editedProject : ProjectRequest = {
+    tittle : projectData.tittle,
+    description: projectData.description,
+    creationDate: projectData.creationDate,
+    endDate: projectData.endDate,
+    leaderId: projectData.leaderId,
+    identifierArea: projectData.identifierArea,
+    researchArea: projectData.researchArea,
+    researchesIds: projectData.researchesIds,
+    researchTopic :projectData.researchTopic,
+    slug : projectData.slug,
+    status: projectData.status,
+    document: projectData.document,
+    image: projectData.image
+
+  }
+
   try {
     await dispatch(
       editProjectThunk({
         projectId: projectData.projectId,
-        projectData: projectData as ProjectRequest,
+        projectData: editedProject,
       })
     );
 
     MySwal.fire("¡Éxito!", "Proyecto actualizado con éxito", "success");
-    console.log("Proyecto actualizado:", projectData);
+    console.log("Proyecto actualizado:", editedProject);
   } catch (error) {
     console.error("Error actualizando el proyecto:", error);
     MySwal.fire("Error", "No se pudo actualizar el proyecto", "error");
