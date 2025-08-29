@@ -22,7 +22,7 @@ export default function NewsPages() {
   );
 
   const userAuth = useSelector((state: RootState) => state.auth);
-  const members = useSelector((state: RootState) => state.members);
+  const members = useSelector((state: RootState) => state.members.users);
 
   if (!news) {
     return <div>Not Found</div>;

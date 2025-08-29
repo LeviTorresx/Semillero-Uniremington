@@ -13,7 +13,7 @@ interface Props {
 
 export default function NewsCard({ news }: Props) {
   // Accedemos a members desde Redux
-  const members = useSelector((state: RootState) => state.members);
+  const members = useSelector((state: RootState) => state.members.users);
 
   // Buscar el autor por ID
   const author = members.find((m) => m.userId === news.authorId);

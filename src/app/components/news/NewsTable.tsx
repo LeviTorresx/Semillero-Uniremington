@@ -91,12 +91,12 @@ export default function NewsTable({
                     {Array.isArray(n.authorId)
                       ? n.authorId
                           .map((id) => {
-                            const member = members.find((m) => m.userId === id);
+                            const member = members.users.find((m) => m.userId === id);
                             return member ? member.name : `ID: ${id}`;
                           })
                           .join(", ")
                       : (() => {
-                          const member = members.find(
+                          const member = members.users.find(
                             (m) => m.userId === n.authorId
                           );
                           return member ? member.name : `ID: ${n.authorId}`;
@@ -162,12 +162,12 @@ export default function NewsTable({
                     {Array.isArray(n.authorId)
                       ? n.authorId
                           .map((id) => {
-                            const member = members.find((m) => m.userId === id);
+                            const member = members.users.find((m) => m.userId === id);
                             return member ? member.name : `ID: ${id}`;
                           })
                           .join(", ")
                       : (() => {
-                          const member = members.find(
+                          const member = members.users.find(
                             (m) => m.userId === n.authorId
                           );
                           return member ? member.name : `ID: ${n.authorId}`;

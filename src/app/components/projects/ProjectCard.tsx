@@ -11,7 +11,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project }: ProjectCardProps) {
 
   const members = useSelector((state: RootState) => state.members);
-  const leader = members.find((m) => m.userId === project.leaderId);
+  const leader = members.users.find((m) => m.userId === project.leaderId);
 
   return (
     <Link

@@ -28,7 +28,7 @@ export default function ProjectTable({
 
  const projectsWithLeaders = projects.map((project) => ({
     ...project,
-    leader: members.find((m) => m.userId == project.leaderId) || { name: "Desconocido" },
+    leader: members.users.find((m) => m.userId == project.leaderId) || { name: "Desconocido" },
   }));
 
 

@@ -24,7 +24,7 @@ export default function ProjectsPages() {
   //const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
-  const members = useSelector((state: RootState) => state.members);
+  const members = useSelector((state: RootState) => state.members.users);
 
   const project = useSelector((state: RootState) =>
     state.projects.projects.find((p) => p.slug === slug)

@@ -10,7 +10,7 @@ import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors"
 export default function MemberDashboard() {
   const userAuth = useSelector((state: RootState) => state.auth.user);
   const projects = useSelector(selectValidatedProjects);
-  const members = useSelector((state: RootState) => state.members);
+  const members = useSelector((state: RootState) => state.members.users);
 
   const researchers = members.filter((m) => m.userId === userAuth?.userId);
 
