@@ -1,7 +1,7 @@
 
 export interface News {
   newsId:number;
-  title: string;
+  tittle: string;
   excerpt: string;
   content: string;
   category: "PUBLICATION" | "EVENT" | "AWARDS" | "OTHER";
@@ -17,7 +17,7 @@ export interface NewsFormData extends Omit<News, "imageUrl"> {
 }
 
 export interface NewsRequest {
-  title: string;
+  tittle: string;
   excerpt: string;
   content: string;
   category: "PUBLICATION" | "EVENT" | "AWARDS" | "OTHER";

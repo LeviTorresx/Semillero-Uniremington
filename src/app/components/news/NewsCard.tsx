@@ -22,8 +22,8 @@ export default function NewsCard({ news }: Props) {
     <div className="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col">
       {/* Imagen */}
       <Image
-        src={news.imageUrl}
-        alt={news.title}
+        src={`http:localhost:8081${news.imageUrl}`}
+        alt={news.tittle}
         className="rounded-lg h-48 w-full object-cover"
         width={400}
         height={200}
@@ -41,7 +41,7 @@ export default function NewsCard({ news }: Props) {
           </span>
         </div>
 
-        <h3 className="text-lg font-bold mt-1">{news.title}</h3>
+        <h3 className="text-lg font-bold mt-1">{news.tittle}</h3>
         <p className="text-gray-600 text-sm mt-2">{news.excerpt}</p>
       </div>
 

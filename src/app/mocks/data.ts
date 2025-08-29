@@ -274,7 +274,7 @@ export const projectsMock: Project[] = [
 export const newsMock: News[] = [
   {
     newsId: 1,
-    title: "Participación en Congreso de Innovación",
+    tittle: "Participación en Congreso de Innovación",
     excerpt: "El semillero presentó un proyecto en el Congreso Nacional...",
     content: "Contenido completo de la noticia...",
     category: "EVENT",
@@ -286,7 +286,7 @@ export const newsMock: News[] = [
   },
   {
     newsId: 2,
-    title: "Nuevo reconocimiento a la investigación",
+    tittle: "Nuevo reconocimiento a la investigación",
     excerpt: "Nuestro semillero recibió un premio por su trabajo en...",
     content: "Contenido completo de la noticia...",
     category: "AWARDS",
@@ -298,7 +298,7 @@ export const newsMock: News[] = [
   },
   {
     newsId: 3,
-    title: "Publicación de artículo en revista científica",
+    tittle: "Publicación de artículo en revista científica",
     excerpt: "Un nuevo artículo del semillero ha sido publicado en...",
     content: "Contenido completo de la noticia...",
     category: "PUBLICATION",
@@ -311,7 +311,7 @@ export const newsMock: News[] = [
 
   {
     newsId: 4,
-    title: "Evento de networking con empresas",
+    tittle: "Evento de networking con empresas",
     excerpt:
       "Organizamos un evento para conectar estudiantes con empresas del sector.",
     content: "Contenido completo de la noticia...",
@@ -324,7 +324,7 @@ export const newsMock: News[] = [
   },
   {
     newsId: 5,
-    title: "Semillero gana concurso de innovación",
+    tittle: "Semillero gana concurso de innovación",
     excerpt:
       "Nuestro proyecto fue seleccionado como el mejor en el concurso anual.",
     content: "Contenido completo de la noticia...",
@@ -337,7 +337,7 @@ export const newsMock: News[] = [
   },
   {
     newsId: 6,
-    title: "Nuevo proyecto de investigación iniciado",
+    tittle: "Nuevo proyecto de investigación iniciado",
     excerpt:
       "Iniciamos un nuevo proyecto sobre inteligencia artificial aplicada a la educación.",
     content: "Contenido completo de la noticia...",
@@ -350,7 +350,7 @@ export const newsMock: News[] = [
   },
   {
     newsId: 7,
-    title: "Semillero participa en feria de ciencia y tecnología",
+    tittle: "Semillero participa en feria de ciencia y tecnología",
     excerpt:
       "Presentamos nuestros proyectos en la feria anual de ciencia y tecnología.",
     content: "Contenido completo de la noticia...",

@@ -46,7 +46,7 @@ export default function NewsPages() {
 
       <div className="flex justify-between items-center mb-3">
         {/* Título */}
-        <h1 className="text-3xl font-bold mb-3">{news.title}</h1>
+        <h1 className="text-3xl font-bold mb-3">{news.tittle}</h1>
         {/* Botón Editar solo si está autenticado */}
         {isMember && (
           <Link
@@ -80,8 +80,8 @@ export default function NewsPages() {
       {/* Imagen principal */}
       <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-md mb-8">
         <Image
-          src={news.imageUrl}
-          alt={news.title}
+          src={`http:localhost:8081${news.imageUrl}`}
+          alt={news.tittle}
           fill
           className="object-cover"
         />

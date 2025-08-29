@@ -17,7 +17,7 @@ export default function CreateNewsPage() {
   const MySwal = withReactContent(Swal);
 
   const initialState: NewsRequest = {
-    title: "",
+    tittle: "",
     excerpt: "",
     content: "",
     category: "PUBLICATION",
@@ -62,7 +62,7 @@ export default function CreateNewsPage() {
     }
 
     try {
-      const slugTag = createSlug(formData.title);
+      const slugTag = createSlug(formData.tittle);
 
       const newsToStore: NewsRequest = {
         ...formData,

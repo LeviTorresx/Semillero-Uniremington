@@ -29,8 +29,8 @@ export default function NewsForm({
           </label>
           <input
             type="text"
-            name="title"
-            value={formData.title}
+            name="tittle"
+            value={formData.tittle}
             onChange={onChange}
             className="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
             required

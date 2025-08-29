@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/app/store/store";
 import { fetchUserThunk } from "@/app/store/features/AuthSlice";
 import { fetchProjects } from "@/app/store/thunks/projectsThunks";
+import { fetchNews } from "@/app/store/thunks/NewsThunks";
 
 export default function PrivateDataProvider({
   children,
@@ -15,16 +16,19 @@ export default function PrivateDataProvider({
 
   const projects = useSelector((state: RootState) => state.projects.projects);
   const userAuth = useSelector((state: RootState) => state.auth);
+  const news =  useSelector((state: RootState) => state.news.news);
 
   useEffect(() => {
     const needsUser = !userAuth || !userAuth.isAuthenticated;
     const needsProjects = !projects || projects.length === 0;
+    const needsNews = !news || news.length === 0;
 
     if (needsUser || needsProjects) {
       if (needsUser) dispatch(fetchUserThunk());
       if (needsProjects) dispatch(fetchProjects());
+      if (needsNews) dispatch(fetchNews());
     }
-  }, [dispatch, userAuth, projects]);
+  }, [dispatch, userAuth, projects, news]);
 
   return <>{children}</>;
 }

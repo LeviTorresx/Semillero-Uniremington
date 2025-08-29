@@ -11,7 +11,7 @@ export default function PublicDataProvider({ children }: { children: React.React
   const projects = useSelector((state: RootState) => state.projects.projects);
 
   useEffect(() => {
-    if (!projects || projects.length === 0) {
+    if (!projects) {
       dispatch(fetchProjects());
     }
   }, [dispatch, projects]);

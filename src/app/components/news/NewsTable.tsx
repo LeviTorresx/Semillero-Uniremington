@@ -26,7 +26,7 @@ export default function NewsTable({
 
   const filteredNews = news.filter(
     (n) =>
-      n.title.toLowerCase().includes(search.toLowerCase()) ||
+      n.tittle.toLowerCase().includes(search.toLowerCase()) ||
       n.category.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -84,7 +84,7 @@ export default function NewsTable({
                   key={n.newsId}
                   className="border-b bg-white hover:bg-gray-50 transition"
                 >
-                  <td className="px-6 py-4 font-medium">{n.title}</td>
+                  <td className="px-6 py-4 font-medium">{n.tittle}</td>
                   <td className="px-6 py-4">{n.category}</td>
                   <td className="px-6 py-4">{n.date}</td>
                   <td className="px-6 py-4">
@@ -149,7 +149,7 @@ export default function NewsTable({
                 key={n.newsId}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col gap-2"
               >
-                <h3 className="font-semibold text-gray-800">{n.title}</h3>
+                <h3 className="font-semibold text-gray-800">{n.tittle}</h3>
                 <p className="text-sm text-gray-500">
                   Categoría: <span className="font-medium">{n.category}</span>
                 </p>

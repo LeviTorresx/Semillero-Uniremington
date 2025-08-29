@@ -29,7 +29,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       {project.imageUrl && (
         <div className="w-full h-48 relative">
           <Image
-            src={`http://localhost:8083/${project.imageUrl}`}
+            src={`http://localhost:8081${project.imageUrl}`}
             alt={project.tittle}
             fill
             className="object-cover"

@@ -74,7 +74,7 @@ export default function ProjectsPages() {
         <div className="w-full mb-6">
           <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow">
             <Image
-              src={`http://localhost:8083/${project.imageUrl}`}
+              src={`http://localhost:8081${project.imageUrl}`}
               alt={project.tittle}
               fill
               className="object-cover"
@@ -171,7 +171,7 @@ export default function ProjectsPages() {
           </h2>
           <div className="border rounded-lg overflow-hidden shadow">
             <iframe
-              src={project.documentUrl}
+              src={`http://localhost:8081${project.documentUrl}`}
               className="w-full h-96"
               title="Documento del proyecto"
             />

@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { News } from "@/app/types/New";
 
-const apiUrl = "http://localhost:8083/news";
+const apiUrl = "http://localhost:8082/news";
 
 // 🔹 Obtener todas las noticias
 export async function getAllNews(): Promise<News[]> {

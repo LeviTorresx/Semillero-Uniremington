@@ -22,7 +22,7 @@ export default function NewsPage() {
     return (
       (category ? n.category === category : true) &&
       (year ? new Date(n.date).getFullYear().toString() === year : true) &&
-      (keyword ? n.title.toLowerCase().includes(keyword.toLowerCase()) : true)
+      (keyword ? n.tittle.toLowerCase().includes(keyword.toLowerCase()) : true)
     );
   });
 
