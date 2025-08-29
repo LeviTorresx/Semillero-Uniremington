@@ -32,6 +32,8 @@ export default function CreateProjectPage() {
     tittle: "",
     creationDate: today,
     endDate: "",
+    document: new File([], ""),
+    image: new File([], ""),
   };
 
   const [newProject, setNewProject] = useState<ProjectRequest>(initialState);
