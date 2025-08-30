@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { FaCheck, FaXmark, FaEye } from "react-icons/fa6";
-import { useSelector } from "react-redux";
+import { FaCheck, FaEye, FaFaceLaughBeam } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
 //import { toggleValidProject } from "@/app/store/features/ProjectSlice";
 import { Project } from "@/app/types/Project";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { RootState } from "@/app/store/store";
+import { AppDispatch, RootState } from "@/app/store/store";
+import { approveProjectThunk } from "@/app/store/thunks/projectsThunks";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 interface ProjectTableProps {
   projects: Project[];
@@ -23,14 +26,19 @@ export default function ProjectTable({
   validState,
 }: ProjectTableProps) {
   //const dispatch = useDispatch();
-  
+
   const members = useSelector((state: RootState) => state.members);
 
- const projectsWithLeaders = projects.map((project) => ({
+  const projectsWithLeaders = projects.map((project) => ({
     ...project,
-    leader: members.users.find((m) => m.userId == project.leaderId) || { name: "Desconocido" },
+    leader: members.users.find((m) => m.userId == project.leaderId) || {
+      name: "Desconocido",
+    },
   }));
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  const MySwal = withReactContent(Swal);
 
   const [search, setSearch] = useState("");
 
@@ -39,6 +47,15 @@ export default function ProjectTable({
       p.tittle.toLowerCase().includes(search.toLowerCase()) ||
       p.researchArea?.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleApprove = async (projectId: number) => {
+    try {
+      await dispatch(approveProjectThunk(projectId));
+      MySwal.fire("¡Éxito!", "Este Projecto fue aprobad0", "success");
+    } catch {
+      MySwal.fire("¡Oh no!", "Ocurrio un error ", "error");
+    }
+  };
 
   return (
     <section className="mt-8">
@@ -106,10 +123,10 @@ export default function ProjectTable({
                     </Link>
 
                     <button
-                      
+                      onClick={() => handleApprove(project.projectId)}
                       className={`p-2.5 rounded-full transition ${
                         validState
-                          ? "bg-red-100 text-red-600 hover:bg-red-200"
+                          ? "bg-green-100 text-green-600 hover:bg-green-200"
                           : "bg-green-100 text-green-600 hover:bg-green-200"
                       }`}
                       title={
@@ -119,7 +136,7 @@ export default function ProjectTable({
                       }
                     >
                       {validState ? (
-                        <FaXmark size={16} />
+                        <FaFaceLaughBeam size={16} />
                       ) : (
                         <FaCheck size={16} />
                       )}
@@ -143,7 +160,9 @@ export default function ProjectTable({
                 key={project.projectId}
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col gap-2"
               >
-                <h3 className="font-semibold text-gray-800">{project.tittle}</h3>
+                <h3 className="font-semibold text-gray-800">
+                  {project.tittle}
+                </h3>
                 <p className="text-sm text-gray-500">
                   Área:{" "}
                   <span className="font-medium">{project.researchArea}</span>
@@ -169,14 +188,12 @@ export default function ProjectTable({
                     //onClick={() => dispatch(toggleValidProject(project.id))}
                     className={`p-2 rounded-full transition ${
                       validState
-                        ? "bg-red-100 text-red-600 hover:bg-red-200"
+                        ? "bg-green-100 text-green-600 hover:bg-green-200"
                         : "bg-green-100 text-green-600 hover:bg-green-200"
                     }`}
-                    title={
-                      validState ? "Marcar como inválido" : "Marcar como válido"
-                    }
+                    title={validState ? "" : "Marcar como válido"}
                   >
-                    {validState ? <FaXmark /> : <FaCheck />}
+                    {validState ? <FaFaceLaughBeam /> : <FaCheck />}
                   </button>
                 </div>
               </div>

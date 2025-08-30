@@ -35,6 +35,7 @@ export default function LoginPage() {
     console.log("Respuesta del backend:", response);
 
     dispatch(fetchUserThunk());
+
     router.push("/member");
   } catch (err) {
     const error = err as Error | AxiosError;

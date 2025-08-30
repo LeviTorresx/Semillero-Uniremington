@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Project } from "@/app/types/Project";
-import { createProjectThunk, editProjectThunk, fetchProjects } from "../thunks/projectsThunks";
+import { approveProjectThunk, createProjectThunk, editProjectThunk, fetchProjects } from "../thunks/projectsThunks";
 
 
 interface ProjectState {
@@ -49,7 +49,18 @@ const projectSlice = createSlice({
       if (index !== -1) {
         state.projects[index] = action.payload;
       }
-    });
+    })
+     .addCase(approveProjectThunk
+          .fulfilled, (state, action) => {
+          const { projectId } = action.payload;
+          const project = state.projects.find((p) => p.projectId === projectId);
+          if (project) {
+            project.valid = true; // marcamos como aprobada
+          }
+        })
+        .addCase(approveProjectThunk.rejected, (state, action) => {
+          state.error = action.payload as string;
+        });
   },
 });
 

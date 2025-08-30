@@ -1,6 +1,7 @@
-// src/app/admin/layout.tsx
+
 import "../../../globals.css";
 import PrivateNavbar from "@/app/components/header/PrivateNavbar";
+import PrivateDataProvider from "../member/PrivateMemberProvider";
 
 const navItems = [
   { label: "Miembros", href: "/admin/members" },
@@ -20,7 +21,9 @@ export default function AdminLayout({
         navItems={navItems}
         title="Panel de Administracion"
       />
-      <main className="p-5">{children}</main>
+      <main className="p-5">
+        <PrivateDataProvider> {children} </PrivateDataProvider>
+      </main>
     </>
   );
 }

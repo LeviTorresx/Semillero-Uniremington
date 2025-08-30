@@ -3,6 +3,7 @@ import { Project, ProjectRequest } from "@/app/types/Project";
 import { createProject } from "@/app/apis/projects/CreateProject";
 import { editProject } from "@/app/apis/projects/EditProject";
 import { getAllProjects } from "@/app/apis/projects/GetsProjects";
+import { approveProject } from "@/app/apis/projects/ApproveProjects";
 
 // 🔹 Obtener todos los proyectos
 export const fetchProjects = createAsyncThunk<Project[]>(
@@ -29,4 +30,13 @@ export const editProjectThunk = createAsyncThunk<
 >("project/editProject", async ({ projectId, projectData }) => {
   const updatedProject = await editProject(projectId, projectData);
   return updatedProject;
+});
+
+//aprobar un projecto
+export const approveProjectThunk = createAsyncThunk<
+  { projectId: number; message: string }, // retorno
+  number // argumento
+>("news/approveNews", async (projectId) => {
+  const message = await approveProject(projectId);
+  return { projectId, message }; // devolvemos id + mensaje del backend
 });

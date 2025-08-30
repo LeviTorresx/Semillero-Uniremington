@@ -7,11 +7,11 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { RootState } from "@/app/store/store";
 import { useSelector } from "react-redux";
-
+import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors";
 
 export default function ProjectPageContent() {
   const searchParams = useSearchParams();
-  const projects = useSelector((state: RootState) => state.projects.projects);
+  const projects = useSelector(selectValidatedProjects);
   const researchAreas = useSelector((state: RootState) => state.researchLines);
 
   const initialFilter: ProjectFilter = {

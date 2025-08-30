@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { News } from "@/app/types/New";
-import { createNewsThunk, editNewsThunk, fetchNews } from "../thunks/NewsThunks";
+import { approveNewsThunk, createNewsThunk, editNewsThunk, fetchNews } from "../thunks/NewsThunks";
 
 
 interface NewsState {
@@ -45,8 +45,18 @@ const newsSlice = createSlice({
       if (index !== -1) {
         state.news[index] = action.payload;
       }
+    })
+     .addCase(approveNewsThunk
+      .fulfilled, (state, action) => {
+      const { newId } = action.payload;
+      const news = state.news.find((n) => n.newId === newId);
+      if (news) {
+        news.valid = true; // marcamos como aprobada
+      }
+    })
+    .addCase(approveNewsThunk.rejected, (state, action) => {
+      state.error = action.payload as string;
     });
-
    
   },
 });

@@ -5,17 +5,13 @@ import { useSelector } from "react-redux";
 import ProjectList from "@/app/components/projects/ProjectList";
 import Link from "next/link";
 import { FaHandPeace } from "react-icons/fa";
-import { selectValidatedProjects } from "@/app/store/selectors/projectSelectors";
 
 export default function MemberDashboard() {
   const userAuth = useSelector((state: RootState) => state.auth.user);
-  const projects = useSelector(selectValidatedProjects);
-  const members = useSelector((state: RootState) => state.members.users);
+  const projects = useSelector((state: RootState) => state.projects.projects);
 
-  const researchers = members.filter((m) => m.userId === userAuth?.userId);
-
-  const userProjects = projects.filter(() =>
-    researchers.some((r) => r.userId == userAuth?.userId)
+  const userProjects = projects.filter((p) =>
+    p.researcherIds.includes(userAuth?.userId ?? -1)
   );
 
   return (

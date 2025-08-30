@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { FaCheck, FaXmark, FaEye } from "react-icons/fa6";
+import { FaCheck, FaEye, FaFaceLaughBeam } from "react-icons/fa6";
 import { useState } from "react";
 
 import { News } from "@/app/types/New";
 import { FaSearch } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/store/store";
+import { approveNewsThunk } from "@/app/store/thunks/NewsThunks";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 interface NewsTableProps {
   news: News[];
@@ -24,6 +27,10 @@ export default function NewsTable({
 }: NewsTableProps) {
   const [search, setSearch] = useState("");
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  const MySwal = withReactContent(Swal);
+
   const filteredNews = news.filter(
     (n) =>
       n.tittle.toLowerCase().includes(search.toLowerCase()) ||
@@ -31,6 +38,15 @@ export default function NewsTable({
   );
 
   const members = useSelector((state: RootState) => state.members);
+
+  const handleApprove = async (newId: number) => {
+    try {
+      await dispatch(approveNewsThunk(newId));
+      MySwal.fire("¡Éxito!", "Esta noticia fue aprobada", "success");
+    } catch {
+      MySwal.fire("¡Oh no!", "Ocurrio un error ", "error");
+    }
+  };
 
   return (
     <section className="mt-8">
@@ -91,7 +107,9 @@ export default function NewsTable({
                     {Array.isArray(n.authorId)
                       ? n.authorId
                           .map((id) => {
-                            const member = members.users.find((m) => m.userId === id);
+                            const member = members.users.find(
+                              (m) => m.userId === id
+                            );
                             return member ? member.name : `ID: ${id}`;
                           })
                           .join(", ")
@@ -113,19 +131,16 @@ export default function NewsTable({
                     </Link>
 
                     <button
+                      onClick={() => handleApprove(n.newId)}
                       className={`p-2.5 rounded-full transition ${
                         validState
-                          ? "bg-red-100 text-red-600 hover:bg-red-200"
+                          ? "bg-green-100 text-green-600 hover:bg-green-200"
                           : "bg-green-100 text-green-600 hover:bg-green-200"
                       }`}
-                      title={
-                        validState
-                          ? "Marcar como inválida"
-                          : "Marcar como válida"
-                      }
+                      title={validState ? "Marcar como inválida" : ""}
                     >
                       {validState ? (
-                        <FaXmark size={16} />
+                        <FaFaceLaughBeam size={16} />
                       ) : (
                         <FaCheck size={16} />
                       )}
@@ -162,7 +177,9 @@ export default function NewsTable({
                     {Array.isArray(n.authorId)
                       ? n.authorId
                           .map((id) => {
-                            const member = members.users.find((m) => m.userId === id);
+                            const member = members.users.find(
+                              (m) => m.userId === id
+                            );
                             return member ? member.name : `ID: ${id}`;
                           })
                           .join(", ")
@@ -185,16 +202,15 @@ export default function NewsTable({
                   </Link>
 
                   <button
+                    onClick={() => handleApprove(n.newId)}
                     className={`p-2 rounded-full transition ${
                       validState
-                        ? "bg-red-100 text-red-600 hover:bg-red-200"
+                        ? "bg-green-100 text-green-600 hover:bg-green-200"
                         : "bg-green-100 text-green-600 hover:bg-green-200"
                     }`}
-                    title={
-                      validState ? "Marcar como inválida" : "Marcar como válida"
-                    }
+                    title={validState ? "" : "Marcar como válida"}
                   >
-                    {validState ? <FaXmark /> : <FaCheck />}
+                    {validState ? <FaFaceLaughBeam /> : <FaCheck />}
                   </button>
                 </div>
               </div>
