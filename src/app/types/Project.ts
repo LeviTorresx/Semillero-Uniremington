@@ -5,8 +5,8 @@ export interface Project {
   researcherIds: number[];
   leaderId: number;
   status: string;
-  creationDate: number | string;
-  endDate: number | string;
+  creationDate: string;
+  endDate: string;
   researchArea: string;
   researchTopic: string;
   identifierArea: string;
@@ -23,7 +23,7 @@ export interface ProjectFormData
 }
 
 export interface ProjectFilter {
-  year: number | string;
+  year: string;
   identifer: string;
   status: string;
 }
@@ -34,8 +34,8 @@ export interface ProjectRequest {
   researcherIds: number[];
   leaderId: number;
   status: string;
-  creationDate: number | string;
-  endDate: number | string;
+  creationDate: string;
+  endDate: string;
   researchArea: string;
   researchTopic: string;
   identifierArea: string;

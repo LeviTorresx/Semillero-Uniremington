@@ -183,7 +183,7 @@ export const projectsMock: Project[] = [
     leaderId: usersMock[2].userId,
     researcherIds: [],
     status: "Finalizado",
-    creationDate: 2023,
+    creationDate: "2023",
     endDate: "2024",
     researchArea: researchLinesMocks[1].name,
     researchTopic: researchLinesMocks[1].topics[1].name,

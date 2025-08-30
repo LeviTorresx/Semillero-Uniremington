@@ -23,7 +23,7 @@ export default function ProjectPageContent() {
   const [filteredProjects, setFilteredProjects] = useState(() => {
     let result = projects;
     if (initialFilter.year)
-      result = result.filter((p) => p.creationDate == initialFilter.year);
+      result = result.filter((p) => p.creationDate.slice(0, 4) == initialFilter.year);
     if (initialFilter.identifer)
       result = result.filter(
         (p) => p.identifierArea === initialFilter.identifer
@@ -36,7 +36,7 @@ export default function ProjectPageContent() {
   const handleFilterChange = (filters: ProjectFilter) => {
     let result = projects;
     if (filters.year)
-      result = result.filter((p) => p.creationDate == filters.year);
+      result = result.filter((p) => p.creationDate.slice(0, 4) === filters.year);
     if (filters.identifer)
       result = result.filter((p) => p.identifierArea === filters.identifer);
     if (filters.status)
