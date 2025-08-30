@@ -22,7 +22,7 @@ export default function NewsCard({ news }: Props) {
     <div className="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col">
       {/* Imagen */}
       <Image
-        src={`http:localhost:8081${news.imageUrl}`}
+        src={`http://localhost:8081${news.imageUrl}`}
         alt={news.tittle}
         className="rounded-lg h-48 w-full object-cover"
         width={400}

@@ -14,25 +14,22 @@ export default function PrivateDataProvider({
   children: React.ReactNode;
 }) {
   const dispatch = useDispatch<AppDispatch>();
-
-  const projects = useSelector((state: RootState) => state.projects.projects);
+  
   const userAuth = useSelector((state: RootState) => state.auth);
-  const news =  useSelector((state: RootState) => state.news.news);
-  const members =  useSelector((state: RootState) => state.members.users);
+ 
 
-  useEffect(() => {
-    const needsUser = !userAuth || !userAuth.isAuthenticated;
-    const needsProjects = !projects || projects.length === 0;
-    const needsNews = !news || news.length === 0;
-    const needsMembers = !members || members.length === 0;
+ useEffect(() => {
+  if (!userAuth?.isAuthenticated) {
+    dispatch(fetchUserThunk());
+  }
+}, [dispatch, userAuth?.isAuthenticated]);
 
-    if (needsUser || needsProjects || needsMembers) {
-      if (needsUser) dispatch(fetchUserThunk());
-      if (needsProjects) dispatch(fetchProjects());
-      if (needsNews) dispatch(fetchNews());
-      if (needsMembers) dispatch(fetchMembers());
-    }
-  }, [dispatch, userAuth, projects, news, members]);
+useEffect(() => {
+  dispatch(fetchProjects());
+  dispatch(fetchNews());
+  dispatch(fetchMembers());
+}, [dispatch]);
+
 
   return <>{children}</>;
 }

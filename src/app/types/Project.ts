@@ -2,8 +2,8 @@ export interface Project {
   projectId: number;
   tittle: string;
   description: string;
-  leaderId: number;
   researcherIds: number[];
+  leaderId: number;
   status: string;
   creationDate: number | string;
   endDate: number | string;
@@ -31,8 +31,8 @@ export interface ProjectFilter {
 export interface ProjectRequest {
   tittle: string;
   description: string;
-  leaderId: number;
   researcherIds: number[];
+  leaderId: number;
   status: string;
   creationDate: number | string;
   endDate: number | string;
